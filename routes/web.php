@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\http\Controllers\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,6 +22,11 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/products', [App\Http\Controllers\ProductController::class, 'getAllProducts']);
+Route::get('/product', [App\Http\Controllers\ProductController::class, 'getAllProducts']);
 
-Route::get('/getProductById', [App\Http\Controllers\ProductController::class, 'getProductById']);
+Route::get('product/details/{id}', [App\Http\Controllers\ProductController::class, 'getProductById']);
+
+Route::get('category/showproductsbycategory/{id}', [App\Http\Controllers\productController::class, 'getCategoryProducts']);
+
+Route::get('/category', [App\Http\Controllers\CategoryController::class, 'getAllCategories']);
+

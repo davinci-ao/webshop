@@ -21,8 +21,7 @@ class ProductFactory extends Factory
         return [
             'name' => $this->faker->unique()->word(),
             "description" => $this->faker->unique()->text(),
-            "seller" => $this->faker->unique()->name(),
-            "seller_id" => $this->faker->numberbetween(1, 5),
+            "category_id" => $this->faker->numberbetween(1, 5),
         ];
     }
 }

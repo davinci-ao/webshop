@@ -19,4 +19,10 @@ class ProductController extends Controller
         ->with('product', Product::where('id', $id)->first());
     }
 
+    public function getCategoryProducts($id)
+{
+    $products = Product::where('category_id', $id)->get();
+        return view('category.showproductsbycategory', compact('products'));
+}       
+
 }

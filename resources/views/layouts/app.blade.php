@@ -30,8 +30,12 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">  
-                        <a class="navbar-brand" href="{{ url('/products') }}">
-                            {{ config('products', 'products') }}
+                        <a class="navbar-brand" href="{{ url('/product') }}">
+                            {{ config('product', 'product') }}
+                        </a>
+
+                        <a class="navbar-brand" href="{{ url('/category') }}">
+                            {{ config('category', 'category') }}
                         </a>
                     </ul>
 
