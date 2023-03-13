@@ -22,6 +22,7 @@ class UserSeeder extends Seeder
             "lastname" => "planki",
             "email" => "honkiplanki@gmail.com",
             "password" => Hash::make('honkiplanki'),
+            "admin" => true,
         ]);
     }
 }

@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\http\Controllers\ProductController;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,4 +29,16 @@ Route::get('product/details/{id}', [App\Http\Controllers\ProductController::clas
 Route::get('category/showproductsbycategory/{id}', [App\Http\Controllers\productController::class, 'getCategoryProducts']);
 
 Route::get('/category', [App\Http\Controllers\CategoryController::class, 'getAllCategories']);
+
+Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
+    Route::get('/login', [AdminAuthController::class, 'getLogin'])->name('adminLogin');
+    Route::post('/login', [AdminAuthController::class, 'postLogin'])->name('adminLoginPost');
+ 
+    Route::group(['middleware' => 'adminauth'], function () {
+        Route::get('/', function () {
+            return view('welcome');
+        })->name('adminDashboard');
+ 
+    });
+});
 
