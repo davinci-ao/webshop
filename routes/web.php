@@ -30,3 +30,11 @@ Route::get('category/showproductsbycategory/{id}', [App\Http\Controllers\product
 
 Route::get('/category', [App\Http\Controllers\CategoryController::class, 'getAllCategories']);
 
+Route::get('/', [App\Http\Controllers\admin\AdminAuthController::class, 'index']);
+
+Route::get('/admin/editproduct', [App\Http\Controllers\admin\AdminAuthController::class, 'getAllProducts']);
+
+Route::get('/admin/editcategory', [App\Http\Controllers\admin\AdminAuthController::class, 'getAllCategories']);
+
+Route::get('/admin/edituser', [App\Http\Controllers\admin\AdminAuthController::class, 'getAllUsers']);
+
