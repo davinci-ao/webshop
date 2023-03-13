@@ -5,8 +5,7 @@
         <div class="col-md-8 col-lg-6 col-xl-4">
           <div class="card text-black">
             <i class="fab fa-apple fa-lg pt-3 pb-1 px-3"></i>
-            <img src="https://mdbcdn.b-cdn.net/img/Photos/Horizontal/E-commerce/Products/belt.webp"
-              class="card-img-top" alt="Apple Computer" />
+            <img class="card-img"  src="{{url('/images' . '/' . $product->file_path)}}"/>
             <div class="card-body">
               <div class="text-center">
                 <p class="text-muted mb-4">{{$product->name}}</p>
