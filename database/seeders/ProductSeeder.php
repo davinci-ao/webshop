@@ -16,11 +16,28 @@ class ProductSeeder extends Seeder
     public function run(): void
     {
         DB::table('products')->insert([
-            "name" => "midi piano",
-            "description" => "Klein; wel zo fijn.",
-            "price" => 399,
-            "category_id" => 1,
+            [
+                "name" => "AKAI Professional MPK Mini Plus",
+                "description" => "Klein; wel zo fijn.",
+                "price" => 399,
+                "file_path" => "keyboard.jpg",
+                "category_id" => 1,
+            ],
+            [
+                "name" => "Devine EZ-Creator Key XL",
+                "description" => "In de EZ-Creator serie is de Devine EZ-Creator Key XL momenteel het grootste USB/MIDI keyboard. Een compact keyboard met 49 toetsen, handig om mee te produceren, bijvoorbeeld met de meegeleverde DAW Bitwig 8-Track.",
+                "price" => 65,
+                "file_path" => "AKAI Professional MPK Mini Plus.jpg",
+                "category_id" => 1,
+            ],
+            [
+                "name" => "Devine EZ-Creator Key XL",
+                "description" => "In de EZ-Creator serie is de Devine EZ-Creator Key XL momenteel het grootste USB/MIDI keyboard. Een compact keyboard met 49 toetsen, handig om mee te produceren, bijvoorbeeld met de meegeleverde DAW Bitwig 8-Track.",
+                "price" => 65,
+                "file_path" => "AKAI Professional MPK Mini Plus.jpg",
+                "category_id" => 1,
+            ],
         ]);
-        Product::factory()->count(25)->create();
+        //Product::factory()->count(25)->create();
     }
 }

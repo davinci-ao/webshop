@@ -6,7 +6,7 @@
                     <div class="col-lg-4 col-md-12 mb-4">
                         <div class="card">
                             <div class="bg-image hover-zoom ripple ripple-surface ripple-surface-light" data-mdb-ripple-color="light">
-                                <img src="https://mdbcdn.b-cdn.net/img/Photos/Horizontal/E-commerce/Products/belt.webp" class="w-100" />
+                                <img width="400" height="200" src="{{url('/images' . '/' . $product->file_path)}}"/>
                                 <a href="#!">
                                     <div class="mask">
                                         <div class="d-flex justify-content-start align-items-end h-100">
