@@ -18,6 +18,7 @@ class ProductSeeder extends Seeder
         DB::table('products')->insert([
             "name" => "midi piano",
             "description" => "Klein; wel zo fijn.",
+            "price" => 399,
             "category_id" => 1,
         ]);
         Product::factory()->count(25)->create();

@@ -21,6 +21,7 @@ class ProductFactory extends Factory
         return [
             'name' => $this->faker->unique()->word(),
             "description" => $this->faker->unique()->text(),
+            "price" => $this->faker->numberBetween($min = 50, $max = 300),
             "category_id" => $this->faker->numberbetween(1, 5),
         ];
     }
