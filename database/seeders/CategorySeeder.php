@@ -15,11 +15,25 @@ class CategorySeeder extends Seeder
      */
     public function run(): void
     {
-        $category_names = ["instruments", "drumkits", "plugins", "laptops"];
-        for ($i=0; $i < 3; $i++) { 
-            DB::table('categories')->insert([
-                "name" => $category_names[$i],
-            ]);
-        }
+        // $category_names = ["instruments", "drumkits", "plugins"];
+        // for ($i=0; $i < 3; $i++) { 
+        //     DB::table('categories')->insert([
+        //         "name" => $category_names[$i],
+        //     ]);
+        // }
+        DB::table('categories')->insert([
+            [
+                "name" => "instruments",
+                "file_path" => "instruments.jpg",
+            ],
+            [
+                "name" => "drumkits",
+                "file_path" => "drumkits.jpg",
+            ],
+            [
+                "name" => "plugins",
+                "file_path" => "vst.jpg",
+            ],
+        ]);
     }
 }
