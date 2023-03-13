@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('description');
             $table->bigInteger('price');
+            $table->string('file_path');
             $table->integer('category_id');
         });
     }
