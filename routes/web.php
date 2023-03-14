@@ -26,6 +26,12 @@ Route::get('/product', [App\Http\Controllers\ProductController::class, 'getAllPr
 
 Route::get('product/details/{id}', [App\Http\Controllers\ProductController::class, 'getProductById']);
 
+Route::get('/product/create', [App\Http\Controllers\ProductController::class, 'create']);
+
+Route::post('/product', [App\Http\Controllers\ProductController::class, 'store']);
+
+Route::get('product/delete/{id}', [App\Http\Controllers\ProductController::class, 'delete']);
+
 Route::get('category/showproductsbycategory/{id}', [App\Http\Controllers\productController::class, 'getCategoryProducts']);
 
 Route::get('/category', [App\Http\Controllers\CategoryController::class, 'getAllCategories']);

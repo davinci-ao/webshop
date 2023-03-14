@@ -20,9 +20,27 @@ class ProductController extends Controller
     }
 
     public function getCategoryProducts($id)
-{
+    {
     $products = Product::where('category_id', $id)->get();
         return view('category.showproductsbycategory', compact('products'));
-}       
+    }    
+
+    public function create()
+    {
+        return view('product.create');
+    } 
+
+    public function store(Request $request){
+        $input = $request->all();
+        $product = Product::create($input);    
+        return redirect('product')->with('flash_message', 'Playlist Addedd!');  
+    }
+
+    public function delete($id){
+        $data = Product::find($id);
+        $data->delete();
+        return redirect('product');  
+   }
+
 
 }

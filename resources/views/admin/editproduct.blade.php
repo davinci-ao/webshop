@@ -2,7 +2,7 @@
     @section('content')
         <div class="container">
             <div class="row">
-                <a href="#" class="btn btn-success btn-sm mx-4 my-4">+ Add product</a>
+                <a href="{{ url('/product/create') }}" class="btn btn-success btn-sm mx-4 my-4">+ Add product</a>
                     @foreach($products as $product)
                         <div class="col-lg-4 col-md-12 mb-4">
                             <div class="card">
@@ -30,7 +30,7 @@
                                             <br>
                                             <hr>
                                             <br>
-                                            <a href="{{ url('/product/' . 'details/' . $product->id) }}" class="btn btn-danger btn-sm">Delete {{$product->name}}</a>
+                                            <a href="{{ url('/product/delete/' . $product->id) }}" class="btn btn-danger btn-sm">Delete {{$product->name}}</a>
                                         </div>
                                     </div>
                                 </div>      
