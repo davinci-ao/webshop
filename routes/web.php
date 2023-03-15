@@ -32,6 +32,10 @@ Route::post('/product', [App\Http\Controllers\ProductController::class, 'store']
 
 Route::get('product/delete/{id}', [App\Http\Controllers\ProductController::class, 'delete']);
 
+Route::get('product/edit/{id}', [App\Http\Controllers\ProductController::class, 'edit']);
+
+Route::post('product/storeProduct/{id}', [App\Http\Controllers\ProductController::class, 'storeProduct']);
+
 Route::get('category/showproductsbycategory/{id}', [App\Http\Controllers\productController::class, 'getCategoryProducts']);
 
 Route::get('/category', [App\Http\Controllers\CategoryController::class, 'getAllCategories']);

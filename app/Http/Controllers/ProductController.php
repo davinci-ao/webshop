@@ -42,5 +42,16 @@ class ProductController extends Controller
         return redirect('product');  
    }
 
+   public function edit($id)
+    {
+        $product = Product::find($id);
+        return view('product.update')->with('product', $product);
+    }
 
+    public function storeProduct(Request $request, $id){
+        $product = Product::find($id);
+        $input = $request->all();
+        $product->update($input);
+        return redirect('product');  
+    }
 }

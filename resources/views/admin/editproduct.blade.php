@@ -26,7 +26,7 @@
                                             <br>
                                             <hr>
                                             <br>
-                                            <a href="{{ url('/product/' . 'details/' . $product->id) }}" class="btn btn-success btn-sm">Edit {{$product->name}}</a>
+                                            <a href="{{ url('/product/edit/' . $product->id) }}" class="btn btn-success btn-sm">edit {{$product->name}}</a>
                                             <br>
                                             <hr>
                                             <br>
