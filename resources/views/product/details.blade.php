@@ -18,6 +18,9 @@
                 <div class="d-flex justify-content-between">
                   <span>Price</span><span>${{$product->price}}</span>
                 </div>
+                <div class="d-flex justify-content-between">
+                  <span>Stock</span><span>${{$product->stock}}</span>
+                </div>
               </div>
 
             </div>

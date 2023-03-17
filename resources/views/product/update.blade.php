@@ -21,6 +21,9 @@
 
         <input type="hidden" name="category_id" id="category_id" value="{{$product->category_id}}"/>
 
+        <label>Product stock</label></br>
+        <input type="text" name="stock" id="stock" value="{{$product->stock}}" class="form-control"></br>
+
         <input type="submit" value="Update" class="btn btn-success"></br>
     </form>
   

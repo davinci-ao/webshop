@@ -18,6 +18,7 @@ return new class extends Migration
             $table->bigInteger('price');
             $table->string('file_path');
             $table->integer('category_id');
+            $table->integer('stock');
         });
     }
 

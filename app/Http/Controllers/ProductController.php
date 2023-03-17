@@ -33,7 +33,7 @@ class ProductController extends Controller
     public function store(Request $request){
         $input = $request->all();
         $product = Product::create($input);    
-        return redirect('product')->with('flash_message', 'Playlist Addedd!');  
+        return redirect('product');  
     }
 
     public function delete($id){
@@ -49,6 +49,13 @@ class ProductController extends Controller
     }
 
     public function storeProduct(Request $request, $id){
+        $product = Product::find($id);
+        $input = $request->all();
+        $product->update($input);
+        return redirect('product');  
+    }
+
+    public function storeStockOfProduct(Request $request, $id){
         $product = Product::find($id);
         $input = $request->all();
         $product->update($input);

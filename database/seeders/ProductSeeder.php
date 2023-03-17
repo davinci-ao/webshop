@@ -22,6 +22,7 @@ class ProductSeeder extends Seeder
                 "price" => 399,
                 "file_path" => "AKAI Professional MPK Mini Plus.jpg",
                 "category_id" => 1,
+                "stock" => 3,
             ],
             [
                 "name" => "Devine EZ-Creator Key XL",
@@ -29,6 +30,7 @@ class ProductSeeder extends Seeder
                 "price" => 65,
                 "file_path" => "keyboard.jpg",
                 "category_id" => 1,
+                "stock" => 3,
             ],
             [
                 "name" => "AKAI MPK Mini MK3 ",
@@ -36,6 +38,7 @@ class ProductSeeder extends Seeder
                 "price" => 90,
                 "file_path" => "akai mpk mini mk3.jpg",
                 "category_id" => 1,
+                "stock" => 3,
             ],
             [
                 "name" => "MULTIVERSE DRUMKIT",
@@ -43,6 +46,7 @@ class ProductSeeder extends Seeder
                 "price" => 25,
                 "file_path" => "multiverse drumkit.jpg",
                 "category_id" => 2,
+                "stock" => 3,
             ],
             [
                 "name" => "OMNITRIX DRUMKIT",
@@ -50,6 +54,7 @@ class ProductSeeder extends Seeder
                 "price" => 18,
                 "file_path" => "OMNITRIX DRUMKIT.jpg",
                 "category_id" => 2,
+                "stock" => 3,
             ],
             [
                 "name" => "BLUE DRAGON DRUMKIT",
@@ -57,6 +62,7 @@ class ProductSeeder extends Seeder
                 "price" => 20,
                 "file_path" => "BLUE DRAGON DRUMKIT.jpg",
                 "category_id" => 2,
+                "stock" => 3,
             ],
             [
                 "name" => "SPECTRASONICS OMNISPHERE ",
@@ -64,6 +70,7 @@ class ProductSeeder extends Seeder
                 "price" => 389,
                 "file_path" => "omnisphere.jpg",
                 "category_id" => 3,
+                "stock" => 3,
             ],
             [
                 "name" => "HalfTime by Cableguys",
@@ -71,6 +78,7 @@ class ProductSeeder extends Seeder
                 "price" => 15,
                 "file_path" => "halftime.jpg",
                 "category_id" => 3,
+                "stock" => 3,
             ],
             [
                 "name" => "kontakt 7 by Native Instruments",
@@ -78,6 +86,7 @@ class ProductSeeder extends Seeder
                 "price" => 469,
                 "file_path" => "kontakt 7.jpg",
                 "category_id" => 3,
+                "stock" => 3,
             ],
         ]);
         //Product::factory()->count(25)->create();

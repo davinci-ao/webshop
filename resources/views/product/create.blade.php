@@ -20,6 +20,9 @@
 
         <label>category_id of product</label></br>
         <input type="text" name="category_id" id="category_id" class="form-control"></br>
+
+        <label>stocks of product</label></br>
+        <input type="text" name="stock" id="stock" class="form-control"></br>
         
         {{-- <div style="display:none">
             <input type="text" id="user_id" name="user_id" value="{{Auth::user()->id}}">

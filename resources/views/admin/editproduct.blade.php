@@ -21,6 +21,13 @@
                                                 <p>{{$product->category->name}}</p>
                                             @endif
                                             </div>
+                                            <form action="{{ url('product/storeStockOfProduct/' .$product->id) }}" method="post">
+                                                {!! csrf_field() !!}
+                                                <input type="hidden" name="id" id="id" value="{{$product->id}}"/>
+                                                <label>Stock of product</label></br>
+                                                <input type="text" name="stock" id="stock" value="{{$product->stock}}" class="form-control">
+                                                <input type="submit" value="Update stock" class="btn btn-success"><br>
+                                            </form><br>
                                             <h6 class="mb-3">${{$product->price}}</h6>
                                             <a href="{{ url('/product/' . 'details/' . $product->id) }}" class="btn btn-dark btn-sm">See {{$product->name}}</a>
                                             <br>
