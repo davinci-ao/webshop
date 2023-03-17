@@ -74,7 +74,7 @@
                                     </form>
                                 </div>
                             </li>
-                            <a class="navbar-brand" href="{{ url('/product') }}">
+                            <a class="navbar-brand" href="{{ url('/shoppingcart') }}">
                             <i class="fa-solid fa-cart-shopping mx-3"></i>
                         </a>
                         @endguest

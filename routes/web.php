@@ -50,3 +50,4 @@ Route::get('/admin/editcategory', [App\Http\Controllers\admin\AdminAuthControlle
 
 Route::get('/admin/edituser', [App\Http\Controllers\admin\AdminAuthController::class, 'getAllUsers']);
 
+Route::get('/shoppingcart', [App\Http\Controllers\ShoppingcartController::class, 'getAllFromShoppingcart']);
