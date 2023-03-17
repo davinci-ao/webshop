@@ -41,7 +41,16 @@
                                     <h6 class="mb-3 text-success">In stock</h6>
                                 @endif
                                 <input type="hidden" name="id" id="id" value="{{$product->id}}"/>
-                                <a href="{{ url('/product/' . 'details/' . $product->id . "/" . $product->category_id) }}" class="btn btn-dark btn-sm">See {{$product->name}}</a>
+                                <a href="{{ url('/product/' . 'details/' . $product->id . "/" . $product->category_id) }}" class="btn btn-dark btn-sm">See {{$product->name}}</a><br>
+                                <br>
+                                
+                                <form action="{{ url('addcart/' . $product->id) }}" method="post">
+                                    {!! csrf_field() !!}
+                                    <input type="number" value="1" min="1" class="form control" name=""><br>
+                                    <br>
+                                    <input type="submit" value="Add to cart" class="btn btn-dark"></br>
+                                </form>
+                           
                             </div>
                         </div>
                     </div>      

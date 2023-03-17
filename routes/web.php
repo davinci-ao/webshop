@@ -60,3 +60,7 @@ Route::get('/admin/editcategory', [App\Http\Controllers\admin\AdminAuthControlle
 
 Route::get('/admin/edituser', [App\Http\Controllers\admin\AdminAuthController::class, 'getAllUsers']);
 
+Route::get('cart', [App\Http\Controllers\CartController::class, 'getAllCartItems']);
+
+Route::post('addcart/{id}', [App\Http\Controllers\CartController::class, 'addCart']);
+
