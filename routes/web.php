@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Auth;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('');
 });
 
 Auth::routes();
@@ -26,7 +26,27 @@ Route::get('/product', [App\Http\Controllers\ProductController::class, 'getAllPr
 
 Route::get('product/details/{id}', [App\Http\Controllers\ProductController::class, 'getProductById']);
 
+Route::get('/product/create', [App\Http\Controllers\ProductController::class, 'create']);
+
+Route::post('/product', [App\Http\Controllers\ProductController::class, 'store']);
+
+Route::get('product/delete/{id}', [App\Http\Controllers\ProductController::class, 'delete']);
+
+Route::get('product/edit/{id}', [App\Http\Controllers\ProductController::class, 'edit']);
+
+Route::post('product/storeProduct/{id}', [App\Http\Controllers\ProductController::class, 'storeProduct']);
+
+Route::post('product/storeStockOfProduct/{id}', [App\Http\Controllers\ProductController::class, 'storeStockOfProduct']);
+
 Route::get('category/showproductsbycategory/{id}', [App\Http\Controllers\productController::class, 'getCategoryProducts']);
 
 Route::get('/category', [App\Http\Controllers\CategoryController::class, 'getAllCategories']);
+
+Route::get('/', [App\Http\Controllers\admin\AdminAuthController::class, 'index']);
+
+Route::get('/admin/editproduct', [App\Http\Controllers\admin\AdminAuthController::class, 'getAllProducts']);
+
+Route::get('/admin/editcategory', [App\Http\Controllers\admin\AdminAuthController::class, 'getAllCategories']);
+
+Route::get('/admin/edituser', [App\Http\Controllers\admin\AdminAuthController::class, 'getAllUsers']);
 

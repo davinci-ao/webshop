@@ -1,25 +1,18 @@
 @extends('layouts.app')
+    @section('content')
+    <div class="container">
+        @if(Auth::check() && Auth::user()->admin == true)
+        <h1 class= mx-4>Welkom admin</h1>
+        
+        <a href="{{ url('/admin/' . 'editproduct/') }}" class="btn btn-dark btn-xl mx-4 my-4">Edit products</a>
+        <br>
+        <a href="{{ url('/admin/' . 'editcategory/') }}" class="btn btn-dark btn-xl mx-4 my-4">Edit categories</a>
+        <br>
+        <a href="{{ url('/admin/' . 'edituser/') }}" class="btn btn-dark btn-xl mx-4 my-4">Edit users</a>
+        <br>      
+@else
 
-@section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
+welkom
 
-                <div class="card-body">
-                @if(Auth::check() && Auth::user()->admin == true)
-                
-                Welkom admin
-
-                @else
-
-                welkom
-                
-                @endif
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+@endif
 @endsection

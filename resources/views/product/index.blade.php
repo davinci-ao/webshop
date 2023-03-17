@@ -21,7 +21,15 @@
                                     @endif
                                 </div>
                                 <h6 class="mb-3">${{$product->price}}</h6>
-                                <a href="{{ url('/product/' . 'details/' . $product->id) }}" class="btn btn-dark btn-sm">see {{$product->name}}</a>
+                                @if ($product->stock < 1)
+                                    <h6 class="mb-3 text-danger">Out of stock</h6>
+                                @elseif ($product->stock < 4)
+                                    <h6 class="mb-3 text-warning">Only a few left in stock</h6>
+                                @else
+                                    <h6 class="mb-3 text-success">In stock</h6>
+                                @endif
+                                <input type="hidden" name="id" id="id" value="{{$product->id}}"/>
+                                <a href="{{ url('/product/' . 'details/' . $product->id) }}" class="btn btn-dark btn-sm">See {{$product->name}}</a>
                             </div>
                         </div>
                     </div>      
