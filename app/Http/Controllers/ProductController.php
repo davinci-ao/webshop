@@ -55,20 +55,13 @@ class ProductController extends Controller
         return redirect('product');  
     }
 
-<<<<<<< Updated upstream
-=======
-<<<<<<< Updated upstream
-=======
->>>>>>> Stashed changes
     public function storeStockOfProduct(Request $request, $id){
         $product = Product::find($id);
         $input = $request->all();
         $product->update($input);
         return redirect('product');  
     }
-<<<<<<< Updated upstream
-=======
-
+    
     public function sortOnPriceHigh(){
         $products = Product::orderBy('price','desc')->get();
         return view('product.index', ["products"=>$products]);  
@@ -95,6 +88,4 @@ class ProductController extends Controller
         return view('product\search',compact('products'));
     }
 
->>>>>>> Stashed changes
->>>>>>> Stashed changes
 }
