@@ -18,8 +18,13 @@
         <label>file_path of product</label></br>
         <input type="text" name="file_path" id="file_path" class="form-control"></br>
 
-        <label>category_id of product</label></br>
-        <input type="text" name="category_id" id="category_id" class="form-control"></br>
+        <label>category of product</label></br>
+        <select name="category_id" id="category_id" class="form-control">
+          <option> -- Select One --</option>
+          @foreach ($categories as $category)
+              <option value="{{ $category->id }}">{{ $category->name }}</option>
+          @endforeach 
+      </select></br>
 
         <label>stocks of product</label></br>
         <input type="text" name="stock" id="stock" class="form-control"></br>

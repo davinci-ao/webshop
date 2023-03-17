@@ -36,6 +36,16 @@ Route::get('product/edit/{id}', [App\Http\Controllers\ProductController::class, 
 
 Route::post('product/storeProduct/{id}', [App\Http\Controllers\ProductController::class, 'storeProduct']);
 
+Route::get('/product/sortOnPriceHigh', [App\Http\Controllers\ProductController::class, 'sortOnPriceHigh']);
+
+Route::get('/product/sortOnPriceLow', [App\Http\Controllers\ProductController::class, 'sortOnPriceLow']);
+
+Route::get('/product/sortOnNameHigh', [App\Http\Controllers\ProductController::class, 'sortOnNameHigh']);
+
+Route::get('/product/sortOnNameLow', [App\Http\Controllers\ProductController::class, 'sortOnNameLow']);
+
+Route::get('/product/sortOnASC', [App\Http\Controllers\ProductController::class, 'sortOnASC']);
+
 Route::post('product/storeStockOfProduct/{id}', [App\Http\Controllers\ProductController::class, 'storeStockOfProduct']);
 
 Route::get('category/showproductsbycategory/{id}', [App\Http\Controllers\productController::class, 'getCategoryProducts']);
