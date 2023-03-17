@@ -50,4 +50,9 @@ Route::get('/admin/editcategory', [App\Http\Controllers\admin\AdminAuthControlle
 
 Route::get('/admin/edituser', [App\Http\Controllers\admin\AdminAuthController::class, 'getAllUsers']);
 
+<<<<<<< Updated upstream
 Route::get('/shoppingcart', [App\Http\Controllers\ShoppingcartController::class, 'getAllFromShoppingcart']);
+=======
+Route::get('/search',[App\Http\Controllers\ProductController::class, 'search']);
+
+>>>>>>> Stashed changes

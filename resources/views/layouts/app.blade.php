@@ -43,7 +43,10 @@
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
                         <!-- Authentication Links -->
-                        
+                        <form class="form-inline my-2 my-lg-0" type="get" action="{{ url('/search') }}">
+                            <input class="form-control mr-sm-2" name="query" type="search" placeholder="Search" aria-label="Search">
+                            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                        </form>
                         @guest
                             @if (Route::has('login'))
                                 <li class="nav-item">
