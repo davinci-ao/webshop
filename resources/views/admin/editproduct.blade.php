@@ -1,6 +1,18 @@
 @extends('layouts.app')
     @section('content')
         <div class="container">
+            <div class="dropdown">
+                <button class="btn btn-dark btn-sm dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                  Sort products
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                    <li><a class="dropdown-item" href="{{ url('/product')}}" class="btn btn-dark btn-sm">Default</a></li>
+                  <li><a class="dropdown-item" href="{{ url('/product/sortOnPriceHigh')}}" class="btn btn-dark btn-sm">Price (high)</a></li>
+                  <li><a class="dropdown-item" href="{{ url('/product/sortOnPriceLow')}}" class="btn btn-dark btn-sm">Price (low)</a></li>
+                  <li><a class="dropdown-item" href="{{ url('/product/sortOnNameHigh')}}" class="btn btn-dark btn-sm">Name (A-Z)</a></li>
+                  <li><a class="dropdown-item" href="{{ url('/product/sortOnNameLow')}}" class="btn btn-dark btn-sm">Name (Z-A)</a></li>
+                </ul>
+              </div>
             <div class="row">
                 <a href="{{ url('/product/create') }}" class="btn btn-success btn-sm mx-4 my-4">+ Add product</a>
                     @foreach($products as $product)

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\Category;
 
 class ProductController extends Controller
 {
@@ -13,21 +14,24 @@ class ProductController extends Controller
         return view('product.index', ["products"=>$products]);
     }
 
-    public function getProductById($id){
+    public function getProductById($id, $category_id){
+        //$categoryPoducts = Product::All();
 
         return view('product.details')
-        ->with('product', Product::where('id', $id)->first());
+        ->with('product', Product::where('id', $id)->first())
+        ->with('categoryPoducts', Product::where('category_id', $category_id)->whereNot('id', $id)->get());
     }
 
     public function getCategoryProducts($id)
     {
-    $products = Product::where('category_id', $id)->get();
+        $products = Product::where('category_id', $id)->get();
         return view('category.showproductsbycategory', compact('products'));
     }    
 
     public function create()
     {
-        return view('product.create');
+        $categories = Category::All();
+        return view('product.create', ["categories"=>$categories]);
     } 
 
     public function store(Request $request){
@@ -44,8 +48,9 @@ class ProductController extends Controller
 
    public function edit($id)
     {
+        $categories = Category::All();
         $product = Product::find($id);
-        return view('product.update')->with('product', $product);
+        return view('product.update', ["categories"=>$categories])->with('product', $product);
     }
 
     public function storeProduct(Request $request, $id){

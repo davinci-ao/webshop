@@ -13,6 +13,7 @@
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
     <script src="https://kit.fontawesome.com/31c6441c63.js" crossorigin="anonymous"></script>
+    
 
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
@@ -77,7 +78,7 @@
                                     </form>
                                 </div>
                             </li>
-                            <a class="navbar-brand" href="{{ url('/shoppingcart') }}">
+                            <a class="navbar-brand" href="{{ url('/cart') }}">
                             <i class="fa-solid fa-cart-shopping mx-3"></i>
                         </a>
                         @endguest

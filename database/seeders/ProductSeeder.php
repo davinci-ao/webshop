@@ -16,6 +16,7 @@ class ProductSeeder extends Seeder
     public function run(): void
     {
         DB::table('products')->insert([
+            //instruments
             [
                 "name" => "AKAI Professional MPK Mini Plus",
                 "description" => "Klein; wel zo fijn.",
@@ -41,6 +42,39 @@ class ProductSeeder extends Seeder
                 "stock" => 3,
             ],
             [
+                "name" => "Devine EZ-Creator Plus",
+                "description" => "Duik in de wereld van muziekproductie met de voordelige controllers van Devine, zoals deze EZ-Creator Plus.",
+                "price" => 71,
+                "file_path" => "Devine EZ-Creator Plus.jpg",
+                "category_id" => 1,
+                "stock" => 5,
+            ],
+            [
+                "name" => "WORLDE Panda Midi",
+                "description" => "Prima dingetje",
+                "price" => 122,
+                "file_path" => "WORLDE Panda Midi.jpg",
+                "category_id" => 1,
+                "stock" => 7,
+            ],
+            [
+                "name" => "OMNITRONIC KEY-288 MIDI ",
+                "description" => "USB MIDI-controller met 25 knoppen, 8 pads, elk 4 controls en faders, voor muziekmakers, producers en DJ’s.",
+                "price" => 105,
+                "file_path" => "OMNITRONIC KEY-288 MIDI.jpg",
+                "category_id" => 1,
+                "stock" => 12,
+            ],
+            [
+                "name" => "Devine EZ-Creator Key",
+                "description" => "Een volwaardig keyboard, maar dan in het klein, waardoor deze makkelijk in een rugtas past met je laptop.",
+                "price" => 55,
+                "file_path" => "Devine EZ-Creator Key.jpg",
+                "category_id" => 1,
+                "stock" => 2,
+            ],
+            //drumkits
+            [
                 "name" => "MULTIVERSE DRUMKIT",
                 "description" => "Drumkit with over 230 Unique Sounds and Mixer Presets made by Filppu",
                 "price" => 25,
@@ -64,6 +98,7 @@ class ProductSeeder extends Seeder
                 "category_id" => 2,
                 "stock" => 3,
             ],
+            //plugins
             [
                 "name" => "SPECTRASONICS OMNISPHERE ",
                 "description" => "Omnisphere 2.8 is het vlaggeschip van Spectrasonics. Een instrument met een enorme power en een scala aan verschillende sounds. Een superinspirerende synthesizer die inzetbaar is voor elke type muziek",

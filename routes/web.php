@@ -24,7 +24,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::get('/product', [App\Http\Controllers\ProductController::class, 'getAllProducts']);
 
-Route::get('product/details/{id}', [App\Http\Controllers\ProductController::class, 'getProductById']);
+Route::get('product/details/{id}/{category_id}', [App\Http\Controllers\ProductController::class, 'getProductById']);
 
 Route::get('/product/create', [App\Http\Controllers\ProductController::class, 'create']);
 
@@ -35,6 +35,16 @@ Route::get('product/delete/{id}', [App\Http\Controllers\ProductController::class
 Route::get('product/edit/{id}', [App\Http\Controllers\ProductController::class, 'edit']);
 
 Route::post('product/storeProduct/{id}', [App\Http\Controllers\ProductController::class, 'storeProduct']);
+
+Route::get('/product/sortOnPriceHigh', [App\Http\Controllers\ProductController::class, 'sortOnPriceHigh']);
+
+Route::get('/product/sortOnPriceLow', [App\Http\Controllers\ProductController::class, 'sortOnPriceLow']);
+
+Route::get('/product/sortOnNameHigh', [App\Http\Controllers\ProductController::class, 'sortOnNameHigh']);
+
+Route::get('/product/sortOnNameLow', [App\Http\Controllers\ProductController::class, 'sortOnNameLow']);
+
+Route::get('/product/sortOnASC', [App\Http\Controllers\ProductController::class, 'sortOnASC']);
 
 Route::post('product/storeStockOfProduct/{id}', [App\Http\Controllers\ProductController::class, 'storeStockOfProduct']);
 
@@ -50,5 +60,7 @@ Route::get('/admin/editcategory', [App\Http\Controllers\admin\AdminAuthControlle
 
 Route::get('/admin/edituser', [App\Http\Controllers\admin\AdminAuthController::class, 'getAllUsers']);
 
-Route::get('/search',[App\Http\Controllers\ProductController::class, 'search']);
+Route::get('cart', [App\Http\Controllers\CartController::class, 'getAllCartItems']);
+
+Route::post('addcart/{id}', [App\Http\Controllers\CartController::class, 'addCart']);
 
