@@ -18,8 +18,15 @@
                 <div class="d-flex justify-content-between">
                   <span>Price</span><span>${{$product->price}}</span>
                 </div>
-                <div class="d-flex justify-content-between">
-                  <span>Stock</span><span>${{$product->stock}}</span>
+                <div class="text-center">
+                  {{-- <span>Stock</span><span>{{$product->stock}}</span> --}}
+                  @if ($product->stock < 1)
+                  <h6 class="mb-3 text-danger">out of stock</h6>
+              @elseif ($product->stock < 4)
+                  <h6 class="mb-3 text-warning">Only a few left in stock</h6>
+              @else
+                  <h6 class="mb-3 text-success">in stock</h6>
+              @endif
                 </div>
               </div>
 
