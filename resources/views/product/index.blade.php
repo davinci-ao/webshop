@@ -29,7 +29,7 @@
                                     <h6 class="mb-3 text-success">In stock</h6>
                                 @endif
                                 <input type="hidden" name="id" id="id" value="{{$product->id}}"/>
-                                <a href="{{ url('/product/' . 'details/' . $product->id) }}" class="btn btn-dark btn-sm">See {{$product->name}}</a>
+                                <a href="{{ url('/product/' . 'details/' . $product->id . "/" . $product->category_id) }}" class="btn btn-dark btn-sm">See {{$product->name}}</a>
                             </div>
                         </div>
                     </div>      

@@ -24,7 +24,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::get('/product', [App\Http\Controllers\ProductController::class, 'getAllProducts']);
 
-Route::get('product/details/{id}', [App\Http\Controllers\ProductController::class, 'getProductById']);
+Route::get('product/details/{id}/{category_id}', [App\Http\Controllers\ProductController::class, 'getProductById']);
 
 Route::get('/product/create', [App\Http\Controllers\ProductController::class, 'create']);
 

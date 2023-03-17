@@ -28,11 +28,50 @@
               @endif
                 </div>
               </div>
-
             </div>
           </div>
-        </div>
       </div>
     </div>
+    <hr>
+    <div class="container">
+      <h1 class="text-center">related for you</h3>
+    </div>
+    <hr>
+    <div class="container">
+      <div class="row">
+          @foreach($categoryPoducts as $categoryPoduct)
+              <div class="col-lg-2 col-md-12 mb-4">
+                  <div class="card">
+                      <div class="bg-image hover-zoom ripple ripple-surface ripple-surface-light" data-mdb-ripple-color="light">
+                          <img class="card-img" src="{{url('/images' . '/' . $categoryPoduct->file_path)}}"/>
+                          <a href="#!">
+                              <div class="hover-overlay">
+                                  <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+                              </div>
+                          </a>
+                      </div>
+                      <div class="card-body">
+                          <h5 class="card-title mb-3 text-reset">{{$categoryPoduct->name}}</h5>
+                          <div class="text-reset">
+                              @if ($categoryPoduct->category)
+                              <p>{{$categoryPoduct->category->name}}</p>
+                              @endif
+                          </div>
+                          <h6 class="mb-3">${{$categoryPoduct->price}}</h6>
+                          @if ($categoryPoduct->stock < 1)
+                              <h6 class="mb-3 text-danger">Out of stock</h6>
+                          @elseif ($categoryPoduct->stock < 4)
+                              <h6 class="mb-3 text-warning">Only a few left in stock</h6>
+                          @else
+                              <h6 class="mb-3 text-success">In stock</h6>
+                          @endif
+                          <input type="hidden" name="id" id="id" value="{{$categoryPoduct->id}}"/>
+                          <a href="{{ url('/product/' . 'details/' . $categoryPoduct->id . "/" . $categoryPoduct->category_id) }}" class="btn btn-dark btn-sm">See {{$product->name}}</a>
+                      </div>
+                  </div>
+              </div>      
+          @endforeach
+      </div>
+  </div>       
     @endsection
 

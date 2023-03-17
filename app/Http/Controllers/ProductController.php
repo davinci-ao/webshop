@@ -13,10 +13,12 @@ class ProductController extends Controller
         return view('product.index', ["products"=>$products]);
     }
 
-    public function getProductById($id){
+    public function getProductById($id, $category_id){
+        //$categoryPoducts = Product::All();
 
         return view('product.details')
-        ->with('product', Product::where('id', $id)->first());
+        ->with('product', Product::where('id', $id)->first())
+        ->with('categoryPoducts', Product::where('category_id', $category_id)->whereNot('id', $id)->get());
     }
 
     public function getCategoryProducts($id)
