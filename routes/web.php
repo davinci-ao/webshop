@@ -64,3 +64,5 @@ Route::get('cart', [App\Http\Controllers\CartController::class, 'getAllCartItems
 
 Route::post('addcart/{id}', [App\Http\Controllers\CartController::class, 'addCart']);
 
+Route::get('/search', 'App\Http\Controllers\ProductController@search');
+
