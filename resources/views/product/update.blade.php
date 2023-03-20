@@ -16,7 +16,7 @@
         <label>Product price</label></br>
         <input type="text" name="price" id="price" value="{{$product->price}}" class="form-control"></br>
 
-        <label>Product file_path</label></br>
+        <label>Product image link</label></br>
         <input type="text" name="file_path" id="file_path" value="{{$product->file_path}}" class="form-control"></br>
 
         <label>category of product</label></br>
