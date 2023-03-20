@@ -66,7 +66,6 @@ Route::get('cart/delete/{id}', [App\Http\Controllers\CartController::class, 'del
 
 Route::get('cart/delete/', [App\Http\Controllers\CartController::class, 'emptyCart']);
 
-
 Route::get('cart/index/', [App\Http\Controllers\CartController::class, 'show']);
 
 Route::post('cart/index/{id}', [App\Http\Controllers\CartController::class, 'add']);
