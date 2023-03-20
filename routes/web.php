@@ -62,7 +62,7 @@ Route::get('/admin/edituser', [App\Http\Controllers\admin\AdminAuthController::c
 
 Route::get('cart', [App\Http\Controllers\CartController::class, 'getAllCartItems']);
 
-Route::post('addcart/{id}', [App\Http\Controllers\CartController::class, 'addCart']);
+Route::post('addcart/{prodcut_id}/{category_id}', [App\Http\Controllers\CartController::class, 'addCart']);
 
 Route::get('/search', 'App\Http\Controllers\ProductController@search');
 
