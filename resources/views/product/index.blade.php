@@ -34,7 +34,6 @@
                                 @if ($product->category)
                                     <p>{{$product->category->name}}</p>
                                 @endif
-<<<<<<< HEAD
                             </div>
                             <h6 class="mb-3">${{$product->price}}</h6>
                             @if ($product->stock < 1)
@@ -50,13 +49,11 @@
                             @if(Auth::check() && Auth::user()->admin == "1")
                                 <hr>
                                 <form action="{{ url('product/storeStockOfProduct/' .$product->id) }}" method="post">
-=======
                                 <input type="hidden" name="id" id="id" value="{{$product->id}}"/>
                                 <a href="{{ url('/product/' . 'details/' . $product->id . "/" . $product->category_id) }}" class="btn btn-dark btn-sm">See {{$product->name}}</a><br>
                                 <br>
                                 
                                 <form action="{{ url('cart/index/' . $product->id) }}" method="post">
->>>>>>> dev
                                     {!! csrf_field() !!}
                                     <input type="hidden" name="id" id="id" value="{{$product->id}}"/>
                                     <label>Stock of {{$product->name}}</label></br>
