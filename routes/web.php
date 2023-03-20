@@ -54,10 +54,6 @@ Route::get('/category', [App\Http\Controllers\CategoryController::class, 'getAll
 
 Route::get('/', [App\Http\Controllers\admin\AdminAuthController::class, 'index']);
 
-Route::get('/admin/editproduct', [App\Http\Controllers\admin\AdminAuthController::class, 'getAllProducts']);
-
-Route::get('/admin/editcategory', [App\Http\Controllers\admin\AdminAuthController::class, 'getAllCategories']);
-
 Route::get('/admin/edituser', [App\Http\Controllers\admin\AdminAuthController::class, 'getAllUsers']);
 
 Route::get('cart', [App\Http\Controllers\CartController::class, 'getAllCartItems']);
@@ -66,3 +62,10 @@ Route::post('addcart/{prodcut_id}/{category_id}', [App\Http\Controllers\CartCont
 
 Route::get('/search', 'App\Http\Controllers\ProductController@search');
 
+Route::get('cart/index/', [App\Http\Controllers\CartController::class, 'show']);
+
+Route::post('cart/index/{id}', [App\Http\Controllers\CartController::class, 'add']);
+
+Route::get('cart/delete/{id}', [App\Http\Controllers\CartController::class, 'deleteItemOutCart']);
+
+Route::get('cart/delete/', [App\Http\Controllers\CartController::class, 'emptyCart']);
