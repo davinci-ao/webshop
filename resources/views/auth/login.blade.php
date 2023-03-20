@@ -62,7 +62,7 @@
                                         {{ __('Forgot Your Password?') }}
                                     </a>
                                     <a class="btn btn-link" href="{{ route('register') }}">
-                                        {{ __('Dont have an account?') }}
+                                        {{ __('Register?') }}
                                     </a>
                                 @endif
                             </div>
