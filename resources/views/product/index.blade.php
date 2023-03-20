@@ -44,7 +44,7 @@
                                 <a href="{{ url('/product/' . 'details/' . $product->id . "/" . $product->category_id) }}" class="btn btn-dark btn-sm">See {{$product->name}}</a><br>
                                 <br>
                                 
-                                <form action="{{ url('addcart/' . $product->id . "/" . $product->category_id) }}" method="post">
+                                <form action="{{ url('cart/index/' . $product->id) }}" method="post">
                                     {!! csrf_field() !!}
                                     <input type="number" value="1" min="1" class="form control" name="amount"><br>
                                     <br>
