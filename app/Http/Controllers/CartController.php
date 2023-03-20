@@ -1,47 +1,42 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\CartManager;
 use Illuminate\Http\Request;
 use App\Models\Cart;
-use App\Models\Cart_product;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\Product;
-use App\Models\Category;
+use Illuminate\Support\Facades\Session;
+
 
 class CartController extends Controller
 {
-    public function getAllCartItems(){
-        $carts = Cart::All();
-        return view('cart.index', ["carts"=>$carts]);
+    public function show()
+    {    
+        $cart = new CartManager();
+        $products = $cart->show();
+        return view('cart/index', compact('products'));
     }
 
-    public function addCart(Request $request, $product_id, $category_id){
-        if(Auth::id()){
-            $user=auth()->user();
+    public function add(Request $request, $id)
+    {
+        $cart = new CartManager();
+        $products = $cart->add($request, $id);
+        return redirect('cart/index');
+    }
 
-            $product = Product::find($product_id);
+    public function deleteItemOutCart(Request $request, $id)
+    {
+        $cart = new CartManager();
+        $products = $cart->deleteItemOutCart($request, $id);
+        return redirect('cart/index');
+    }
 
-            $cart = new cart;
-
-            $cart->name = $user->username;
-
-            $cart->product_name = $product->name;
-
-            $cart->category = $product->category->name;  
-
-            $cart->price = $product->price;  
-
-            $cart->file_path = $product->file_path;  
-
-            $cart->save();
-
-            return redirect('cart');
-        }
-        else{
-            return redirect('login');
-        }
-
+    public function emptyCart(Request $request)
+    {
+        $cart = new CartManager();
+        $products = $cart->emptyCart($request);
+        return redirect('cart/index');
     }
 }

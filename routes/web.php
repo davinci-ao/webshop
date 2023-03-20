@@ -56,11 +56,16 @@ Route::get('/', [App\Http\Controllers\admin\AdminAuthController::class, 'index']
 
 Route::get('/admin/edituser', [App\Http\Controllers\admin\AdminAuthController::class, 'getAllUsers']);
 
-Route::get('cart', [App\Http\Controllers\CartController::class, 'getAllCartItems']);
-
-Route::post('addcart/{prodcut_id}/{category_id}', [App\Http\Controllers\CartController::class, 'addCart']);
-
 Route::get('/search', 'App\Http\Controllers\ProductController@search');
+
+Route::get('cart/index/', [App\Http\Controllers\CartController::class, 'show']);
+
+Route::post('cart/index/{id}', [App\Http\Controllers\CartController::class, 'add']);
+
+Route::get('cart/delete/{id}', [App\Http\Controllers\CartController::class, 'deleteItemOutCart']);
+
+Route::get('cart/delete/', [App\Http\Controllers\CartController::class, 'emptyCart']);
+
 
 Route::get('cart/index/', [App\Http\Controllers\CartController::class, 'show']);
 
