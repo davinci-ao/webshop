@@ -37,7 +37,7 @@ class CartController extends Controller
 
             $cart->save();
 
-            return redirect()->back()->with('message', 'Product added successfully');
+            return redirect('cart');
         }
         else{
             return redirect('login');
