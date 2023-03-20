@@ -14,10 +14,6 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-Route::get('/', function () {
-    return view('');
-});
-
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -58,13 +54,7 @@ Route::get('/admin/edituser', [App\Http\Controllers\admin\AdminAuthController::c
 
 Route::get('/search', 'App\Http\Controllers\ProductController@search');
 
-Route::get('cart/index/', [App\Http\Controllers\CartController::class, 'show']);
 
-Route::post('cart/index/{id}', [App\Http\Controllers\CartController::class, 'add']);
-
-Route::get('cart/delete/{id}', [App\Http\Controllers\CartController::class, 'deleteItemOutCart']);
-
-Route::get('cart/delete/', [App\Http\Controllers\CartController::class, 'emptyCart']);
 
 Route::get('cart/index/', [App\Http\Controllers\CartController::class, 'show']);
 
