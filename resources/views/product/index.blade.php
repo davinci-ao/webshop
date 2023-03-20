@@ -13,6 +13,7 @@
                 <li><a class="dropdown-item" href="{{ url('/product/sortOnNameLow')}}" class="btn btn-dark btn-sm">Name (Z-A)</a></li>
             </ul>
         </div>
+        <br>
         <div class="row">
         @if(Auth::check() && Auth::user()->admin == "1")
             <a href="{{ url('/product/create') }}" class="btn btn-success btn-sm mx-4 my-4">+ Add product</a>
@@ -70,7 +71,7 @@
                                 <br>
                                 <hr>
                             @endif  
-                            @if(Auth::check() && Auth::user()->admin == "1")
+                            @if(Auth::check())
                             <form action="{{ url('cart/index/' . $product->id) }}" method="post">
                             @else
                             <form action="{{ url('register') }}">
