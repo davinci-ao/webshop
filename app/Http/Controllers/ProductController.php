@@ -86,4 +86,55 @@ class ProductController extends Controller
         $products = Product::orderBy('name','desc')->get();
         return view('product.index', ["products"=>$products]);  
     }
+<<<<<<< Updated upstream
 }
+=======
+
+    public function search(Request $request){
+        $search_text = $request->get('query');
+        $products = Product::where('name', 'LIKE', '%'.$search_text.'%')->with('category')->get();
+        return view('product\search',compact('products'));
+    }
+
+<<<<<<< Updated upstream
+}
+=======
+<<<<<<< Updated upstream
+=======
+    public function storeStockOfProduct(Request $request, $id){
+        $product = Product::find($id);
+        $input = $request->all();
+        $product->update($input);
+        return redirect('product');  
+    }
+
+    public function sortOnPriceHigh(){
+        $products = Product::orderBy('price','desc')->get();
+        return view('product.index', ["products"=>$products]);  
+    }
+
+    public function sortOnPriceLow(){
+        $products = Product::orderBy('price','ASC')->get();
+        return view('product.index', ["products"=>$products]);
+    }
+
+    public function sortOnNameHigh(){
+        $products = Product::orderBy('name','asc')->get();
+        return view('product.index', ["products"=>$products]);  
+    }
+
+    public function sortOnNameLow(){
+        $products = Product::orderBy('name','desc')->get();
+        return view('product.index', ["products"=>$products]);  
+    }
+
+    public function search(Request $request){
+        $search_text = $request->get('query');
+        $products = Product::where('name', 'LIKE', '%'.$search_text.'%')->with('category')->get();
+        return view('product\search',compact('products'));
+    }
+
+>>>>>>> Stashed changes
+}
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes

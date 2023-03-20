@@ -60,3 +60,12 @@ Route::get('/admin/editcategory', [App\Http\Controllers\admin\AdminAuthControlle
 
 Route::get('/admin/edituser', [App\Http\Controllers\admin\AdminAuthController::class, 'getAllUsers']);
 
+<<<<<<< Updated upstream
+=======
+<<<<<<< Updated upstream
+Route::get('cart/delete/', [App\Http\Controllers\CartController::class, 'emptyCart']);
+=======
+Route::get('/search',[App\Http\Controllers\ProductController::class, 'search']);
+
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
