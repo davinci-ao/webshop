@@ -70,7 +70,11 @@
                                 <br>
                                 <hr>
                             @endif  
+                            @if(Auth::check() && Auth::user()->admin == "1")
                             <form action="{{ url('cart/index/' . $product->id) }}" method="post">
+                            @else
+                            <form action="{{ url('register') }}">
+                            @endif
                                 {!! csrf_field() !!}
                                 <input type="number" value="1" min="1" class="form control" name="amount"><br>
                                 <br>

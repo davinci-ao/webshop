@@ -1,7 +1,9 @@
 @extends('layouts.app')
 @section('content')
     <div class="container">
-        <a href={{"delete/"}} class="btn btn-danger btn-sm"> empty whole cart </a>
+        <a href={{"delete/"}} class="btn btn-danger btn-sm">Empty whole cart </a>
+        <br>
+        <br>
         <div class="row">
             @if(Session::has('product'))
                 @foreach(Session::get('product') as $item)
