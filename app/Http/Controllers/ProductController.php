@@ -15,8 +15,6 @@ class ProductController extends Controller
     }
 
     public function getProductById($id, $category_id){
-        //$categoryPoducts = Product::All();
-
         return view('product.details')
         ->with('product', Product::where('id', $id)->first())
         ->with('categoryPoducts', Product::where('category_id', $category_id)->whereNot('id', $id)->get());
