@@ -8,9 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Cart extends Model
 {
     use HasFactory;
-    
+    public $timestamps = false;
     protected $fillable = [
-        'name', '', 'user_id'
+        'name', 'product_name', 'category', 'price', 'file_path'
     ];
 
     public function product(){

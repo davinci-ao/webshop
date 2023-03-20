@@ -7,25 +7,37 @@ use App\Models\Cart;
 use App\Models\Cart_product;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use App\Models\Product;
+use App\Models\Category;
 
 class CartController extends Controller
 {
     public function getAllCartItems(){
-        $cartItems = Cart::All();
-        return view('cart.index', ["cartItems"=>$cartItems]);
+        $carts = Cart::All();
+        return view('cart.index', ["carts"=>$carts]);
     }
 
-    public function getAllCartsWithProduct_id($id){
-        $carts = Cart::where('user_id', Auth::user()->id)->get();
-        return view('carts/cart_product', ["carts"=>$carts], ["product_id"=>$id]);
-    }
-
-    public function addCart(Request $request, $id){
+    public function addCart(Request $request, $product_id, $category_id){
         if(Auth::id()){
-            return redirect()->back();
-            $user=auth()->user;
+            $user=auth()->user();
+
+            $product = Product::find($product_id);
+
             $cart = new cart;
-            $cart->name = $user->name;
+
+            $cart->name = $user->username;
+
+            $cart->product_name = $product->name;
+
+            $cart->category = $product->category->name;  
+
+            $cart->price = $product->price;  
+
+            $cart->file_path = $product->file_path;  
+
+            $cart->save();
+
+            return redirect('cart');
         }
         else{
             return redirect('login');

@@ -66,7 +66,7 @@ class ProductController extends Controller
         $product->update($input);
         return redirect('product');  
     }
-
+    
     public function sortOnPriceHigh(){
         $products = Product::orderBy('price','desc')->get();
         return view('product.index', ["products"=>$products]);  
@@ -86,4 +86,11 @@ class ProductController extends Controller
         $products = Product::orderBy('name','desc')->get();
         return view('product.index', ["products"=>$products]);  
     }
+
+    public function search(Request $request){
+        $search_text = $request->get('query');
+        $products = Product::where('name', 'LIKE', '%'.$search_text.'%')->with('category')->get();
+        return view('product\search',compact('products'));
+    }
+
 }
