@@ -36,7 +36,6 @@
                                 <hr>
                                 <form action="{{ url('product/storeStockOfProduct/' .$product->id) }}" method="post">
                                 <input type="hidden" name="id" id="id" value="{{$product->id}}"/>
-                                <br>
                                 <form action="{{ url('cart/index/' . $product->id) }}" method="post">
                                     {!! csrf_field() !!}
                                     <input type="hidden" name="id" id="id" value="{{$product->id}}"/>
