@@ -26,6 +26,16 @@
               @else
                   <h6 class="mb-3 text-success">in stock</h6>
               @endif
+              @if(Auth::check())
+              <form action="{{ url('cart/index/' . $product->id) }}" method="post">
+              @else
+              <form action="{{ url('register') }}">
+              @endif
+                  {!! csrf_field() !!}
+                  <input type="number" value="1" min="1" class="form control" name="amount"><br>
+                  <br>
+                  <input type="submit" value="Add to cart" class="btn btn-dark"></br>
+              </form>
                 </div>
               </div>
             </div>
@@ -50,6 +60,7 @@
                               </div>
                           </a>
                       </div>
+                      
                       <div class="card-body">
                           <h5 class="card-title mb-3 text-reset">{{$categoryPoduct->name}}</h5>
                           <div class="text-reset">
@@ -65,6 +76,7 @@
                           @else
                               <h6 class="mb-3 text-success">In stock</h6>
                           @endif
+                          
                           <input type="hidden" name="id" id="id" value="{{$categoryPoduct->id}}"/>
                           <a href="{{ url('/product/' . 'details/' . $categoryPoduct->id . "/" . $categoryPoduct->category_id) }}" class="btn btn-dark btn-sm">See {{$product->name}}</a>
                       </div>
