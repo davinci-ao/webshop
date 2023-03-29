@@ -51,9 +51,6 @@
                                 <hr>
                                 <form action="{{ url('product/storeStockOfProduct/' .$product->id) }}" method="post">
                                 <input type="hidden" name="id" id="id" value="{{$product->id}}"/>
-                                <a href="{{ url('/product/' . 'details/' . $product->id . "/" . $product->category_id) }}" class="btn btn-dark btn-sm">See {{$product->name}}</a><br>
-                                <br>
-                                
                                 <form action="{{ url('cart/index/' . $product->id) }}" method="post">
                                     {!! csrf_field() !!}
                                     <input type="hidden" name="id" id="id" value="{{$product->id}}"/>
@@ -63,7 +60,7 @@
                                     <hr>
                                 </form>
                                 <br>
-                                <a href="{{ url('/product/edit/' . $product->id) }}" class="btn btn-success btn-sm">edit {{$product->name}}</a>
+                                <a href="{{ url('/product/edit/' . $product->id) }}" class="btn btn-success btn-sm">Edit {{$product->name}}</a>
                                 <br>
                                 <hr>
                                 <br>
