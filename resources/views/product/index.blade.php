@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
     <div class="container">
-        <div class="dropdown">
+        <div class="button-box">
             <button class="btn btn-dark btn-sm dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                 Sort products
             </button>
@@ -11,6 +11,14 @@
                 <li><a class="dropdown-item" href="{{ url('/product/sortOnPriceLow')}}" class="btn btn-dark btn-sm">Price (low)</a></li>
                 <li><a class="dropdown-item" href="{{ url('/product/sortOnNameHigh')}}" class="btn btn-dark btn-sm">Name (A-Z)</a></li>
                 <li><a class="dropdown-item" href="{{ url('/product/sortOnNameLow')}}" class="btn btn-dark btn-sm">Name (Z-A)</a></li>
+            </ul>
+            <button class="btn btn-dark btn-sm dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                Sort by category
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+          @foreach ($categories as $category)
+              <li value="{{ $category->id }}"><a class="dropdown-item" href="{{ url('/product/sortByCategory/' . $category->id)}}" class="btn btn-dark btn-sm">{{ $category->name }}</a></li>
+          @endforeach 
             </ul>
         </div>
         <br>
@@ -22,7 +30,7 @@
                 <div class="col-lg-4 col-md-12 mb-4">
                     <div class="card">
                         <div class="bg-image hover-zoom ripple ripple-surface ripple-surface-light" data-mdb-ripple-color="light">
-                            <img class="img" src="{{url('/images' . '/' . $product->file_path)}}"/>
+                            <img class="img-thumbnail" src="{{url('/images' . '/' . $product->file_path)}}"/>
                             <a href="#!">
                                 <div class="hover-overlay">
                                     <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Category;
+use App\Models\Product;
 
 class CategoryController extends Controller
 {
@@ -12,4 +13,5 @@ class CategoryController extends Controller
         $categories = Category::All();
         return view('category.index', ["categories"=>$categories]);
     }
+
 }

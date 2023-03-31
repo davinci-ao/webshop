@@ -11,7 +11,8 @@ class ProductController extends Controller
     public function getAllProducts(){
 
         $products = Product::All();
-        return view('product.index', ["products"=>$products]);
+        $categories = Category::All();
+        return view('product.index', ["products"=>$products], ["categories"=>$categories]);
     }
 
     public function getProductById($id, $category_id){
@@ -25,6 +26,12 @@ class ProductController extends Controller
         $products = Product::where('category_id', $id)->get();
         return view('category.showproductsbycategory', compact('products'));
     }    
+
+    public function sortByCategory($id){
+        $categories = Category::All();
+        $products = Product::where('category_id', $id)->get();
+        return view('product.index', compact('products'), ["categories"=>$categories]);
+    }
 
     public function create()
     {
@@ -67,22 +74,26 @@ class ProductController extends Controller
     
     public function sortOnPriceHigh(){
         $products = Product::orderBy('price','desc')->get();
-        return view('product.index', ["products"=>$products]);  
+        $categories = Category::All();
+        return view('product.index', ["products"=>$products], ["categories"=>$categories]);  
     }
 
     public function sortOnPriceLow(){
         $products = Product::orderBy('price','ASC')->get();
-        return view('product.index', ["products"=>$products]);
+        $categories = Category::All();
+        return view('product.index', ["products"=>$products], ["categories"=>$categories]);
     }
 
     public function sortOnNameHigh(){
         $products = Product::orderBy('name','asc')->get();
-        return view('product.index', ["products"=>$products]);  
+        $categories = Category::All();
+        return view('product.index', ["products"=>$products], ["categories"=>$categories]);  
     }
 
     public function sortOnNameLow(){
         $products = Product::orderBy('name','desc')->get();
-        return view('product.index', ["products"=>$products]);  
+        $categories = Category::All();
+        return view('product.index', ["products"=>$products], ["categories"=>$categories]);  
     }
 
     public function search(Request $request){
@@ -90,5 +101,7 @@ class ProductController extends Controller
         $products = Product::where('name', 'LIKE', '%'.$search_text.'%')->with('category')->get();
         return view('product\search',compact('products'));
     }
+
+
 
 }
