@@ -4,8 +4,15 @@
     margin-right: auto;
     width: 75%;
     height: 250px;
-    
-}
+}	
+
+.grid-container {
+	display: grid;
+	grid-template-columns: 22% 22% 22% 22%;
+	grid-row-gap: 1%;
+	justify-content: center;
+	grid-column-gap: 2%;
+  }
 
 .shopping-cart{
 	padding-bottom: 50px;
