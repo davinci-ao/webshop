@@ -13,7 +13,7 @@
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
     <script src="https://kit.fontawesome.com/31c6441c63.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="<?php echo asset('css/style.css')?>" type="text/css"> 
+    <link rel="stylesheet" type="text/css" href="style.css">
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
