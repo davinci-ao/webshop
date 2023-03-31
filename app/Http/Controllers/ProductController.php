@@ -23,8 +23,9 @@ class ProductController extends Controller
 
     public function getCategoryProducts($id)
     {
+        $categories = Category::All();
         $products = Product::where('category_id', $id)->get();
-        return view('category.showproductsbycategory', compact('products'));
+        return view('category.showproductsbycategory', compact('products'), ["categories"=>$categories]);
     }    
 
     public function sortByCategory($id){
