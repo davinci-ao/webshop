@@ -67,7 +67,7 @@
                                 <form action="{{ url('cart/index/' . $product->id) }}" method="post">
                                     {!! csrf_field() !!}
                                     <input type="hidden" name="id" id="id" value="{{$product->id}}"/>
-                                    <label>Stock of {{$product->name}}</label></br>
+                                    <label>Stock:</label></br>
                                     <input type="text" name="stock" id="stock" value="{{$product->stock}}" class="form-control"><br>
                                     <input type="submit" value="Update stock" class="btn btn-success btn-sm"><br>
                                 </form>

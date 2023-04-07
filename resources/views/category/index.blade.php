@@ -1,10 +1,12 @@
 @extends('layouts.app')
 @section('content')
     <div class="container">
+        @if(Auth::check() && Auth::user()->admin == "1")
+            <a href="{{ url('/category/create') }}" class="btn btn-success btn-sm">+ Add category</a>
+            <br>    
+            <br>
+        @endif
         <div class="row">
-            @if(Auth::check() && Auth::user()->admin == "1")
-                <a href="#" class="btn btn-success btn-sm mx-4 my-4">+ Add category</a>
-            @endif  
             @foreach($categories as $category)
                 <div class="col-lg-4 col-md-12 mb-4">
                     <div class="card">

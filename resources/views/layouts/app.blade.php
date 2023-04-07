@@ -43,7 +43,7 @@
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
                         <!-- Authentication Links -->
-                        <form class="form-inline my-2 my-lg-0" type="get" action="{{ url('/search') }}">
+                        <form class="form-inline mt-3 mx-2" type="get" action="{{ url('/search') }}">
                             <div class="input-group mb-3">
                                 <input class="form-control mr-sm-2" name="query" type="search" placeholder="Search" aria-label="Search">
                                 <button class="btn btn-outline-success my-sm-0" type="submit">Search</button>
@@ -63,7 +63,7 @@
                             @endif
                         @else
                             <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle mt-2 mx-2" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->username }}
                                 </a>
 
@@ -80,7 +80,7 @@
                                 </div>
                             </li>
                             <a class="navbar-brand" href="{{ url('/cart/index') }}">
-                            <i class="fa-solid fa-cart-shopping mx-3"></i>
+                            <i class="fa-solid fa-cart-shopping mt-3 mx-3"></i>
                         </a>
                         @endguest
                     </ul>
