@@ -53,13 +53,15 @@
                                 <h6 class="mb-3 text-success">In stock</h6>
                             @endif
                             <input type="hidden" name="id" id="id" value="{{$product->id}}"/>
-                            <div class="button-box">
-                                <a href="{{ url('/product/' . 'details/' . $product->id . "/" . $product->category_id) }}" class="btn btn-dark btn-sm">See product</a>
+                            @if(Auth::check() && Auth::user()->admin == "1")
+                                <div class="button-box">
+                            @endif  
+                            <a href="{{ url('/product/' . 'details/' . $product->id . "/" . $product->category_id) }}" class="btn btn-dark btn-sm">See product</a>
+                            @if(Auth::check() && Auth::user()->admin == "1")
                                 <a href="{{ url('/product/edit/' . $product->id) }}" class="btn btn-success btn-sm">Edit</a>
                                 <a href="{{ url('/product/delete/' . $product->id) }}" class="btn btn-danger btn-sm">Delete</a>
-                            </div>
-                            @if(Auth::check() && Auth::user()->admin == "1")
-                                <hr>                            
+                                </div>
+                                <hr>                     
                                 <form action="{{ url('product/storeStockOfProduct/' .$product->id) }}" method="post">
                                 <input type="hidden" name="id" id="id" value="{{$product->id}}"/>
                                 <form action="{{ url('cart/index/' . $product->id) }}" method="post">
@@ -77,6 +79,7 @@
                             <form action="{{ url('register') }}">
                             @endif
                                 {!! csrf_field() !!}
+                                <br>
                                 <input type="number" value="1" min="1" class="form control" name="amount"><br>
                                 <br>
                                 <input type="submit" value="Add to cart" class="btn btn-dark"></br>
