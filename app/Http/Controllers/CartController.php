@@ -19,10 +19,10 @@ class CartController extends Controller
         return view('cart/index', compact('products'));
     }
 
-    public function add(Request $request, $id)
+    public function add(Request $request, $id, $quantity)
     {
         $cart = new CartManager();
-        $products = $cart->add($request, $id);
+        $products = $cart->add($request, $id, $quantity);
         return redirect('cart/index');
     }
 

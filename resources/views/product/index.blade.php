@@ -30,7 +30,7 @@
             @foreach($products as $product)
                     <div class="card">
                         <div class="bg-image hover-zoom ripple ripple-surface ripple-surface-light" data-mdb-ripple-color="light">
-                            <img class="img-thumbnail" src="{{url('/images' . '/' . $product->file_path)}}"/>
+                            <img class="img" src="{{url('/images' . '/' . $product->file_path)}}"/>
                             <a href="#!">
                                 <div class="hover-overlay">
                                     <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
@@ -80,9 +80,9 @@
                             @endif
                                 {!! csrf_field() !!}
                                 <br>
-                                <input type="number" value="1" min="1" class="form control" name="amount"><br>
+                                <input type="number" value="1" min="1" class="form control" name="quantity" id="quantity"><br>
                                 <br>
-                                <input type="submit" value="Add to cart" class="btn btn-dark"></br>
+                                <input type="submit" value="Add to cart" class="btn btn-dark"><br>
                             </form>
                         </div>
                     </div>

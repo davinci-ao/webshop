@@ -2,9 +2,8 @@
     display: block;
     margin-left: auto;
     margin-right: auto;
-    width: 75%;
-    height: 250px;
-}	
+	height: 100px;
+}
 
 .grid-container {
 	display: grid;
@@ -13,6 +12,15 @@
 	justify-content: center;
 	grid-column-gap: 2%;
   }
+
+  .card-title {
+	display: block;
+	white-space: nowrap;
+	width: 12em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	color: red; /* This needs to match the color of the anchor tag */
+  }  
 
 .shopping-cart{
 	padding-bottom: 50px;
