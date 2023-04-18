@@ -80,9 +80,10 @@
                             @endif
                                 {!! csrf_field() !!}
                                 <br>
-                                <input type="number" value="1" min="1" class="form control" name="quantity" id="quantity"><br>
+                                <input type="hidden" name="product_id" value="{{ $product->id }}">
+                                <input type="number" name="quantity" value="1" min="1"><br>
                                 <br>
-                                <input type="submit" value="Add to cart" class="btn btn-dark"><br>
+                                <button type="submit" class="btn btn-dark">Add to cart </button><br>
                             </form>
                         </div>
                     </div>

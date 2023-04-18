@@ -7,40 +7,73 @@ use App\Models\Product;
 
 class CartManager{
     
-    public function show()
-    {    
-        $products = session('products');
-        
-    }
+    public function showCart()
+{
+    $shoppingCart = session()->get('shoppingCart');
     
-    public function add(Request $request, $id)
-    {
-        $product = Product::find($id);     
-        $request->session()->push('product', $product);   
+    if (!$shoppingCart) {
+        $shoppingCart = [];
     }
 
-    public function deleteItemOutCart(Request $request, $id){
+    foreach ($shoppingCart as $productId => $cartItem) {
+        $product = Product::find($productId);
+        $shoppingCart[$productId]['subtotal'] = $product->price * $cartItem['quantity'];
+    }
     
-        $products = $request->session()->get('product'); // Get the array
-        foreach($products as $key => $product){
-            if($product->id == $id){
-                unset($products[$key]);
+}
     
-                $request->session()->forget('product');
-    
-                foreach($products as $product){
-                    $request->session()->push('product', $product);
-                }
-                return redirect('cart/index');
+    public function addToCart(Request $request)
+    {
+        $productId = $request->input('product_id');
+        $quantity = $request->input('quantity');
+        
+        $product = Product::find($productId);
+        
+        $shoppingCart = session()->get('shoppingCart');
+        if (!$shoppingCart) {
+            $shoppingCart = [
+                $productId => [
+                    'product' => $product,
+                    'quantity' => $quantity,
+                    "subtotal" => $product->price * $request->quantity,
+                ]
+            ];
+        } else {
+            if (isset($shoppingCart[$productId])) {
+                $shoppingCart[$productId]['quantity'] += $quantity;
+                $shoppingCart[$productId]['subtotal'] = $product->price * $shoppingCart[$productId]['quantity'];
+                
+            } else {
+                $shoppingCart[$productId] = [
+                    'product' => $product,
+                    'quantity' => $quantity,
+                    "subtotal" => $product->price * $request->quantity,
+                ];
             }
         }
+        
+        session()->put('shoppingCart', $shoppingCart);
+        
     }
+
+    public function removeProductFromCart(Request $request, $id)
+{
+    $productId = $id;   
+    $shoppingCart = session()->get('shoppingCart');
+    
+    if (isset($shoppingCart[$productId])) {
+        unset($shoppingCart[$productId]);
+        session()->put('shoppingCart', $shoppingCart);
+    }
+    
+
+}
 
     public function emptyCart(Request $request)
     {
-        $products = session()->pull('product', []);
-        $request->session()->flush('product');
-        return redirect('cart/index');
+        $shoppingCart = session()->pull('shoppingCart', []);
+        $request->session()->flush('shoppingCart');
+        return redirect('shoppingCart/index');
     }
 
 }

@@ -11,39 +11,48 @@
 	 					<div class="col-md-12 col-lg-8">
 	 						<div class="items">
 				 				<div class="product">
-                                    <?php $totalPrice = 0;?>
+                                    <?php $totalPrice = 0;
+                                    ?>
+                                    
 				 					<div class="row">
-                                        @if(Session::has('product'))
-                                        @foreach(Session::get('product') as $item)
+                                        @if (session()->has('shoppingCart'))
+                                       
+                                        @foreach (session()->get('shoppingCart') as $cartItem)
                                             <div class="col-md-3">
-                                                <img class="img-fluid mx-auto d-block image" src="{{url('/images' . '/' . $item['file_path'])}}">
+                                                <img class="img-fluid mx-auto d-block image" src="{{url('/images' . '/' . $cartItem['product']->file_path)}}">
                                             </div>
                                             <div class="col-md-8">
                                                 <div class="info">
                                                     <div class="row">
                                                         <div class="col-md-5 product-name">
                                                             <div class="product-name">
-                                                                <a href="#">{{$item['name']}}</a>
+                                                                <a href="#">{{$cartItem['product']->name}}</a>
                                                                 <div class="product-info">
-                                                                    @if ($item->category)
-                                                                        <div>category: <span class="value">{{$item->category->name}}</span></div>
-                                                                        <a href={{"delete/" . $item['id']}} class="fa fa-trash"></a>
+                                                                    @if ($cartItem['product']->category)
+                                                                        <div>category: <span class="value">{{$cartItem['product']->category->name}}</span></div>
+                                                                        <a href={{"delete/" . $cartItem['product']->id}} class="fa fa-trash"></a>
                                                                     @endif
                                                                 </div>
                                                             </div>
                                                         </div>
                                                         <div class="col-md-4 quantity">
                                                             <label for="quantity">Quantity:</label>
-                                                            <input id="quantity" type="number" value ="1" class="form-control quantity-input">
+                                                            <input id="quantity" type="number" value ="{{$cartItem['quantity']}}" class="form-control quantity-input">
+                                                        </div>
+                                                        <div class="col-md-3 subtotal">
+                                                            <label for="subtotal">subtotal:</label>
+                                                            <p> {{$cartItem['subtotal']}} </p>
+                                                            <p class="hidetime" style="display: none">{{$totalPrice += (int)($cartItem['subtotal'])}}</p>
                                                         </div>
                                                         <div class="col-md-3 price">
-                                                            <span>${{$item['price']}}</span>
-                                                            <p class="hidetime" style="display: none">{{$totalPrice += (int)($item['price'])}}</p>
+                                                            <span>${{$cartItem['product']->price}}</span>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         @endforeach
+                                        @else
+                                        <p>Your cart is empty.</p>
                                         @endif
 					 				</div>
 				 				</div>
@@ -67,4 +76,3 @@
 </body>
 
 @endsection
-

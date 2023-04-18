@@ -59,9 +59,9 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('cart/index/', [App\Http\Controllers\CartController::class, 'show']);
 
-    Route::post('cart/index/{id}', [App\Http\Controllers\CartController::class, 'add']);
+    Route::post('cart/index/{id}', [App\Http\Controllers\CartController::class, 'addToCart']);
     
-    Route::get('cart/delete/{id}', [App\Http\Controllers\CartController::class, 'deleteItemOutCart']);
+    Route::get('cart/delete/{id}', [App\Http\Controllers\CartController::class, 'removeProductFromCart']);
     
     Route::get('cart/delete/', [App\Http\Controllers\CartController::class, 'emptyCart']);
 });

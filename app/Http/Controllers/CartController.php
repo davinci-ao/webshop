@@ -15,21 +15,20 @@ class CartController extends Controller
     public function show()
     {    
         $cart = new CartManager();
-        $products = $cart->show();
-        return view('cart/index', compact('products'));
+        return view('cart/index', compact('cart'));
     }
 
-    public function add(Request $request, $id, $quantity)
+    public function addToCart(Request $request, $id)
     {
         $cart = new CartManager();
-        $products = $cart->add($request, $id, $quantity);
+        $products = $cart->addToCart($request, $id);
         return redirect('cart/index');
     }
 
-    public function deleteItemOutCart(Request $request, $id)
+    public function removeProductFromCart(Request $request, $id)
     {
         $cart = new CartManager();
-        $products = $cart->deleteItemOutCart($request, $id);
+        $products = $cart->removeProductFromCart($request, $id);
         return redirect('cart/index');
     }
 
