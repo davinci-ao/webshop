@@ -21,6 +21,7 @@ class ShoppingCart extends Component
         if (isset($this->cartItem[$productId])) {
             $this->cartItem[$productId]['quantity']++;
             session()->put('shoppingCart', $this->cartItem);
+            return redirect()->to('/shoppingcart'); 
         }
     }
     
@@ -33,6 +34,7 @@ class ShoppingCart extends Component
                 unset($this->cartItem[$productId]);
             }
             session()->put('shoppingCart', $this->cartItem);
+            return redirect()->to('/shoppingcart'); 
         }
     }
     
