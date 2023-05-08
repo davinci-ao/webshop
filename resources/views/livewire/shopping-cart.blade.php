@@ -1,5 +1,5 @@
 <?php 
-header("refresh: 1");
+
 ?>
     @extends('layouts.app')
     @section('content')
