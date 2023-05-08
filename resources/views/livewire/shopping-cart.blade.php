@@ -46,8 +46,8 @@
                                                                 </div>
                                                                 <div class="col-md-3 subtotal">
                                                                     <label for="subtotal">subtotal:</label>
-                                                                    <p>  {{$cartItem['subtotal'] * $cartItem['quantity'] }} </p>
-                                                                    <p class="hidetime" style="display: none">{{$totalPrice += $cartItem['subtotal']}}</p>
+                                                                    <p>  {{$subTotal = $cartItem['subtotal'] * $cartItem['quantity'] }} </p>
+                                                                    <p class="hidetime" style="display: none">{{$totalPrice += $subTotal}}</p>
                                                                    
                                                                 </div>
                                                                 <div class="col-md-3 price">
