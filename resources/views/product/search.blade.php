@@ -32,8 +32,12 @@
                             <input type="hidden" name="id" id="id" value="{{$product->id}}"/>
                             <div class="button-box">
                                 <a href="{{ url('/product/' . 'details/' . $product->id . "/" . $product->category_id) }}" class="btn btn-dark btn-sm">See product</a>
+                                @if(Auth::check() && Auth::user()->admin == "1")
                                 <a href="{{ url('/product/edit/' . $product->id) }}" class="btn btn-success btn-sm">Edit</a>
                                 <a href="{{ url('/product/delete/' . $product->id) }}" class="btn btn-danger btn-sm">Delete</a>
+                                @endif  
+                                <br>
+                                <br>
                             </div>
                             @if(Auth::check() && Auth::user()->admin == "1")
                                 <hr>                            

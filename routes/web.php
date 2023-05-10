@@ -45,13 +45,13 @@ Route::get('/product/sortOnASC', [App\Http\Controllers\ProductController::class,
 
 Route::post('product/storeStockOfProduct/{id}', [App\Http\Controllers\ProductController::class, 'storeStockOfProduct']);
 
-Route::get('category/showproductsbycategory/{id}', [App\Http\Controllers\productController::class, 'getCategoryProducts']);
+Route::get('category/showproductsbycategory/{id}', [App\Http\Controllers\ProductController::class, 'getCategoryProducts']);
 
 Route::get('/category', [App\Http\Controllers\CategoryController::class, 'getAllCategories']);
 
-Route::get('/', [App\Http\Controllers\admin\AdminAuthController::class, 'index']);
+Route::get('/', [App\Http\Controllers\Admin\AdminAuthController::class, 'index']);
 
-Route::get('/admin/edituser', [App\Http\Controllers\admin\AdminAuthController::class, 'getAllUsers']);
+Route::get('/admin/edituser', [App\Http\Controllers\Admin\AdminAuthController::class, 'getAllUsers']);
 
 Route::get('/search', 'App\Http\Controllers\ProductController@search');
 
