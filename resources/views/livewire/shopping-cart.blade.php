@@ -64,8 +64,8 @@
                                 <div class="card">
                                     <h3>Summary</h3>
                                     <div class='summary-item'><span class='text'>Total price: </span><span class='price'>${{$totalPrice}}</span></div>
-                                    <a type='button' href="{{ url('/order/index') }}" class='btn btn-primary btn-lg btn-block'>Checkout</a>
                                     @if ($cartItem > 1)
+                                    <a type='button' href="{{ url('/order/index') }}" class='btn btn-primary btn-lg btn-block'>Checkout</a>
                                     <a href="{{'delete/'}}" class= 'btn btn-danger bt'>Empty whole cart </a>
                                     @endif
                                 </div>
