@@ -81,10 +81,10 @@
                                     </form>
                                 </div>
                             </li>
-                            <a class="navbar-brand" href="{{ url('/cart/index') }}">
+                        @endguest
+                        <a class="navbar-brand" href="{{ url('/cart/index') }}">
                             <i class="fa-solid fa-cart-shopping mt-3 mx-3"></i>
                         </a>
-                        @endguest
                     </ul>
                 </div>
             </div>

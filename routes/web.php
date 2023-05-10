@@ -55,14 +55,12 @@ Route::get('/admin/edituser', [App\Http\Controllers\Admin\AdminAuthController::c
 
 Route::get('/search', 'App\Http\Controllers\ProductController@search');
 
-Route::middleware(['auth'])->group(function () {
+Route::get('cart/index/', [App\Http\Controllers\CartController::class, 'show']);
 
-    Route::get('cart/index/', [App\Http\Controllers\CartController::class, 'show']);
-
-    Route::post('cart/index/{id}', [App\Http\Controllers\CartController::class, 'addToCart']);
+Route::post('cart/index/{id}', [App\Http\Controllers\CartController::class, 'addToCart']);
     
-    Route::get('cart/delete/{id}', [App\Http\Controllers\CartController::class, 'removeProductFromCart']);
+Route::get('cart/delete/{id}', [App\Http\Controllers\CartController::class, 'removeProductFromCart']);
     
-    Route::get('cart/delete/', [App\Http\Controllers\CartController::class, 'emptyCart']);
-});
+Route::get('cart/delete/', [App\Http\Controllers\CartController::class, 'emptyCart']);
 
+Route::get('order/index', [App\Http\Controllers\OrderController::class, 'index']);

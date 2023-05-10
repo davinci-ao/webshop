@@ -56,7 +56,6 @@
                             @if(Auth::check() && Auth::user()->admin == "1")
                                 <div class="button-box">
                             @endif  
-                            <a href="{{ url('/product/' . 'details/' . $product->id . "/" . $product->category_id) }}" class="btn btn-dark btn-sm">See product</a>
                             @if(Auth::check() && Auth::user()->admin == "1")
                                 <a href="{{ url('/product/edit/' . $product->id) }}" class="btn btn-success btn-sm">Edit</a>
                                 <a href="{{ url('/product/delete/' . $product->id) }}" class="btn btn-danger btn-sm">Delete</a>
@@ -66,25 +65,23 @@
                                 <input type="hidden" name="id" id="id" value="{{$product->id}}"/>
                                 <form action="{{ url('cart/index/' . $product->id) }}" method="post">
                                     {!! csrf_field() !!}
-                                    <input type="hidden" name="id" id="id" value="{{$product->id}}"/>
                                     <label>Stock:</label></br>
-                                    <input type="text" name="stock" id="stock" value="{{$product->stock}}" class="form-control"><br>
-                                    <input type="submit" value="Update stock" class="btn btn-success btn-sm"><br>
+                                    <div class="input-group">
+                                        <input type="hidden" name="id" id="id" value="{{$product->id}}"/>
+                                        <input type="text" name="stock" id="stock" value="{{$product->stock}}" class="form-control"><br>
+                                        <input type="submit" value="Update stock" class="btn btn-success btn-sm"><br>
+                                    </div>
                                 </form>
-                                <hr>
                             @endif  
-                            @if(Auth::check())
-                            <form action="{{ url('cart/index/' . $product->id) }}" method="post">
-                            @else
-                            <form action="{{ url('register') }}">
-                            @endif
-                                {!! csrf_field() !!}
-                                <br>
-                                <input type="hidden" name="product_id" value="{{ $product->id }}">
-                                <input type="number" name="quantity" value="1" min="1"><br>
-                                <br>
-                                <button type="submit" class="btn btn-dark">Add to cart </button><br>
-                            </form>
+                                <form action="{{ url('cart/index/' . $product->id) }}" method="post">
+                                    {!! csrf_field() !!}
+                                    <div class="button-box">
+                                        <a href="{{ url('/product/' . 'details/' . $product->id . '/' . $product->category_id) }}" class="btn btn-dark btn-sm">See product</a>
+                                        <input type="hidden" name="product_id" value="{{ $product->id }}">
+                                        <input type="number" class="form-control.form-horizontal w-25" name="quantity" value="1" min="1">
+                                        <button type="submit" class="btn btn-sm btn-dark"><i class="fa-solid fa-cart-shopping"></i></button>
+                                    </div>
+                                </form>
                         </div>
                     </div>
             @endforeach

@@ -26,15 +26,12 @@
               @else
                   <h6 class="mb-3 text-success">in stock</h6>
               @endif
-              @if(Auth::check())
               <form action="{{ url('cart/index/' . $product->id) }}" method="post">
-              @else
-              <form action="{{ url('register') }}">
-              @endif
                   {!! csrf_field() !!}
-                  <input type="number" value="1" min="1" class="form control" name="amount"><br>
+                  <input type="hidden" name="product_id" value="{{ $product->id }}">
+                  <input type="submit" value="Add to cart" class="btn btn-sm btn-dark"> 
+                  <input type="number" class="form-control.form-horizontal w-25" name="quantity" value="1" min="1"><br>
                   <br>
-                  <input type="submit" value="Add to cart" class="btn btn-dark"></br>
               </form>
                 </div>
               </div>
