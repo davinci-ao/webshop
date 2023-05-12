@@ -15,7 +15,7 @@
     <script src="https://kit.fontawesome.com/31c6441c63.js" crossorigin="anonymous"></script>
     <!-- <link rel="stylesheet" type="text/css" href="/style.css"> -->
     <link rel="stylesheet" type="text/css" href="{{asset('css/style.css')}}">
-    <livewire:styles />
+    @livewireStyles
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
@@ -94,5 +94,6 @@
             @yield('content')
         </main>
     </div>
+    @livewireScripts
 </body>
 </html>
