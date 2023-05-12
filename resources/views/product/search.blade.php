@@ -9,9 +9,9 @@
         <br>
         <div class="row">
         <div class="grid-container">
-            @foreach($products as $product)
+        @foreach($products as $product)
                     <div class="card">
-                        <div class="bg-image hover-zoom ripple ripple-surface ripple-surface-light" data-mdb-ripple-color="light">
+                        <div class="bg-image hover-zoom ripple ripple-surface ripple-surface-light " data-mdb-ripple-color="light">
                             <img class="img" src="{{url('/images' . '/' . $product->file_path)}}"/>
                             <a href="#!">
                                 <div class="hover-overlay">
@@ -55,6 +55,7 @@
                                     </div>
                                 </form>
                             @endif  
+                           
                             @if(Auth::check() && Auth::user()->admin == "0")
                                 <form action="{{ url('cart/index/' . $product->id) }}" method="post">
                                     {!! csrf_field() !!}
@@ -65,7 +66,18 @@
                                         <button type="submit" class="btn btn-sm btn-dark"><i class="fa-solid fa-cart-shopping"></i></button>
                                     </div>
                                 </form>
-                            @endif
+                                @endif
+                                @guest
+                                <form action="{{ url('cart/index/' . $product->id) }}" method="post">
+                                    {!! csrf_field() !!}
+                                    <div class="button-box">
+                                        <a href="{{ url('/product/' . 'details/' . $product->id . '/' . $product->category_id) }}" class="btn btn-dark btn-sm">See product</a>
+                                        <input type="hidden" name="product_id" value="{{ $product->id }}">
+                                        <input type="number" class="form-control.form-horizontal w-25" name="quantity" value="1" min="1">
+                                        <button type="submit" class="btn btn-sm btn-dark"><i class="fa-solid fa-cart-shopping"></i></button>
+                                    </div>
+                                </form>
+                                @endguest
                         </div>
                     </div>
             @endforeach
