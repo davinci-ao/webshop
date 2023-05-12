@@ -29,7 +29,7 @@
         <div class="grid-container">
             @foreach($products as $product)
                     <div class="card">
-                        <div class="bg-image hover-zoom ripple ripple-surface ripple-surface-light" data-mdb-ripple-color="light">
+                        <div class="bg-image hover-zoom ripple ripple-surface ripple-surface-light " data-mdb-ripple-color="light">
                             <img class="img" src="{{url('/images' . '/' . $product->file_path)}}"/>
                             <a href="#!">
                                 <div class="hover-overlay">

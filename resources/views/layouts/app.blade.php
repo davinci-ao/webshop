@@ -34,11 +34,11 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">  
                         <a class="navbar-brand" href="{{ url('/product') }}">
-                            {{ config('product', 'product') }}
+                            {{ config('product', 'products') }}
                         </a>
 
                         <a class="navbar-brand" href="{{ url('/category') }}">
-                            {{ config('category', 'category') }}
+                            {{ config('category', 'categories') }}
                         </a>
                     </ul>
 
@@ -94,6 +94,5 @@
             @yield('content')
         </main>
     </div>
-    <livewire:scripts />
 </body>
 </html>
