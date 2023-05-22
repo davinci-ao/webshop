@@ -37,6 +37,7 @@ class ShoppingCart extends Component
            
             session()->put('shoppingCart', $this->cartItem);
             return redirect('cart/index');
+            
         }
     }
     

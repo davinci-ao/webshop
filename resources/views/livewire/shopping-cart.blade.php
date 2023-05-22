@@ -52,11 +52,12 @@
                                                     </div>
                                                 </div>
                                             @endforeach
-                                            <div class="d-flex flex-row">
-                                                <a type='button' href="{{ url('/product') }}" class='btn btn-success btn-block' ><i class="fa-solid fa-arrow-left"></i> continue shopping</a>
-                                            </div>
+                                            
                                         @endif
                                     </div>
+                                </div>
+                                <div class="d-flex align-items-end">
+                                    <a type='button' href="{{ url('/product') }}" class='btn btn-success btn-block' ><i class="fa-solid fa-arrow-left"></i> continue shopping</a>
                                 </div>
                             </div>
                         </div>
@@ -66,7 +67,7 @@
                                     <h3>Summary</h3>
                                     <div class='summary-item'><span class='text'>Total price: </span><span class='price'>${{$totalPrice}}</span></div>
 
-                                    <a type='button' href="{{ url('/order/index') }}" class='btn btn-primary btn-lg btn-block'>Checkout</a>
+                                    <a type='button' href="{{ url('/order/index') }}" class='btn btn-primary btn-lg btn-block'> <i class="fa-solid fa-credit-card mt-3 mx-3"></i>Checkout</a>
                                     <!-- <a href="{{'delete/'}}" class= 'btn btn-danger bt'>Empty whole cart </a> -->
                                 </div>
                             </div>

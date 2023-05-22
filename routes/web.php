@@ -64,3 +64,5 @@ Route::get('cart/delete/{id}', [App\Http\Controllers\CartController::class, 'rem
 Route::get('cart/delete/', [App\Http\Controllers\CartController::class, 'emptyCart']);
 
 Route::get('order/index', [App\Http\Controllers\OrderController::class, 'index']);
+
+Route::post('/order/index', [App\Http\Controllers\OrderController::class, 'index']);

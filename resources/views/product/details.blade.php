@@ -49,17 +49,17 @@
           @foreach($categoryPoducts as $categoryPoduct)
               <div class="col-lg-2 col-md-12 mb-4">
                   <div class="card">
-                      <div class="bg-image hover-zoom ripple ripple-surface ripple-surface-light" data-mdb-ripple-color="light">
-                          <img class="card-img" src="{{url('/images' . '/' . $categoryPoduct->file_path)}}"/>
-                          <a href="#!">
-                              <div class="hover-overlay">
-                                  <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
-                              </div>
-                          </a>
-                      </div>
+                    <div class="bg-image hover-zoom ripple ripple-surface ripple-surface-light " data-mdb-ripple-color="light">
+                      <img class="img" src="{{url('/images' . '/' . $categoryPoduct->file_path)}}"/>
+                      <a href="#!">
+                          <div class="hover-overlay">
+                              <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+                          </div>
+                      </a>
+                  </div>
                       
                       <div class="card-body">
-                          <h5 class="card-title mb-3 text-reset">{{$categoryPoduct->name}}</h5>
+                        <h5 class="card-title mb-3 text-reset">{{$categoryPoduct->name}}</h5>
                           <div class="text-reset">
                               @if ($categoryPoduct->category)
                               <p>{{$categoryPoduct->category->name}}</p>
@@ -75,7 +75,7 @@
                           @endif
                           
                           <input type="hidden" name="id" id="id" value="{{$categoryPoduct->id}}"/>
-                          <a href="{{ url('/product/' . 'details/' . $categoryPoduct->id . "/" . $categoryPoduct->category_id) }}" class="btn btn-dark btn-sm">See {{$product->name}}</a>
+                          <a href="{{ url('/product/' . 'details/' . $categoryPoduct->id . "/" . $categoryPoduct->category_id) }}" class="btn btn-dark btn-sm">See {{$categoryPoduct->name}}</a>
                       </div>
                   </div>
               </div>      
