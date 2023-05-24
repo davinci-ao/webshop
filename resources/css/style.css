@@ -4,10 +4,16 @@ body{
 }
 .img{
     display: block;
-    margin-left: auto;
-    margin-right: auto;
-	height: 100px;
+	height: 10px;
+	margin: 0%;
+	padding: 0%;
+	object-fit: cover;
 }
+
+.scrollable{
+	overflow-y: auto;
+	max-height: 300px;
+  }
 
 .grid-container {
 	display: grid;
@@ -23,7 +29,6 @@ body{
 	width: 12em;
 	overflow: hidden;
 	text-overflow: ellipsis;
-	color: red; /* This needs to match the color of the anchor tag */
   }  
 
 .shopping-cart{
@@ -157,4 +162,11 @@ body{
 		padding: 4px 10px;
 		text-align: center; 
 	}
+}
+
+.list-group{
+    max-height: 300px;
+    margin-bottom: 10px;
+    overflow:scroll;
+    -webkit-overflow-scrolling: touch;
 }
