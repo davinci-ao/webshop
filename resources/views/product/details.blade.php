@@ -1,13 +1,13 @@
 @extends('layouts.app')
 @section('content')
     <div class="container py-5">
-      <div class="row justify-content-center">
+      <div class="row">
         <div class="col-md-8 col-lg-6 col-xl-4">
           <div class="card text-black">
             <img class="card-img"  src="{{url('/images' . '/' . $product->file_path)}}"/>
             <div class="card-body">
               <div class="text-center">
-                <p class="text-muted mb-4">{{$product->name}}</p>
+                <h2 class="text mb-4">{{$product->name}}</h2>
               </div>
               <div class="text-center">
                 <p class="text-muted mb-4">{{$product->description}}</p>
@@ -38,34 +38,18 @@
             </div>
           </div>
       </div>
-    </div>
-    <hr>
-    <div class="container">
-      <h1 class="text-center">related for you</h3>
-    </div>
-    <hr>
-    <div class="container">
-      <div class="row">
+      <div class="col card">
+        <hr>
+      <h1 class="text-center">Related for you</h1>
+      <hr>
+      <ul class="list-group">
+      <div class="row"> 
           @foreach($categoryPoducts as $categoryPoduct)
-              <div class="col-lg-2 col-md-12 mb-4">
-                  <div class="card">
-                    <div class="bg-image hover-zoom ripple ripple-surface ripple-surface-light " data-mdb-ripple-color="light">
+          <div class='col-sm-4'>
+          <li class="list-group-item mt-3">
                       <img class="img" src="{{url('/images' . '/' . $categoryPoduct->file_path)}}"/>
-                      <a href="#!">
-                          <div class="hover-overlay">
-                              <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
-                          </div>
-                      </a>
-                  </div>
-                      
-                      <div class="card-body">
-                        <h5 class="card-title mb-3 text-reset">{{$categoryPoduct->name}}</h5>
-                          <div class="text-reset">
-                              @if ($categoryPoduct->category)
-                              <p>{{$categoryPoduct->category->name}}</p>
-                              @endif
-                          </div>
-                          <h6 class="mb-3">${{$categoryPoduct->price}}</h6>
+                        <h5 class="card-title">{{$categoryPoduct->name}}</h5>
+                          <h6 class="mb-3">Price: ${{$categoryPoduct->price}}</h6>
                           @if ($categoryPoduct->stock < 1)
                               <h6 class="mb-3 text-danger">Out of stock</h6>
                           @elseif ($categoryPoduct->stock < 4)
@@ -75,12 +59,12 @@
                           @endif
                           
                           <input type="hidden" name="id" id="id" value="{{$categoryPoduct->id}}"/>
-                          <a href="{{ url('/product/' . 'details/' . $categoryPoduct->id . "/" . $categoryPoduct->category_id) }}" class="btn btn-dark btn-sm">See {{$categoryPoduct->name}}</a>
-                      </div>
-                  </div>
-              </div>      
+                          <a href="{{ url('/product/' . 'details/' . $categoryPoduct->id . "/" . $categoryPoduct->category_id) }}" class="btn btn-dark btn-sm">See product</a>
+                          <br><br>  
+            </li>  
+            </div>
           @endforeach
       </div>
-  </div>       
+  </div>
+</div>
     @endsection
-

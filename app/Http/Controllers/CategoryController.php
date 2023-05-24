@@ -14,4 +14,10 @@ class CategoryController extends Controller
         return view('category.index', ["categories"=>$categories]);
     }
 
+    public function getCrossUpSellProducts(){
+
+        $categories = Category::Where('category', '!=category')and('price' < 'price');
+        return view('category.index', ["categories"=>$categories]);
+    }
+
 }
