@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 class OrderController extends Controller
 {
     public function index(){
+        $shoppingCart = session()->get('shoppingCart');
+
         return view('order.index');
     }
 }

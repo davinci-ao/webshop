@@ -63,9 +63,4 @@ Route::get('cart/delete/{id}', [App\Http\Controllers\CartController::class, 'rem
     
 Route::get('cart/delete/', [App\Http\Controllers\CartController::class, 'emptyCart']);
 
-Route::get('order/index', [App\Http\Controllers\OrderController::class, 'index']);
-
-Route::post('/order/index', [App\Http\Controllers\OrderController::class, 'index']);
-
-Route::get('product/details/{id}/{category_id}', [App\Http\Controllers\ProductController::class, 'getCrossUpSellProducts']);
-
+Route::post('order/index/', [App\Http\Controllers\OrderController::class, 'index']);
