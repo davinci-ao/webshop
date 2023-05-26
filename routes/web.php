@@ -53,7 +53,7 @@ Route::get('/', [App\Http\Controllers\Admin\AdminAuthController::class, 'index']
 
 Route::get('/admin/edituser', [App\Http\Controllers\Admin\AdminAuthController::class, 'getAllUsers']);
 
-Route::get('/search', 'App\Http\Controllers\ProductController@search');
+Route::get('/search', [App\Http\Controllers\ProductController::class, 'search']);
 
 Route::get('cart/index/', [App\Http\Controllers\CartController::class, 'show']);
 
