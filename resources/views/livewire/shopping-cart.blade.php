@@ -17,6 +17,9 @@
                                     <div class="row">
                                         @if (session()->has('shoppingCart'))
                                             @foreach (session()->get('shoppingCart') as $cartItem)
+                                          
+                                               
+                                           
                                                 <div class="col-md-3">
                                                     <img class="img-fluid mx-auto d-block image" src="{{url('/images' . '/' . $cartItem['product']['file_path'])}}">
                                                 </div>
@@ -51,6 +54,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
+                                      
                                             @endforeach
                                             
                                         @endif
