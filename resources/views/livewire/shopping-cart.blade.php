@@ -17,9 +17,6 @@
                                     <div class="row">
                                         @if (session()->has('shoppingCart'))
                                             @foreach (session()->get('shoppingCart') as $cartItem)
-                                          
-                                               
-                                           
                                                 <div class="col-md-3">
                                                     <img class="img-fluid mx-auto d-block image" src="{{url('/images' . '/' . $cartItem['product']['file_path'])}}">
                                                 </div>
@@ -30,10 +27,7 @@
                                                                 <div class="product-name">
                                                                     <a href="#">{{$cartItem['product']['name']}}</a>
                                                                     <div class="product-info">
-                                                                        @if ($cartItem['product']['category'])
-                                                                            <div>category: <span class="value">{{$cartItem['product']['category']['name']}}</span></div>
                                                                             <a href="{{'delete/' . $cartItem['product']['id']}}" class="fa fa-trash"></a>
-                                                                        @endif
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -45,7 +39,7 @@
                                                             </div>
                                                             <div class="col-md-3 subtotal">
                                                                 <label for="subtotal">subtotal:</label>
-                                                                <p>  {{$subTotal = $cartItem['subtotal'] * $cartItem['quantity'] }} </p>
+                                                                <p>  ${{$subTotal = $cartItem['subtotal'] * $cartItem['quantity'] }} </p>
                                                                 <p class="hidetime" style="display: none">{{$totalPrice += $subTotal}}</p>                                               
                                                             </div>
                                                             <div class="col-md-3 price">

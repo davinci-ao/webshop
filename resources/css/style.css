@@ -3,6 +3,11 @@ body{
 	width:10px;
 }
 
+.a:hover, a:visited, a:link, a:active
+{
+    text-decoration: none;
+}
+
 .card {
 	box-sizing: border-box;
 	width: 190px;
@@ -34,7 +39,7 @@ body{
 
 .img{
     display: block;
-	height: 10px;
+	height: 100px;
 	margin: 0%;
 	padding: 0%;
 	object-fit: cover;

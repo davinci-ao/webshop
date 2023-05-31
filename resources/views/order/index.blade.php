@@ -3,7 +3,7 @@
 
 <?php 
   $totalprice = $_POST['totalprice'];
-  $int = (int)$totalprice; 
+  $totalprice = (int)$totalprice; 
 ?>
 <div class="container">
     <div class="d-flex align-items-end">
@@ -17,7 +17,7 @@
         <!-- Set up a container element for the button -->
         <div id="paypal-button-container"></div>
         <script>
-          var price = {{$int}};
+          var price = {{$totalprice}};
           const totalprice = parseFloat(price).toFixed(2);
             paypal
             .Buttons({
@@ -34,7 +34,7 @@
               },
               // Finalize the transaction after payer approval
               onApprove(data, actions) {
-                return acions.order.capture().then(function (details) {
+                return actions.order.capture().then(function (details) {
                   alert('Transaction completed by ' + details.payer.name.given_name);
                 })
               },
@@ -60,7 +60,6 @@
           .catch(error => console.log('error', error));
 
         </script>
-
         <p id="se"></p>
     </div>
   </div>
