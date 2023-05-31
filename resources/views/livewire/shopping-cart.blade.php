@@ -69,7 +69,7 @@
                                                                     </div>
                                                                 </td>
                                                                     <td>
-                                                                    <a href="{{'delete/' . $cartItem['product']['id']}}" class="fa fa-trash"></a>
+                                                                    <a href="{{'delete/' . $cartItem['product']['id']}}" class="fa fa-trash" style="color: red;"></a>
                                                                     </td>
                                                                 </tr>
                                                             </table>
