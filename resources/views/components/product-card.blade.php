@@ -1,5 +1,5 @@
 <div class="card">     
-<a href="{{ url('/product/' . 'details/' . $product->id . '/' . $product->category_id) }}"> 
+<a href="{{ url('/product/' . 'details/' . $product->id . '/' . $product->category_id) }}" style="text-decoration:none; color:black;"> 
                         <img class="img" src="{{url('/images' . '/' . $product->file_path)}}"/>
                         <div class="card-body">
                         <h5 class="card-title mb-3 text-reset">{{$product->name}}</h5>

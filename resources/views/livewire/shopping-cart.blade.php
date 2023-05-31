@@ -17,34 +17,62 @@
                                     <div class="row">
                                         @if (session()->has('shoppingCart'))
                                             @foreach (session()->get('shoppingCart') as $cartItem)
-                                                <div class="col-md-3">
-                                                    <img class="img-fluid mx-auto d-block image" src="{{url('/images' . '/' . $cartItem['product']['file_path'])}}">
-                                                </div>
+                                                
                                                 <div class="col-md-8">
                                                     <div class="info">
                                                         <div class="row">
-                                                            <div class="col-md-5 product-name">
-                                                                <div class="product-name">
-                                                                    <a href="#">{{$cartItem['product']['name']}}</a>
-                                                                    <div class="product-info">
-                                                                            <a href="{{'delete/' . $cartItem['product']['id']}}" class="fa fa-trash"></a>
+                                                            <table>
+                                                                <tr>
+                                                                    <th width="40%"></th>
+                                                                    <th width="20%">Product</th>
+                                                                    <th width="0%">Quantity</th>
+                                                                    <th width="20%"></th>
+                                                                    <th width="15%">Price</th>
+                                                                    <th width="15%">Subtotal</th>
+                                                                    <th></th>
+                                                                </tr>
+                                                                <tr>    
+                                                                    <td>
+                                                                    <a href="{{ url('/product/' . 'details/' . $cartItem['product']['id'] . '/' . $cartItem['product']['category_id']) }}" style="text-decoration:none; color:black;">
+                                                                        <img class="img" src="{{url('/images' . '/' . $cartItem['product']['file_path'])}}">
+                                                                    </a>    
+                                                                        
+                                                                    </td>
+                                                                <td>
+                                                                    <div class="col-md-5 product-name">
+                                                                        <div class="product-name">
+                                                                            <a href="{{ url('/product/' . 'details/' . $cartItem['product']['id'] . '/' . $cartItem['product']['category_id']) }}" style="text-decoration:none; color:black;">{{$cartItem['product']['name']}}</a>    
+                                                                        </div>
                                                                     </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-4 quantity">
-                                                                <label for="quantity">Quantity:</label>
-                                                                <button class="btn btn-sm btn-dark" wire:click="decrementQuantity('{{ $cartItem['product']['id'] }}')">-</button>
-                                                                <span>{{ $cartItem['quantity'] }}</span>
-                                                                <button class="btn btn-sm btn-dark" wire:click="incrementQuantity('{{ $cartItem['product']['id'] }}')">+</button>
-                                                            </div>
-                                                            <div class="col-md-3 subtotal">
-                                                                <label for="subtotal">subtotal:</label>
-                                                                <p>  ${{$subTotal = $cartItem['subtotal'] * $cartItem['quantity'] }} </p>
-                                                                <p class="hidetime" style="display: none">{{$totalPrice += $subTotal}}</p>                                               
-                                                            </div>
-                                                            <div class="col-md-3 price">
-                                                                <span>${{$cartItem['product']['price']}}</span>
-                                                            </div>
+                                                                </td>
+                                                                <td>
+                                                                    <div class="col">
+                                                                    <div class="btn-group" role="group" aria-label="Basic example">
+                                                                        <button class="btn btn-sm btn-dark" wire:click="decrementQuantity('{{ $cartItem['product']['id'] }}')">-</button>    
+                                                                        <button class="btn btn-sm btn-dark mr-2" wire:click="incrementQuantity('{{ $cartItem['product']['id'] }}')">+</button>
+                                                                    </div>
+                                                                    </div>
+                                                                </td>
+                                                                <td>
+                                                                <P class="mt-3">{{ $cartItem['quantity'] }}</P>
+                                                                </td>
+                                                               
+                                                                <td>
+                                                                    <div class="mt-3">
+                                                                        <p>${{$cartItem['product']['price']}}</p>
+                                                                    </div>
+                                                                    </td>
+                                                                <td>
+                                                                    <div class="mt-3">
+                                                                        <p>  ${{$subTotal = $cartItem['subtotal'] * $cartItem['quantity'] }} </p>
+                                                                        <p class="hidetime" style="display: none">{{$totalPrice += $subTotal}}</p>                                               
+                                                                    </div>
+                                                                </td>
+                                                                    <td>
+                                                                    <a href="{{'delete/' . $cartItem['product']['id']}}" class="fa fa-trash"></a>
+                                                                    </td>
+                                                                </tr>
+                                                            </table>
                                                         </div>
                                                     </div>
                                                 </div>

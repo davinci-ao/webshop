@@ -47,9 +47,9 @@
           @foreach($categoryProducts as $categoryProduct)
           <div class='col-sm-4'>
           <li class="list-group-item mt-3">
-          <a href="{{ url('/product/' . 'details/' . $product->id . '/' . $product->category_id) }}"> 
+          <a href="{{ url('/product/' . 'details/' . $product->id . '/' . $product->category_id) }}" style="text-decoration:none; color:black;"> 
                       <img class="img" src="{{url('/images' . '/' . $categoryProduct->file_path)}}"/>
-                        <h5 class="card-title">{{$categoryProduct->name}}</h5>
+                        <h5 class="card-title" style="color:black;">{{$categoryProduct->name}}</h5>
                           <h6 class="mb-3">Price: ${{$categoryProduct->price}}</h6>
                           </a>  
                           @if ($categoryProduct->stock < 1)
