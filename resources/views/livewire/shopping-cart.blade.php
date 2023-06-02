@@ -92,7 +92,7 @@
                                 <div class="card">
                                     <h3>Summary</h3>
                                     <div class='summary-item'><span class='text'>Total price: </span><span class='price'>${{$totalPrice}}</span></div>
-                                    <form action="{{ url('order/index/') }}" method="post">
+                                    <form action="{{ url('order/information/') }}" method="post">
                                         @csrf
                                         <input type="hidden" name="totalprice" value="{{$totalPrice}}"><br>
                                         <input type='submit' class='btn btn-primary btn-lg btn-block'>

@@ -13,10 +13,7 @@ use App\Mail\MyMail;
 
 class OrderController extends Controller
 {
-    public function sendMail(){
-
-    }
-
+    
     public function index(){
         $shoppingCart = session()->get('shoppingCart');
         $email = Auth::user()->email;
@@ -31,5 +28,9 @@ class OrderController extends Controller
         $email = Auth::user()->email;
         Mail::to($email)->send(new \App\Mail\MyMail($details));
         dd("Email is Sent.");
+    }
+
+    public function information(){
+        return view('order/information');
     }
 }
