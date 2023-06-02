@@ -22,10 +22,9 @@ $email = $_POST['email'];
 
 <div class="row">
    <div class="card col">
-      <h1>Order overview</h1>
-      <p>Your total is ${{$totalPrice}}</p>
-      <p>Your email is {{$email}}</p>
-      <div class="card">
+      <h1 class="m-1">Order overview</h1>
+      <h5 class="m-2">Your email is {{$email}}</h5>
+      <div class="card mt-2 mb-3">
         <div class="card-body">
            <h5 class="card-title">Delivery Time</h5>
            <?php
@@ -38,9 +37,41 @@ $email = $_POST['email'];
            </p>
         </div>
      </div>
+     <tr>
+                        <td align="left" style="padding-top: 20px;">
+                            <table cellspacing="0" cellpadding="0" border="0" width="100%">
+                                <tr>
+                                    <td width="10%" align="left" bgcolor="#eeeeee" style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 800; line-height: 24px; padding: 10px;">
+                                        Quantity
+                                    </td>
+                                    <td width="80%" align="left" bgcolor="#eeeeee" style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 800; line-height: 24px; padding: 10px;">
+                                        Name
+                                    </td>
+                                    <td width="10%" align="left" bgcolor="#eeeeee" style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 800; line-height: 24px; padding: 10px;">
+                                        Subtotal
+                                    </td>
+                                </tr>
+                                @foreach (session()->get('shoppingCart') as $cartItem)
+                                <tr>  
+                                <td width="10%" align="left" style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 24px; padding: 15px 10px 5px 10px;">
+                                    <P class="mt-3">{{ $cartItem['quantity'] }}x</P>
+                                </td>
+                                    <td width="80%" align="left" style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 24px; padding: 15px 10px 5px 10px;">
+                                        {{$cartItem['product']['name']}}
+                                    </td>
+                                    <td width="10%" align="left" style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 24px; padding: 15px 10px 5px 10px;">
+                                        <p>  ${{$subTotal = $cartItem['subtotal'] * $cartItem['quantity'] }} </p>
+                                        <p class="hidetime" style="display: none">{{$totalPrice += $subTotal}}</p> 
+                                    </td>
+                                </tr>
+                                @endforeach
+                            </table>
+                        </td>
+                    </tr>
    </div>
 
    <div class="card col">
+   <h1 class="m-1 mb-4">Select payment option</h1>
       <!-- Replace "test" with your own sandbox Business account app client ID -->
       <script src="https://www.paypal.com/sdk/js?client-id=AZRv1DzPupaYLd5JiThs0A-_P7squ8z3sXshzjPtWxfd6UDA5E3tFU3775L_A27sCa4u8PLHwaW--q0a"></script>
       <!-- Set up a container element for the button -->

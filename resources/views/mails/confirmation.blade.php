@@ -14,7 +14,9 @@ img { -ms-interpolation-mode: bicubic; }
 img { border: 0; height: auto; line-height: 100%; outline: none; text-decoration: none; }
 table { border-collapse: collapse !important; }
 body { height: 100% !important; margin: 0 !important; padding: 0 !important; width: 100% !important; }
-
+<?php 
+    $totalPrice = 0;
+?>
 
 a[x-apple-data-detectors] {
     color: inherit !important;
@@ -96,37 +98,30 @@ For what reason would it be advisable for me to think about business content? Th
                         <td align="left" style="padding-top: 20px;">
                             <table cellspacing="0" cellpadding="0" border="0" width="100%">
                                 <tr>
-                                    <td width="75%" align="left" bgcolor="#eeeeee" style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 800; line-height: 24px; padding: 10px;">
-                                        Order Confirmation
+                                    <td width="10%" align="left" bgcolor="#eeeeee" style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 800; line-height: 24px; padding: 10px;">
+                                        Quantity
                                     </td>
-                                    <td width="25%" align="left" bgcolor="#eeeeee" style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 800; line-height: 24px; padding: 10px;">
-                                        Price
+                                    <td width="80%" align="left" bgcolor="#eeeeee" style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 800; line-height: 24px; padding: 10px;">
+                                        Name
                                     </td>
-                                </tr>
-                                <tr>
-                                    <td width="75%" align="left" style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 24px; padding: 15px 10px 5px 10px;">
-                                        Purchased Item (1)
-                                    </td>
-                                    <td width="25%" align="left" style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 24px; padding: 15px 10px 5px 10px;">
-                                        $100.00
+                                    <td width="10%" align="left" bgcolor="#eeeeee" style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 800; line-height: 24px; padding: 10px;">
+                                        Subtotal
                                     </td>
                                 </tr>
-                                <tr>
-                                    <td width="75%" align="left" style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 24px; padding: 5px 10px;">
-                                        Shipping + Handling
+                                @foreach (session()->get('shoppingCart') as $cartItem)
+                                <tr>  
+                                <td width="10%" align="left" style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 24px; padding: 15px 10px 5px 10px;">
+                                    <P class="mt-3">{{ $cartItem['quantity'] }}x</P>
+                                </td>
+                                    <td width="80%" align="left" style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 24px; padding: 15px 10px 5px 10px;">
+                                        {{$cartItem['product']['name']}}
                                     </td>
-                                    <td width="25%" align="left" style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 24px; padding: 5px 10px;">
-                                        $10.00
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td width="75%" align="left" style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 24px; padding: 5px 10px;">
-                                        Sales Tax
-                                    </td>
-                                    <td width="25%" align="left" style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 24px; padding: 5px 10px;">
-                                        $5.00
+                                    <td width="10%" align="left" style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 24px; padding: 15px 10px 5px 10px;">
+                                        <p>  ${{$subTotal = $cartItem['subtotal'] * $cartItem['quantity'] }} </p>
+                                        <p class="hidetime" style="display: none">{{$totalPrice += $subTotal}}</p> 
                                     </td>
                                 </tr>
+                                @endforeach
                             </table>
                         </td>
                     </tr>
@@ -138,7 +133,7 @@ For what reason would it be advisable for me to think about business content? Th
                                         TOTAL
                                     </td>
                                     <td width="25%" align="left" style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 800; line-height: 24px; padding: 10px; border-top: 3px solid #eeeeee; border-bottom: 3px solid #eeeeee;">
-                                        $115.00
+                                         <div class='summary-item'><span class='text mx-2'>Total price: </span><span class='price'>${{$totalPrice}}</span></div>
                                     </td>
                                 </tr>
                             </table>
