@@ -3,7 +3,7 @@
 @section('content')
 
 <?php 
-  $totalprice = $_POST['totalprice'];
+  $totalPrice = $_POST['totalprice'];
 ?>
  <div class="d-flex align-items-end">
   <form action="{{ url('order/delivery') }}" method="POST" id="form">
@@ -12,7 +12,7 @@
     <button type="submit" class="btn btn-success mx-4 mb-4">back to delivery</button>
  </form>
  <?php 
-    $totalprice = (int)$totalprice; 
+    $totalPrice = (int)$totalPrice; 
  ?>
 </div>
  <!-- Replace "test" with your own sandbox Business account app client ID -->
@@ -22,9 +22,9 @@
         <script>
           var url = '{{ url("send-mail") }}';
           url = url.replace(':email', email);
-          var price = <?php echo $totalprice ?>;
+          var price = <?php echo $totalPrice ?>;
           var email = "<?php echo $email ?>";
-          const totalprice = parseFloat(price).toFixed(2);
+          const totalPrice = parseFloat(price).toFixed(2);
             paypal
             .Buttons({
               createOrder:function(data, actions) {
@@ -32,7 +32,7 @@
                   purchase_units: [
                     {
                       amount: {
-                        value: totalprice,
+                        value: totalPrice,
                       },
                     },
                   ],

@@ -1,13 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
-<<<<<<< Updated upstream
-=======
+
 <?php
 $totalPrice = $_POST['totalprice'];
-
 ?>
->>>>>>> Stashed changes
 
 <a type='button' href="{{ url('/cart/index') }}" class='btn btn-success btn-block m-3'><i class="fa-solid fa-arrow-left"></i> Back to cart</a>
 <div class="row">                      
