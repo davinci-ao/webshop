@@ -91,11 +91,16 @@
                             <div class="summary">
                                 <div class="card">
                                     <h3>Summary</h3>
-                                    <div class='summary-item'><span class='text'>Total price: </span><span class='price'>${{$totalPrice}}</span></div>
+                                    <div class='summary-item'><span class='text mx-2'>Total price: </span><span class='price'>${{$totalPrice}}</span></div>
                                     <form action="{{ url('order/information/') }}" method="post">
                                         @csrf
                                         <input type="hidden" name="totalprice" value="{{$totalPrice}}">
-                                        <input type='submit' class='btn btn-primary btn-lg btn-block'>
+                                        @if(count($shoppingCart) > 0)
+                                        <button type="submit" class="btn btn-success mx-4 mb-4">Continue</button>
+                                        @else
+                                        <br>
+                                        <div class="mx-2">Shopping cart is empty </div>
+                                        @endif
                                     </form>
                                 </div>
                             </div>
