@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+<a type='button' href="{{ url('/cart/index') }}" class='btn btn-success btn-block m-3'><i class="fa-solid fa-arrow-left"></i> Back to cart</a>
 <div class="row">                      
       <div class="col card">
       <form method="POST" action="{{ url('order/delivery/') }}">
@@ -29,7 +30,7 @@
       <input type="text" class="form-control" id="inputPostalCode" placeholder="1234AB">
     </div>
   </div>
-  <button type="submit" class="btn btn-primary mx-4 mb-4">Continue to delivery</button>
+  <button type="submit" class="btn btn-success mx-4 mb-4">Continue to delivery</button>
 </form>
       </div>      
 
