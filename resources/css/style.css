@@ -1,5 +1,5 @@
 body{
-	background:green;
+	background:black;
 	width:10px;
 }
 
@@ -8,6 +8,10 @@ body{
     text-decoration: none;
 }
 
+.fa-trash {
+	color: red;
+  }
+  
 .card {
 	box-sizing: border-box;
 	width: 190px;
