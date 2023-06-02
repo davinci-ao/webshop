@@ -4,6 +4,7 @@
 
 <?php
 $totalPrice = $_POST['totalprice'];
+$email = $_POST['email'];
 
 ?>
 <div class="container">
@@ -11,7 +12,7 @@ $totalPrice = $_POST['totalprice'];
     <form action="{{ url('order/information') }}" method="POST" id="form">
         @csrf
         <input type="hidden" name="totalprice" value="{{$totalPrice}}">
-        <button type="submit" class="btn btn-success mx-4 mb-4">back to information</button>
+        <button type="submit" class="btn btn-success m-3"><i class="fa-solid fa-arrow-left"></i> Back to information</button>
      </form>
    </div>
    <br>
@@ -22,6 +23,7 @@ $totalPrice = $_POST['totalprice'];
             <div id="se" class="row"></div>
             <input type="hidden" id="selected-timeframes" name="selectedTimeframes">
             <input type="hidden" name="totalprice" value="{{$totalPrice}}">
+            <input type="hidden" name="email" value="{{$email}}">
             <button type="submit" onclick="handleSubmit()" class="btn btn-primary">Submit</button>
          </form>
       </div>

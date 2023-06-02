@@ -20,14 +20,13 @@ class OrderController extends Controller
         return view('order.index', ["email"=>$email]);
     }
 
-    public function sendEmail(){
+    public function sendEmail($email){
         $details = [
             'title' => 'Order confirmation',
             'body' => 'Thank you for using ProducerGrind.'
         ];
-        $email = Auth::user()->email;
         Mail::to($email)->send(new \App\Mail\MyMail($details));
-        dd("Email is Sent.");
+        return redirect('order/success');
     }
 
     public function information(){
@@ -40,13 +39,16 @@ class OrderController extends Controller
        
     }
     
+    public function success(){
+        return view('order/success');
+    }
+
     public function delivery(){
          return view('order/delivery');
      }
 
      public function overview(){
-        $email = Auth::user()->email;
-        return view('order/overview', ["email"=>$email]);
+        return view('order/overview');
        
     }
 }

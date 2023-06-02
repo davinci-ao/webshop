@@ -5,13 +5,15 @@
 <?php
 $totalPrice = $_POST['totalprice'];
 $selectedTime = $_POST['selectedTimeframes'];
+$email = $_POST['email'];
 ?>
-
+<div class="container">
 <div class="d-flex align-items-end">
    <form action="{{ url('order/delivery') }}" method="POST" id="form">
       @csrf
       <input type="hidden" name="totalprice" value="{{$totalPrice}}">
-      <button type="submit" class="btn btn-success mx-4 mb-4">Back to Delivery</button>
+      <input type="hidden" name="email" value="{{$email}}">
+      <button type="submit" class="btn btn-success m-3"><i class="fa-solid fa-arrow-left"></i> Back to Delivery</button>
    </form>
    <?php
    $totalPrice = (int)$totalPrice;
@@ -20,6 +22,7 @@ $selectedTime = $_POST['selectedTimeframes'];
 
 <div class="row">
    <div class="card col">
+      <h1>Order overview</h1>
       <p>Your total is ${{$totalPrice}}</p>
       <p>Your email is {{$email}}</p>
       <div class="card">
@@ -41,9 +44,10 @@ $selectedTime = $_POST['selectedTimeframes'];
       <!-- Replace "test" with your own sandbox Business account app client ID -->
       <script src="https://www.paypal.com/sdk/js?client-id=AZRv1DzPupaYLd5JiThs0A-_P7squ8z3sXshzjPtWxfd6UDA5E3tFU3775L_A27sCa4u8PLHwaW--q0a"></script>
       <!-- Set up a container element for the button -->
+      <div class="mt-3">
       <div id="paypal-button-container"></div>
       <script>
-         var url = '{{ url("send-mail") }}';
+         var url = '{{ url("order/redirect/$email") }}';
          url = url.replace(':email', email);
          var price = <?php echo $totalPrice ?>;
          var email = "<?php echo $email ?>";
@@ -64,7 +68,6 @@ $selectedTime = $_POST['selectedTimeframes'];
                // Finalize the transaction after payer approval
                onApprove(data, actions) {
                   return actions.order.capture().then(function (details) {
-                     alert('Transaction completed by ' + details.payer.name.given_name + email);
                      window.location.href = url;
                   })
                },
@@ -72,6 +75,7 @@ $selectedTime = $_POST['selectedTimeframes'];
             .render('#paypal-button-container');
       </script>
    </div>
+   </div>
 </div>
-
+</div>
 @endsection

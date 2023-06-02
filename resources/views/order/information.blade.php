@@ -5,7 +5,7 @@
 <?php
 $totalPrice = $_POST['totalprice'];
 ?>
-
+<div class="container">
 <a type='button' href="{{ url('/cart/index') }}" class='btn btn-success btn-block m-3'><i class="fa-solid fa-arrow-left"></i> Back to cart</a>
 <div class="row">                      
       <div class="col card">
@@ -13,13 +13,13 @@ $totalPrice = $_POST['totalprice'];
                         @csrf
   <div class="form-row">
     <div class="form-group col-md-6 m-4">
-      <label for="inputEmail">Email</label>
+      <label for="email">Email</label>
       @auth
-      <input type="email" class="form-control" value="<?php echo $email ?>" id="inputEmail" placeholder="Email">
+      <input type="email" name="email" class="form-control" value="<?php echo $email ?>" id="email" placeholder="Email">
       @endauth
 
       @guest
-      <input type="email" class="form-control" id="inputEmail" placeholder="Email">
+      <input type="email" name="email" class="form-control" id="email" placeholder="Email">
       @endguest
 
     </div>
@@ -113,6 +113,7 @@ $totalPrice = $_POST['totalprice'];
                         
                     </form>
                 </div>
+</div>
 </div>
 </div> 
 @endguest
