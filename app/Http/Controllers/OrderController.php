@@ -35,4 +35,8 @@ class OrderController extends Controller
         $email = Auth::user()->email;
         return view('order/information', ["email"=>$email]);
     }
+    
+    public function delivery(){
+         return view('order/delivery');
+     }
 }

@@ -72,3 +72,5 @@ Route::post('order/index/', [App\Http\Controllers\OrderController::class, 'index
 Route::get('send-mail', [App\Http\Controllers\OrderController::class, 'sendEmail']);
 
 Route::post('order/information', [App\Http\Controllers\OrderController::class, 'information']);
+
+Route::post('order/delivery', [App\Http\Controllers\OrderController::class, 'delivery']);
