@@ -8,7 +8,7 @@
   <div class="form-row">
     <div class="form-group col-md-6 m-4">
       <label for="inputEmail">Email</label>
-      <input type="email" class="form-control" value="" id="inputEmail" placeholder="Email">
+      <input type="email" class="form-control" value="<?php echo $email ?>" id="inputEmail" placeholder="Email">
     </div>
   </div>
   <div class="form-group col-md-6 m-4">
