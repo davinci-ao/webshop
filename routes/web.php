@@ -2,6 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use App\Mail\OrderMail;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\MyTestEmail;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -64,3 +68,6 @@ Route::get('cart/delete/{id}', [App\Http\Controllers\CartController::class, 'rem
 Route::get('cart/delete/', [App\Http\Controllers\CartController::class, 'emptyCart']);
 
 Route::post('order/index/', [App\Http\Controllers\OrderController::class, 'index']);
+
+Route::get('send-mail', [App\Http\Controllers\OrderController::class, 'sendEmail']);
+

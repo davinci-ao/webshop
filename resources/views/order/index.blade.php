@@ -17,11 +17,14 @@
         <!-- Set up a container element for the button -->
         <div id="paypal-button-container"></div>
         <script>
-          var price = {{$totalprice}};
+          var url = '{{ url("send-mail") }}';
+          url = url.replace(':email', email);
+          var price = <?php echo $totalprice ?>;
+          var email = "<?php echo $email ?>";
           const totalprice = parseFloat(price).toFixed(2);
             paypal
             .Buttons({
-              createOrder:function(data, actions, ) {
+              createOrder:function(data, actions) {
                 return actions.order.create({
                   purchase_units: [
                     {
@@ -35,7 +38,8 @@
               // Finalize the transaction after payer approval
               onApprove(data, actions) {
                 return actions.order.capture().then(function (details) {
-                  alert('Transaction completed by ' + details.payer.name.given_name);
+                  alert('Transaction completed by ' + details.payer.name.given_name + email);
+                  window.location.href=url;
                 })
               },
             })
