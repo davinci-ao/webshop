@@ -4,9 +4,17 @@
 
 <?php 
   $totalprice = $_POST['totalprice'];
-  $totalprice = (int)$totalprice; 
 ?>
-
+ <div class="d-flex align-items-end">
+  <form action="{{ url('order/delivery') }}" method="POST" id="form">
+    @csrf
+    <input type="hidden" name="totalprice" value="{{$totalPrice}}">
+    <button type="submit" class="btn btn-success mx-4 mb-4">back to delivery</button>
+ </form>
+ <?php 
+    $totalprice = (int)$totalprice; 
+ ?>
+</div>
  <!-- Replace "test" with your own sandbox Business account app client ID -->
  <script src="https://www.paypal.com/sdk/js?client-id=AZRv1DzPupaYLd5JiThs0A-_P7squ8z3sXshzjPtWxfd6UDA5E3tFU3775L_A27sCa4u8PLHwaW--q0a"></script>
         <!-- Set up a container element for the button -->

@@ -43,4 +43,10 @@ class OrderController extends Controller
     public function delivery(){
          return view('order/delivery');
      }
+
+     public function overview(){
+        $email = Auth::user()->email;
+        return view('order/overview', ["email"=>$email]);
+       
+    }
 }

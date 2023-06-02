@@ -1,6 +1,13 @@
 @extends('layouts.app')
 
 @section('content')
+<<<<<<< Updated upstream
+=======
+<?php
+$totalPrice = $_POST['totalprice'];
+
+?>
+>>>>>>> Stashed changes
 
 <a type='button' href="{{ url('/cart/index') }}" class='btn btn-success btn-block m-3'><i class="fa-solid fa-arrow-left"></i> Back to cart</a>
 <div class="row">                      
@@ -38,6 +45,7 @@
       <input type="text" class="form-control" id="inputPostalCode" placeholder="1234AB">
     </div>
   </div>
+  <input type="hidden" name="totalprice" value="{{$totalPrice}}">
   <button type="submit" class="btn btn-success mx-4 mb-4">Continue to delivery</button>
 </form>
       </div>      

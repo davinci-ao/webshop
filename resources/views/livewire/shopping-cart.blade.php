@@ -94,7 +94,7 @@
                                     <div class='summary-item'><span class='text'>Total price: </span><span class='price'>${{$totalPrice}}</span></div>
                                     <form action="{{ url('order/information/') }}" method="post">
                                         @csrf
-                                        <input type="hidden" name="totalprice" value="{{$totalPrice}}"><br>
+                                        <input type="hidden" name="totalprice" value="{{$totalPrice}}">
                                         <input type='submit' class='btn btn-primary btn-lg btn-block'>
                                     </form>
                                 </div>

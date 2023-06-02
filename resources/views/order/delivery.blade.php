@@ -1,17 +1,28 @@
 @extends('layouts.app')
 
 @section('content')
+
+<?php
+$totalPrice = $_POST['totalprice'];
+
+?>
 <div class="container">
    <div class="d-flex align-items-end">
-      <a type='button' href="{{ url('/order/information/') }}" class='btn btn-success btn-block'><i class="fa-solid fa-arrow-left"></i> Back to information</a>
+    <form action="{{ url('order/information') }}" method="POST" id="form">
+        @csrf
+        <input type="hidden" name="totalprice" value="{{$totalPrice}}">
+        <button type="submit" class="btn btn-success mx-4 mb-4">back to information</button>
+     </form>
    </div>
    <br>
    <div class="row">
       <div class="col">
-         <form action="next-page.html" method="POST" id="form">
+         <form action="{{ url('order/overview') }}" method="POST" id="form">
+            @csrf
             <div id="se" class="row"></div>
             <input type="hidden" id="selected-timeframes" name="selectedTimeframes">
-            <button type="button" onclick="handleSubmit()" class="btn btn-primary">Submit</button>
+            <input type="hidden" name="totalprice" value="{{$totalPrice}}">
+            <button type="submit" onclick="handleSubmit()" class="btn btn-primary">Submit</button>
          </form>
       </div>
    </div>

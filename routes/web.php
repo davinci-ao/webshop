@@ -77,4 +77,6 @@ Route::get('order/information', [App\Http\Controllers\OrderController::class, 'i
 
 Route::post('order/delivery', [App\Http\Controllers\OrderController::class, 'delivery']);
 
+Route::get('order/delivery', [App\Http\Controllers\OrderController::class, 'delivery']);
+
 Route::post('order/overview', [App\Http\Controllers\OrderController::class, 'overview']);
