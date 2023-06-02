@@ -45,14 +45,19 @@
                                 </form>
                                 @endif
                                 @guest
+                               
+                                        <p> out of stock </p>
+                                    
                                 <form action="{{ url('cart/index/' . $product->id) }}" method="post">
                                     {!! csrf_field() !!}
+                                   
                                     <div class="input-group">
                                         <input type="hidden" name="product_id" value="{{$product->id}}"/>
                                         <input type="number" class="form-control.form-horizontal w-25" name="quantity" value="1" min="1">
                                         <button type="submit" class="btn btn-sm btn-dark"><i class="fa-solid fa-cart-shopping"></i></button>
                                     </div>
                                 </form>
+                                
                                 @endguest
                         </div>
 </div>
