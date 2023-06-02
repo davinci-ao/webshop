@@ -31,9 +31,13 @@ class OrderController extends Controller
     }
 
     public function information(){
-       $shoppingCart = session()->get('shoppingCart');
-        $email = Auth::user()->email;
-        return view('order/information', ["email"=>$email]);
+        if (Auth::user()) {   // Check is user logged in
+            $email = Auth::user()->email;
+            return view('order/information', ["email"=>$email]);
+        } else {
+            return view('order/information');
+        }
+       
     }
     
     public function delivery(){

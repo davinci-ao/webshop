@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+
 <a type='button' href="{{ url('/cart/index') }}" class='btn btn-success btn-block m-3'><i class="fa-solid fa-arrow-left"></i> Back to cart</a>
 <div class="row">                      
       <div class="col card">
@@ -9,7 +10,14 @@
   <div class="form-row">
     <div class="form-group col-md-6 m-4">
       <label for="inputEmail">Email</label>
+      @auth
       <input type="email" class="form-control" value="<?php echo $email ?>" id="inputEmail" placeholder="Email">
+      @endauth
+
+      @guest
+      <input type="email" class="form-control" id="inputEmail" placeholder="Email">
+      @endguest
+
     </div>
   </div>
   <div class="form-group col-md-6 m-4">
