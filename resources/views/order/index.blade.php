@@ -40,28 +40,76 @@
               },
             })
             .render('#paypal-button-container');
-      </script>
-    </div>
-    <div class="col card">
-      <script>
-        var myHeaders = new Headers();
-        myHeaders.append("apikey", "	gDLoKcK3LGDtc0vbLkzm6mKwbc5ZYtLc");
-        myHeaders.append("Cookie", "ak_bmsc=7CBAA82622EC0CA6E150095F8502F6BB~000000000000000000000000000000~YAAQbBjdWCTfLEKIAQAAEk3/UxNdaCGoC7pEKmID3eQvhSXJCi5G6hhZiXS3M7sg/I1XQb54pqei8JJPYZTQBhcXLsGX5QRr97EjCGLkKM7Z1Jda2d5gUJTZ86fZRGYvNy6pgCKaDZp3LJgdPv7CaqmZ8qXxfMeHOjbWmD66hAzoZdSc9HUlYtwzDm5suwp7cRTUNa+76i78Aq7KMUw6DWDJAE1Pp5B/+daJYUuyTHW5cVYFqaz/J3V9lDkF4faYnPBYpolu4sHECDiEG2EtB8rCyTDSG8uBYiXDm8DvBV0y/1Wt3OQtA4TKNSWZWG15JCa6wPR+JeKU5q8a9gsVEsXC3wEiQavjYg6KsNrsPbFmgWkeWohjFSqonw==; bm_sv=25C534EBFCDF1547A20F11A360E0656A~YAAQbBjdWHftLkKIAQAAg/sZVBNdZFog+t5XxpvGiX6QImksFIiWrdc3W2uJLz1mFkB52ZVeLEB+f1EzUEKPJhEq0c6U2zfAeBKNQaPtaMAuAC6Zwa6CswIySN7rdZoCzWN2wLyNa5LV5uXmYnIUYi5Z+ev9QQvtdW+/EdlKjrBvjBxh+rggrx914NEhHN5ca4SoapDrF2iGEHS7WbtfUEkKNgVRPnFbIwezWEYg0Zls/C94tv3vozCv61Dentg=~1; akacd_Gravitee=3862490214~rv=78~id=decd56d158c1c3e37f25d95e9c399e71");
-
-        var requestOptions = {
-          method: 'GET',
-          headers: myHeaders,
-          redirect: 'follow'
-        };
-
-        fetch("https://api-sandbox.postnl.nl/shipment/v2_1/calculate/timeframes?AllowSundaySorting=true&Options=Daytime,Evening&StartDate=26-05-2023&EndDate=01-06-2023&CountryCode=NL&PostalCode=2521CA&HouseNumber=3&HouseNrExt=a bis&Street=Waldorpstraat&City='S-Gravenhage", requestOptions)
-          .then(response => response.text())
-          .then(result => document.getElementById("se").innerHTML = result)
-          .catch(error => console.log('error', error));
-
         </script>
-        <p id="se"></p>
-    </div>
+      </div>
+      <style>
+        .card {
+          border: 1px solid #ccc;
+          border-radius: 5px;
+          padding: 10px;
+          margin-bottom: 10px;
+          background-color: #f9f9f9;
+        }
+      </style>
+      <div class="col card">
+        <script>
+          var myHeaders = new Headers();
+          myHeaders.append("apikey", "gDLoKcK3LGDtc0vbLkzm6mKwbc5ZYtLc");
+          myHeaders.append("Cookie", "ak_bmsc=63520339FC5DE4580A00D097A189A55A~000000000000000000000000000000~YAAQJzdlX2V/v2yIAQAAWPQ8exN8kxY9JfdC6AsQYWzUS28Cb1st0C7zHAox5txUz3H85kue0/v8QZUo22pJHTkyqUuwmCzL8iKM6tsL/X8O7lSyIjclFWp3d6zAE2U/XxILYKdRytYJSYN2+py4fRsK/n4skIo+973k2ahxF18UwkXtdvkwrZoFEzB4f0/7bEJARmb8FUUQFv5wByBeVvQzDpojkA5AdirYx0NPxCyOExV6uQ1I9NjwllM4gtarzHbKVuq4/FRrSy8QOOKNoQyQOKc2puJvoFjwZmvD0nZtlKln/QFHGOLCcPUewlAqB9aNMt1wJchxYJ3xwkBbweAr3gHzekFU6RPnCYWmXP/O654ax//Zx0+okg==; akacd_Gravitee=3863147570~rv=4~id=e8328bb2ed0091d092df1b796709b775");
+      
+          var requestOptions = {
+            method: 'GET',
+            headers: myHeaders,
+            redirect: 'follow'
+          };
+      
+          function handleCardClick(date) {
+      console.log('Clicked date:', date);
+      // You can perform further actions here based on the clicked date
+    }
+
+    function handleCardClick(date, from, to) {
+      console.log('Clicked date:', date);
+      console.log('From:', from);
+      console.log('To:', to);
+      // You can perform further actions here based on the clicked date and time
+    }
+
+    fetch("https://api-sandbox.postnl.nl/shipment/v2_1/calculate/timeframes?AllowSundaySorting=true&Options=Daytime,Evening&StartDate=03-06-2023&EndDate=09-06-2023&CountryCode=NL&PostalCode=2521CA&HouseNumber=3&HouseNrExt=a bis&Street=Waldorpstraat&City='S-Gravenhage", requestOptions)
+      .then(response => response.json())
+      .then(data => {
+        var timeframes = data?.Timeframes?.Timeframe;
+
+        if (timeframes) {
+          var output = '';
+          for (var i = 0; i < timeframes.length; i++) {
+            var timeframe = timeframes[i];
+            var timeframeTimeFrames = Array.isArray(timeframe.Timeframes.TimeframeTimeFrame)
+              ? timeframe.Timeframes.TimeframeTimeFrame
+              : [timeframe.Timeframes.TimeframeTimeFrame];
+
+            for (var j = 0; j < timeframeTimeFrames.length; j++) {
+              var timeframeTimeFrame = timeframeTimeFrames[j];
+              output += '<a href="javascript:void(0)" onclick="handleCardClick(\'' + timeframe.Date + '\', \'' + timeframeTimeFrame.From + '\', \'' + timeframeTimeFrame.To + '\')">';
+              output += '<div class="card">';
+              output += '<strong>Date:</strong> ' + timeframe.Date + '<br>';
+              output += '<strong>From:</strong> ' + timeframeTimeFrame.From + '<br>';
+              output += '<strong>To:</strong> ' + timeframeTimeFrame.To + '<br>';
+              output += '</div>';
+              output += '</a>';
+            }
+          }
+
+          document.getElementById("se").innerHTML = output;
+        } else {
+          document.getElementById("se").innerHTML = 'No timeframes available.';
+        }
+      })
+      .catch(error => console.log('error', error));
+  </script>
+  <div id="se"></div>
+</div>
+      
   </div>
 </div>
 @endsection
