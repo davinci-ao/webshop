@@ -61,7 +61,7 @@ $email = $_POST['email'];
                                     </td>
                                     <td width="10%" align="left" style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 24px; padding: 15px 10px 5px 10px;">
                                         <p>  ${{$subTotal = $cartItem['subtotal'] * $cartItem['quantity'] }} </p>
-                                        <p class="hidetime" style="display: none">{{$totalPrice += $subTotal}}</p> 
+                                         
                                     </td>
                                 </tr>
                                 @endforeach
@@ -80,7 +80,7 @@ $email = $_POST['email'];
       <script>
          var url = '{{ url("order/redirect/$email") }}';
          url = url.replace(':email', email);
-         var price = <?php echo $totalPrice ?>;
+         var price = {{$totalPrice}};
          var email = "<?php echo $email ?>";
          const totalPrice = parseFloat(price).toFixed(2);
          paypal
