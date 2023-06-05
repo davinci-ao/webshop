@@ -24,7 +24,7 @@ $email = $_POST['email'];
             <input type="hidden" id="selected-timeframes" name="selectedTimeframes">
             <input type="hidden" name="totalprice" value="{{$totalPrice}}">
             <input type="hidden" name="email" value="{{$email}}">
-            <button type="submit" onclick="handleSubmit()" class="btn btn-primary">Submit</button>
+            <button type="submit" onclick="handleSubmit()" class="btn btn-success">Continue to overview</button>
          </form>
       </div>
    </div>

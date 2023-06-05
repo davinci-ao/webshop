@@ -95,7 +95,7 @@
                                     <form action="{{ url('order/information/') }}" method="post">
                                         @csrf
                                         <input type="hidden" name="totalprice" value="{{$totalPrice}}">
-                                        @if(count($shoppingCart) > 0)
+                                        @if (is_countable($shoppingCart) && count($shoppingCart) > 0)
                                         <button type="submit" class="btn btn-success mx-4 mb-4">Continue</button>
                                         @else
                                         <br>

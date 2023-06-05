@@ -26,7 +26,7 @@ $email = $_POST['email'];
       <h5 class="m-2">Your email is {{$email}}</h5>
       <div class="card mt-2 mb-3">
         <div class="card-body">
-           <h5 class="card-title">Delivery Time</h5>
+           <h5 class='card-title' style="text-decoration:none; color:black;">Delivery Time</h5>
            <?php
               $selectedTime = json_decode($selectedTime, true); // Convert string to associative array
            ?>
