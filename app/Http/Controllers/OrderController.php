@@ -20,7 +20,7 @@ class OrderController extends Controller
         return view('order.index', ["email"=>$email]);
     }
 
-    public function sendEmail($email){
+    public function sendEmailConfirmation($email){
         $details = [
             'title' => 'Order confirmation',
             'body' => 'Thank you for using ProducerGrind.'
