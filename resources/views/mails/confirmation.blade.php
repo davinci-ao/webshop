@@ -39,11 +39,6 @@ div[style*="margin: 16px 0;"] { margin: 0 !important; }
 </style>
 <body style="margin: 0 !important; padding: 0 !important; background-color: #eeeeee;" bgcolor="#eeeeee">
 
-
-<div style="display: none; font-size: 1px; color: #fefefe; line-height: 1px; font-family: Open Sans, Helvetica, Arial, sans-serif; max-height: 0px; max-width: 0px; opacity: 0; overflow: hidden;">
-For what reason would it be advisable for me to think about business content? That might be little bit risky to have crew member like them. 
-</div>
-
 <table border="0" cellpadding="0" cellspacing="0" width="100%">
     <tr>
         <td align="center" style="background-color: #eeeeee;" bgcolor="#eeeeee">
@@ -56,7 +51,7 @@ For what reason would it be advisable for me to think about business content? Th
                     <table align="left" border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width:300px;">
                         <tr>
                             <td align="left" valign="top" style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 36px; font-weight: 800; line-height: 48px;" class="mobile-center">
-                                <h1 style="font-size: 36px; font-weight: 800; margin: 0; color: #ffffff;">Invoice</h1>
+                                <h1 style="font-size: 36px; font-weight: 800; margin: 0; color: #ffffff;">Order</h1>
                             </td>
                         </tr>
                     </table>

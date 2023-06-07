@@ -46,9 +46,14 @@
                                 @endif
                                 @guest
                                
-                                        <p> out of stock </p>
-                                    
+                                @if (empty($product->stock))
                                 <form action="{{ url('cart/index/' . $product->id) }}" method="post">
+                                    {!! csrf_field() !!}
+                                        <input type="hidden" name="product_id" value="{{$product->id}}"/>   
+                                        <button type="submit" class="btn btn-sm btn-danger">Send mail</button> 
+                                </form>
+                                        @else
+                                        <form action="{{ url('cart/index/' . $product->id) }}" method="post">
                                     {!! csrf_field() !!}
                                    
                                     <div class="input-group">
@@ -57,6 +62,9 @@
                                         <button type="submit" class="btn btn-sm btn-dark"><i class="fa-solid fa-cart-shopping"></i></button>
                                     </div>
                                 </form>
+                                        @endif
+                                    
+                               
                                 
                                 @endguest
                         </div>

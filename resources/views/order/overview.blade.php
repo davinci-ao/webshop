@@ -80,8 +80,8 @@ $email = $_POST['email'];
       <script>
          var url = '{{ url("order/redirect/$email") }}';
          url = url.replace(':email', email);
-         var price = {{$totalPrice}};
-         var email = "<?php echo $email ?>";
+         var price = "{{$totalPrice}}";
+         var email = "{{$email}}";
          const totalPrice = parseFloat(price).toFixed(2);
          paypal
             .Buttons({

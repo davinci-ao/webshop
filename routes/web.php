@@ -69,7 +69,7 @@ Route::get('cart/delete/', [App\Http\Controllers\CartController::class, 'emptyCa
 
 Route::post('order/index/', [App\Http\Controllers\OrderController::class, 'index']);
 
-Route::get('order/redirect/{email}', [App\Http\Controllers\OrderController::class, 'sendEmail']);
+Route::get('order/redirect/{email}', [App\Http\Controllers\OrderController::class, 'sendEmailConfirmation']);
 
 Route::get('order/success', [App\Http\Controllers\OrderController::class, 'success']);
 
