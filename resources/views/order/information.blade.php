@@ -25,21 +25,21 @@ $totalPrice = $_POST['totalprice'];
     </div>
   </div>
   <div class="form-group col-md-6 m-4">
-    <label for="inputAddress">Address</label>
-    <input type="text" class="form-control" id="inputAddress" placeholder="Adress">
+    <label for="address">Address</label>
+    <input type="text" class="form-control" name="address" placeholder="Adress">
   </div>
   <div class="form-group col-md-6 m-4">
-    <label for="inputAddress2">Address 2</label>
-    <input type="text" class="form-control" id="inputAddress2" placeholder="Adress">
+    <label for="address2">Address 2</label>
+    <input type="text" class="form-control" name="address2" placeholder="Adress">
   </div>
   <div class="form-row">
     <div class="form-group col-md-3 m-4">
-      <label for="inputPostalCode">Postal code</label>
-      <input type="text" class="form-control" id="inputPostalCode" placeholder="1234AB">
+      <label for="postalCode">Postal code</label>
+      <input type="text" class="form-control" name="postalCode" placeholder="1234AB">
     </div>
     <div class="form-group col-md-6 m-4">
-      <label for="inputCity">City</label>
-      <input type="text" class="form-control" id="inputCity" placeholder="City">
+      <label for="city">City</label>
+      <input type="text" class="form-control" name="city" placeholder="City">
     </div>
   </div>
   <input type="hidden" name="totalprice" value="{{$totalPrice}}">

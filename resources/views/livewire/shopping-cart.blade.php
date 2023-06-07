@@ -23,8 +23,6 @@
                                             De get() methode wordt gebruikt om de waarde van de key 'shoppingCart' uit de sessie op te halen. 
                                             De loop zal elk element van de array doorlopen en het huidige item wordt gegeven aan de variabele $cartItem --}}
                                             @foreach (session()->get('shoppingCart') as $cartItem)
-                                            {{dd($cartItem)}}
-                                                
                                                 <div class="col-md-8">
                                                     <div class="info">
                                                         <div class="row">

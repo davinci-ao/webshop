@@ -6,6 +6,11 @@
 $totalPrice = $_POST['totalprice'];
 $selectedTime = $_POST['selectedTimeframes'];
 $email = $_POST['email'];
+$address = $_POST['address'];
+$address2 = $_POST['address2'];
+$postalCode = $_POST['postalCode'];
+$city = $_POST['city'];
+
 ?>
 <div class="container">
 <div class="d-flex align-items-end">
@@ -26,15 +31,30 @@ $email = $_POST['email'];
       <h5 class="m-2">Your email is {{$email}}</h5>
       <div class="card mt-2 mb-3">
         <div class="card-body">
-           <h5 class='card-title' style="text-decoration:none; color:black;">Delivery Time</h5>
            <?php
               $selectedTime = json_decode($selectedTime, true); // Convert string to associative array
            ?>
+           <table>
+            <tr>
+               <th width="70%">Address</th>
+               <th>Delivery moment</th>
+            </tr>
+          
            <p class="card-text">
-              Date: {{ $selectedTime['date'] }}<br>
-              From: {{ date('h:i A', strtotime($selectedTime['from'])) }}<br>
-              To: {{ date('h:i A', strtotime($selectedTime['to'])) }}
+           <tr>
+               <td>Address: {{ $address }}</td>
+               <td>Date: {{ $selectedTime['date'] }}</td>  
+           </tr>
+           <tr>
+            <td>Postal code: {{ $postalCode }}</td>
+            <td> From: {{ date('h:i A', strtotime($selectedTime['from'])) }}</td>
+           </tr>
+           <tr>
+            <td> City: {{ $city }}</td>
+            <td>To: {{ date('h:i A', strtotime($selectedTime['to'])) }}</td>
+           </tr>
            </p>
+           </table>
         </div>
      </div>
      <tr>

@@ -29,7 +29,7 @@ class OrderController extends Controller
         return redirect('order/success');
     }
 
-    public function information(StorePostRequest $request){
+    public function information(){
         if (Auth::user()) {   // Check is user logged in
             $email = Auth::user()->email;
             return view('order/information', ["email"=>$email]);
