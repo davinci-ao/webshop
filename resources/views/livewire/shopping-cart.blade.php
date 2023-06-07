@@ -15,8 +15,15 @@
                                         $totalPrice = 0;
                                     ?>
                                     <div class="row">
+                                        {{-- Deze if statement controleert of de sessie een winkelwagentje bevat. 
+                                            De session() functie wordt gebruikt om toegang te krijgen tot de sessiegegevens van de gebruiker, 
+                                            en de has() methode controleert of de opgegeven sleutel ('shoppingCart') in dit geval aanwezig is in de sessie. --}}
                                         @if (session()->has('shoppingCart'))
+                                        {{-- Deze foreach start een loop waarin elk item in het winkelwagentje wordt herhaalt tot alle items langs zijn gelopen. 
+                                            De get() methode wordt gebruikt om de waarde van de key 'shoppingCart' uit de sessie op te halen. 
+                                            De loop zal elk element van de array doorlopen en het huidige item wordt gegeven aan de variabele $cartItem --}}
                                             @foreach (session()->get('shoppingCart') as $cartItem)
+                                            {{dd($cartItem)}}
                                                 
                                                 <div class="col-md-8">
                                                     <div class="info">
