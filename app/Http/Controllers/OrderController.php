@@ -4,12 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Mail\OrderMail;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Auth;
 use App\Mail\MyMail;
+use \App\Http\Requests\StorePostRequest;
 
 class OrderController extends Controller
 {
@@ -29,7 +29,7 @@ class OrderController extends Controller
         return redirect('order/success');
     }
 
-    public function information(){
+    public function information(StorePostRequest $request){
         if (Auth::user()) {   // Check is user logged in
             $email = Auth::user()->email;
             return view('order/information', ["email"=>$email]);
