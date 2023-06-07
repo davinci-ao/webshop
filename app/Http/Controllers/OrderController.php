@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Auth;
 use App\Mail\MyMail;
+use App\Models\Order;
 
 class OrderController extends Controller
 {
@@ -26,6 +27,26 @@ class OrderController extends Controller
             'body' => 'Thank you for using ProducerGrind.'
         ];
         Mail::to($email)->send(new \App\Mail\MyMail($details));
+        
+        $shoppingCart = session()->get('shoppingCart');
+        $totalPrice = 0;
+
+        // Calculate the total price of the order
+        foreach ($shoppingCart as $cartItem) {
+            $totalPrice += $cartItem['product']['price'];
+        }
+        
+
+
+        // Save the order data to the database
+        $order = new Order;
+        $order->username = Auth::user()->username;
+        $order->email = $email = Auth::user()->email;
+        $order->total_price = $totalPrice;
+        // Set other order details as needed
+        $order->save();
+        session()->forget('shoppingCart');
+    // Redirect the user to the desired URL
         return redirect('order/success');
     }
 
