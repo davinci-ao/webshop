@@ -33,13 +33,13 @@ $totalPrice = $_POST['totalprice'];
     <input type="text" class="form-control" id="inputAddress2" placeholder="Adress">
   </div>
   <div class="form-row">
-    <div class="form-group col-md-6 m-4">
-      <label for="inputCity">City</label>
-      <input type="text" class="form-control" id="inputCity" placeholder="City">
-    </div>
     <div class="form-group col-md-3 m-4">
       <label for="inputPostalCode">Postal code</label>
       <input type="text" class="form-control" id="inputPostalCode" placeholder="1234AB">
+    </div>
+    <div class="form-group col-md-6 m-4">
+      <label for="inputCity">City</label>
+      <input type="text" class="form-control" id="inputCity" placeholder="City">
     </div>
   </div>
   <input type="hidden" name="totalprice" value="{{$totalPrice}}">

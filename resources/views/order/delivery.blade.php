@@ -15,6 +15,7 @@ $email = $_POST['email'];
         <button type="submit" class="btn btn-success m-3"><i class="fa-solid fa-arrow-left"></i> Back to information</button>
      </form>
    </div>
+   <h1>Select moment for delivery</h1>
    <br>
    <div class="row">
       <div class="col">
