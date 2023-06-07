@@ -5,6 +5,10 @@
 <?php
 $totalPrice = $_POST['totalprice'];
 $email = $_POST['email'];
+$address = $_POST['address'];
+$address2 = $_POST['address2'];
+$postalCode = $_POST['postalCode'];
+$city = $_POST['city'];
 
 ?>
 <div class="container">
@@ -25,6 +29,10 @@ $email = $_POST['email'];
             <input type="hidden" id="selected-timeframes" name="selectedTimeframes">
             <input type="hidden" name="totalprice" value="{{$totalPrice}}">
             <input type="hidden" name="email" value="{{$email}}">
+            <input type="hidden" name="address" value="{{$address}}">
+            <input type="hidden" name="address2" value="{{$address2}}">
+            <input type="hidden" name="postalCode" value="{{$postalCode}}">
+            <input type="hidden" name="city" value="{{$city}}">
             <button type="submit" onclick="handleSubmit()" class="btn btn-success">Continue to overview</button>
          </form>
       </div>
