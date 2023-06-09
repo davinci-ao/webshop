@@ -79,10 +79,13 @@ class OrderController extends Controller
     }
     
     public function orders()
-    {
-        $user = auth()->user();
+{
+    if (Auth::check()) { // Check if user is logged in
+        $user = Auth::user();
         $orders = Order::where('user_id', $user->id)->get();
-        
-        return view('order/index', compact('orders'));
+        return view('order.index', compact('orders'));
+    } else {
+        return view('order.index', ['orders' => []]);
     }
+}
 }
