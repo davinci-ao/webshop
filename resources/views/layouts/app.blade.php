@@ -43,6 +43,11 @@
                         <a class="navbar-brand" href="{{ url('/category') }}">
                             {{ config('category', 'categories') }}
                         </a>
+                        
+                        <a class="navbar-brand" href="{{ url('/order') }}">
+                            {{ config('order', 'orders') }}
+                        </a>
+                       
                     </ul>
 
                     <!-- Right Side Of Navbar -->

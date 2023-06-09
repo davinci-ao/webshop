@@ -82,3 +82,5 @@ Route::post('order/delivery', [App\Http\Controllers\OrderController::class, 'del
 Route::get('order/delivery', [App\Http\Controllers\OrderController::class, 'delivery']);
 
 Route::post('order/overview', [App\Http\Controllers\OrderController::class, 'overview']);
+
+Route::get('/order', [App\Http\Controllers\OrderController::class, 'orders']);

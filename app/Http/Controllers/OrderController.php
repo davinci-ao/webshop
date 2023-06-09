@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Auth;
 use App\Mail\MyMail;
 use App\Models\Order;
+use App\Models\Product;
 
 class OrderController extends Controller
 {
@@ -35,13 +36,18 @@ class OrderController extends Controller
             $totalPrice += $cartItem['product']['price'];
         }
         
-
+        foreach ($shoppingCart as $productId => $cartItem) {
+            $product = Product::find($productId);
+        }
 
         // Save the order data to the database
         $order = new Order;
+        $order->user_id = Auth::user()->id;
         $order->username = Auth::user()->username;
         $order->email = $email = Auth::user()->email;
         $order->total_price = $totalPrice;
+        $order->product_id = $product->id;
+        $order->quantity = $cartItem['quantity'];
         // Set other order details as needed
         $order->save();
         session()->forget('shoppingCart');
@@ -70,5 +76,13 @@ class OrderController extends Controller
      public function overview(){
         return view('order/overview');
        
+    }
+    
+    public function orders()
+    {
+        $user = auth()->user();
+        $orders = Order::where('user_id', $user->id)->get();
+        
+        return view('order/index', compact('orders'));
     }
 }

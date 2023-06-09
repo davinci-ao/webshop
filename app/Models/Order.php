@@ -11,8 +11,11 @@ class Order extends Model
     public $timestamps = false;
     
     protected $fillable = [
+        'user_id',
         'username',
         'email',
         'total_price',
+        'product_id',
+        'quantity',
     ];
 }
