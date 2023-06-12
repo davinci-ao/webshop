@@ -43,11 +43,7 @@
                         <a class="navbar-brand" href="{{ url('/category') }}">
                             {{ config('category', 'categories') }}
                         </a>
-                        
-                        <a class="navbar-brand" href="{{ url('/order') }}">
-                            {{ config('order', 'orders') }}
-                        </a>
-                       
+
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -76,8 +72,10 @@
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle mt-2 mx-2" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->username }}
                                 </a>
-
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{{ url('/order') }}">
+                                    {{ config('order', 'Orders') }}
+                                </a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
