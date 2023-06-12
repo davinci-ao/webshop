@@ -21,7 +21,7 @@ class CartController extends Controller
     public function addToCart(Request $request, $id)
     {
         $cart = new CartManager();
-        $products = $cart->addToCart($request, $id);
+        $cart->addToCart($request, $id);
         return redirect('cart/index');
     }
 

@@ -41,7 +41,7 @@ class CartManager{
         } else {
             if (isset($shoppingCart[$productId])) {
                 $shoppingCart[$productId]['quantity'] += $quantity;
-                $shoppingCart[$productId]['subtotal'] = $product->price * $shoppingCart[$productId]['quantity'];
+                $shoppingCart[$productId]['subtotal'] = $product->price * $quantity;
                 
             } else {
                 $shoppingCart[$productId] = [
