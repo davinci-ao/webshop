@@ -5,6 +5,14 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Category;
+use App\Http\Controllers\Controller;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Auth;
+use App\Mail\MyMail;
+use App\Models\Order;
+
 
 class ProductController extends Controller
 {
@@ -66,7 +74,13 @@ class ProductController extends Controller
         return redirect('product');  
     }
 
-    public function storeStockOfProduct(Request $request, $id){
+    public function storeStockOfProduct(Request $request, $id, $email){
+        $details = [
+            'title' => 'Order confirmation',
+            'body' => 'Thank you for using ProducerGrind.'
+        ];
+        Mail::to($email)->send(new \App\Mail\MyMail($details));
+
         $product = Product::find($id);
         $input = $request->all();
         $product->update($input);
