@@ -5,28 +5,42 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Category;
+use App\Http\Controllers\Controller;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Auth;
+use App\Mail\MyMail;
+use App\Models\Order;
+
 
 class ProductController extends Controller
 {
     public function getAllProducts(){
 
         $products = Product::All();
-        return view('product.index', ["products"=>$products]);
+        $categories = Category::All();
+        return view('product.index', ["products"=>$products], ["categories"=>$categories]);
     }
 
     public function getProductById($id, $category_id){
-        //$categoryPoducts = Product::All();
-
         return view('product.details')
         ->with('product', Product::where('id', $id)->first())
-        ->with('categoryPoducts', Product::where('category_id', $category_id)->whereNot('id', $id)->get());
+        ->with('categoryProducts', Product::where('category_id', $category_id)->whereNot('id', $id)->get());
     }
 
     public function getCategoryProducts($id)
     {
+        $categories = Category::All();
         $products = Product::where('category_id', $id)->get();
-        return view('category.showproductsbycategory', compact('products'));
+        return view('category.showproductsbycategory', compact('products'), ["categories"=>$categories]);
     }    
+
+    public function sortByCategory($id){
+        $categories = Category::All();
+        $products = Product::where('category_id', $id)->get();
+        return view('product.index', compact('products'), ["categories"=>$categories]);
+    }
 
     public function create()
     {
@@ -60,7 +74,13 @@ class ProductController extends Controller
         return redirect('product');  
     }
 
-    public function storeStockOfProduct(Request $request, $id){
+    public function storeStockOfProduct(Request $request, $id, $email){
+        $details = [
+            'title' => 'Order confirmation',
+            'body' => 'Thank you for using ProducerGrind.'
+        ];
+        Mail::to($email)->send(new \App\Mail\MyMail($details));
+
         $product = Product::find($id);
         $input = $request->all();
         $product->update($input);
@@ -69,22 +89,26 @@ class ProductController extends Controller
     
     public function sortOnPriceHigh(){
         $products = Product::orderBy('price','desc')->get();
-        return view('product.index', ["products"=>$products]);  
+        $categories = Category::All();
+        return view('product.index', ["products"=>$products], ["categories"=>$categories]);  
     }
 
     public function sortOnPriceLow(){
         $products = Product::orderBy('price','ASC')->get();
-        return view('product.index', ["products"=>$products]);
+        $categories = Category::All();
+        return view('product.index', ["products"=>$products], ["categories"=>$categories]);
     }
 
     public function sortOnNameHigh(){
         $products = Product::orderBy('name','asc')->get();
-        return view('product.index', ["products"=>$products]);  
+        $categories = Category::All();
+        return view('product.index', ["products"=>$products], ["categories"=>$categories]);  
     }
 
     public function sortOnNameLow(){
         $products = Product::orderBy('name','desc')->get();
-        return view('product.index', ["products"=>$products]);  
+        $categories = Category::All();
+        return view('product.index', ["products"=>$products], ["categories"=>$categories]);  
     }
 
     public function search(Request $request){
@@ -92,5 +116,7 @@ class ProductController extends Controller
         $products = Product::where('name', 'LIKE', '%'.$search_text.'%')->with('category')->get();
         return view('product\search',compact('products'));
     }
+
+
 
 }

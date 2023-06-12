@@ -2,6 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use App\Mail\OrderMail;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\MyTestEmail;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,10 +16,6 @@ use Illuminate\Support\Facades\Auth;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
-Route::get('/', function () {
-    return view('');
-});
 
 Auth::routes();
 
@@ -44,25 +43,44 @@ Route::get('/product/sortOnNameHigh', [App\Http\Controllers\ProductController::c
 
 Route::get('/product/sortOnNameLow', [App\Http\Controllers\ProductController::class, 'sortOnNameLow']);
 
+Route::get('/product/sortByCategory/{id}', [App\Http\Controllers\ProductController::class, 'sortByCategory']);
+
 Route::get('/product/sortOnASC', [App\Http\Controllers\ProductController::class, 'sortOnASC']);
 
 Route::post('product/storeStockOfProduct/{id}', [App\Http\Controllers\ProductController::class, 'storeStockOfProduct']);
 
-Route::get('category/showproductsbycategory/{id}', [App\Http\Controllers\productController::class, 'getCategoryProducts']);
+Route::get('category/showproductsbycategory/{id}', [App\Http\Controllers\ProductController::class, 'getCategoryProducts']);
 
 Route::get('/category', [App\Http\Controllers\CategoryController::class, 'getAllCategories']);
 
-Route::get('/', [App\Http\Controllers\admin\AdminAuthController::class, 'index']);
+Route::get('/', [App\Http\Controllers\Admin\AdminAuthController::class, 'index']);
 
-Route::get('/admin/editproduct', [App\Http\Controllers\admin\AdminAuthController::class, 'getAllProducts']);
+Route::get('/admin/edituser', [App\Http\Controllers\Admin\AdminAuthController::class, 'getAllUsers']);
 
-Route::get('/admin/editcategory', [App\Http\Controllers\admin\AdminAuthController::class, 'getAllCategories']);
+Route::get('/search', [App\Http\Controllers\ProductController::class, 'search']);
 
-Route::get('/admin/edituser', [App\Http\Controllers\admin\AdminAuthController::class, 'getAllUsers']);
+Route::get('cart/index/', [App\Http\Controllers\CartController::class, 'show']);
 
-Route::get('cart', [App\Http\Controllers\CartController::class, 'getAllCartItems']);
+Route::post('cart/index/{id}', [App\Http\Controllers\CartController::class, 'addToCart']);
+    
+Route::get('cart/delete/{id}', [App\Http\Controllers\CartController::class, 'removeProductFromCart']);
+    
+Route::get('cart/delete/', [App\Http\Controllers\CartController::class, 'emptyCart']);
 
-Route::post('addcart/{prodcut_id}/{category_id}', [App\Http\Controllers\CartController::class, 'addCart']);
+Route::post('order/index/', [App\Http\Controllers\OrderController::class, 'index']);
 
-Route::get('/search', 'App\Http\Controllers\ProductController@search');
+Route::get('order/redirect/{email}', [App\Http\Controllers\OrderController::class, 'sendEmailConfirmation']);
 
+Route::get('order/success', [App\Http\Controllers\OrderController::class, 'success']);
+
+Route::post('order/information', [App\Http\Controllers\OrderController::class, 'information']);
+
+Route::get('order/information', [App\Http\Controllers\OrderController::class, 'information']);
+
+Route::post('order/delivery', [App\Http\Controllers\OrderController::class, 'delivery']);
+
+Route::get('order/delivery', [App\Http\Controllers\OrderController::class, 'delivery']);
+
+Route::post('order/overview', [App\Http\Controllers\OrderController::class, 'overview']);
+
+Route::get('/order', [App\Http\Controllers\OrderController::class, 'orders']);

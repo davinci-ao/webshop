@@ -13,10 +13,14 @@
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
     <script src="https://kit.fontawesome.com/31c6441c63.js" crossorigin="anonymous"></script>
-    
-
+    <!-- <link rel="stylesheet" type="text/css" href="/style.css"> -->
+    <link rel="stylesheet" type="text/css" href="{{asset('css/style.css')}}">
+    @livewireStyles
     <!-- Scripts -->
-    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+    {{-- @vite(['resources/sass/app.scss', 'resources/js/app.js']) --}}
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" >
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" ></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script>
 </head>
 <body>
     <div id="app">
@@ -33,18 +37,19 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">  
                         <a class="navbar-brand" href="{{ url('/product') }}">
-                            {{ config('product', 'product') }}
+                            {{ config('product', 'products') }}
                         </a>
 
                         <a class="navbar-brand" href="{{ url('/category') }}">
-                            {{ config('category', 'category') }}
+                            {{ config('category', 'categories') }}
                         </a>
+
                     </ul>
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
                         <!-- Authentication Links -->
-                        <form class="form-inline my-2 my-lg-0" type="get" action="{{ url('/search') }}">
+                        <form class="form-inline mt-3 mx-2" type="get" action="{{ url('/search') }}">
                             <div class="input-group mb-3">
                                 <input class="form-control mr-sm-2" name="query" type="search" placeholder="Search" aria-label="Search">
                                 <button class="btn btn-outline-success my-sm-0" type="submit">Search</button>
@@ -52,23 +57,25 @@
                         </form>
                         @guest
                             @if (Route::has('login'))
-                                <li class="nav-item">
+                                <li class="nav-item mt-2">
                                     <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                                 </li>
                             @endif
 
                             @if (Route::has('register'))
-                                <li class="nav-item">
+                                <li class="nav-item mt-2">
                                     <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                                 </li>
                             @endif
                         @else
                             <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle mt-2 mx-2" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->username }}
                                 </a>
-
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{{ url('/order') }}">
+                                    {{ config('order', 'Orders') }}
+                                </a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -80,10 +87,10 @@
                                     </form>
                                 </div>
                             </li>
-                            <a class="navbar-brand" href="{{ url('/cart') }}">
-                            <i class="fa-solid fa-cart-shopping mx-3"></i>
-                        </a>
                         @endguest
+                        <a class="navbar-brand" href="{{ url('/cart/index') }}">
+                            <i class="fa-solid fa-cart-shopping mt-3 mx-3"></i>
+                        </a>
                     </ul>
                 </div>
             </div>
@@ -93,5 +100,6 @@
             @yield('content')
         </main>
     </div>
+    @livewireScripts
 </body>
 </html>

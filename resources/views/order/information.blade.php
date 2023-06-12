@@ -1,18 +1,60 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Login') }}</div>
 
-                <div class="card-body">
+<?php
+$totalPrice = $_POST['totalprice'];
+?>
+<div class="container">
+<a type='button' href="{{ url('/cart/index') }}" class='btn btn-success btn-block m-3'><i class="fa-solid fa-arrow-left"></i> Back to cart</a>
+<div class="row">                      
+      <div class="col card">
+      <form method="POST" action="{{ url('order/delivery/') }}">
+                        @csrf
+  <div class="form-row">
+    <div class="form-group col-md-6 m-4">
+      <label for="email">Email</label>
+      @auth
+      <input type="email" name="email" class="form-control" value="<?php echo $email ?>" id="email" placeholder="Email">
+      @endauth
+
+      @guest
+      <input type="email" name="email" class="form-control" id="email" placeholder="Email">
+      @endguest
+
+    </div>
+  </div>
+  <div class="form-group col-md-6 m-4">
+    <label for="address">Address</label>
+    <input type="text" class="form-control" name="address" placeholder="Adress">
+  </div>
+  <div class="form-group col-md-6 m-4">
+    <label for="address2">Address 2</label>
+    <input type="text" class="form-control" name="address2" placeholder="Adress">
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-3 m-4">
+      <label for="postalCode">Postal code</label>
+      <input type="text" class="form-control" name="postalCode" placeholder="1234AB">
+    </div>
+    <div class="form-group col-md-6 m-4">
+      <label for="city">City</label>
+      <input type="text" class="form-control" name="city" placeholder="City">
+    </div>
+  </div>
+  <input type="hidden" name="totalprice" value="{{$totalPrice}}">
+  <button type="submit" class="btn btn-success mx-4 mb-4">Continue to delivery</button>
+</form>
+      </div>      
+
+   @guest
+<div class="col card">
+    <h3 class="m-4">Already got an account?</h3>
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
 
-                        <div class="row mb-3">
-                            <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
+                        <div class="m-4">
+                            <label for="email">{{ __('Email Address') }}</label>
 
                             <div class="col-md-6">
                                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
@@ -23,10 +65,11 @@
                                     </span>
                                 @enderror
                             </div>
-                        </div>
+                            </div>
+                        
 
-                        <div class="row mb-3">
-                            <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
+                        <div class="m-4">
+                            <label for="password">{{ __('Password') }}</label>
 
                             <div class="col-md-6">
                                 <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
@@ -37,11 +80,12 @@
                                     </span>
                                 @enderror
                             </div>
-                        </div>
+                            </div>
+                      
 
-                        <div class="row mb-3">
-                            <div class="col-md-6 offset-md-4">
-                                <div class="form-check">
+                        
+                            <div class="col-md-6 m-4">
+                                <div class="form-check my-3">
                                     <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
 
                                     <label class="form-check-label" for="remember">
@@ -49,10 +93,10 @@
                                     </label>
                                 </div>
                             </div>
-                        </div>
+                      
 
-                        <div class="row mb-0">
-                            <div class="col-md-8 offset-md-4">
+                       
+                            <div class="col-md-8 m-4">
                                 <button type="submit" class="btn btn-primary">
                                     {{ __('Login') }}
                                 </button>
@@ -66,11 +110,11 @@
                                     </a>
                                 @endif
                             </div>
-                        </div>
+                        
                     </form>
                 </div>
-            </div>
-        </div>
-    </div>
 </div>
+</div>
+</div> 
+@endguest
 @endsection

@@ -1,13 +1,13 @@
 @extends('layouts.app')
 @section('content')
     <div class="container py-5">
-      <div class="row justify-content-center">
+      <div class="row">
         <div class="col-md-8 col-lg-6 col-xl-4">
           <div class="card text-black">
             <img class="card-img"  src="{{url('/images' . '/' . $product->file_path)}}"/>
             <div class="card-body">
               <div class="text-center">
-                <p class="text-muted mb-4">{{$product->name}}</p>
+                <h2 class="text mb-4">{{$product->name}}</h2>
               </div>
               <div class="text-center">
                 <p class="text-muted mb-4">{{$product->description}}</p>
@@ -26,52 +26,82 @@
               @else
                   <h6 class="mb-3 text-success">in stock</h6>
               @endif
+              <form action="{{ url('cart/index/' . $product->id) }}" method="post">
+                  {!! csrf_field() !!}
+                  <input type="hidden" name="product_id" value="{{ $product->id }}">
+                  <input type="submit" value="Add to cart" class="btn btn-sm btn-dark"> 
+                  <input type="number" class="form-control.form-horizontal w-25" name="quantity" value="1" min="1"><br>
+                  <br>
+              </form>
                 </div>
               </div>
             </div>
           </div>
       </div>
-    </div>
-    <hr>
-    <div class="container">
-      <h1 class="text-center">related for you</h3>
-    </div>
-    <hr>
-    <div class="container">
-      <div class="row">
-          @foreach($categoryPoducts as $categoryPoduct)
-              <div class="col-lg-2 col-md-12 mb-4">
-                  <div class="card">
-                      <div class="bg-image hover-zoom ripple ripple-surface ripple-surface-light" data-mdb-ripple-color="light">
-                          <img class="card-img" src="{{url('/images' . '/' . $categoryPoduct->file_path)}}"/>
-                          <a href="#!">
-                              <div class="hover-overlay">
-                                  <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
-                              </div>
-                          </a>
-                      </div>
-                      <div class="card-body">
-                          <h5 class="card-title mb-3 text-reset">{{$categoryPoduct->name}}</h5>
-                          <div class="text-reset">
-                              @if ($categoryPoduct->category)
-                              <p>{{$categoryPoduct->category->name}}</p>
-                              @endif
-                          </div>
-                          <h6 class="mb-3">${{$categoryPoduct->price}}</h6>
-                          @if ($categoryPoduct->stock < 1)
+      <div class="col card">
+        <hr>
+      <h1 class="text-center">Related for you</h1>
+      <hr>
+      <ul class="list-group">
+      <div class="row"> 
+          @foreach($categoryProducts as $categoryProduct)
+          <div class='col-sm-4'>
+          <li class="list-group-item mt-3">
+          <a href="{{ url('/product/' . 'details/' . $product->id . '/' . $product->category_id) }}" style="text-decoration:none; color:black;"> 
+                      <img class="img" src="{{url('/images' . '/' . $categoryProduct->file_path)}}"/>
+                        <h5 class="card-title" style="color:black;">{{$categoryProduct->name}}</h5>
+                          <h6 class="mb-3">Price: ${{$categoryProduct->price}}</h6>
+                          </a>  
+                          @if ($categoryProduct->stock < 1)
                               <h6 class="mb-3 text-danger">Out of stock</h6>
-                          @elseif ($categoryPoduct->stock < 4)
+                          @elseif ($categoryProduct->stock < 4)
                               <h6 class="mb-3 text-warning">Only a few left in stock</h6>
                           @else
                               <h6 class="mb-3 text-success">In stock</h6>
                           @endif
-                          <input type="hidden" name="id" id="id" value="{{$categoryPoduct->id}}"/>
-                          <a href="{{ url('/product/' . 'details/' . $categoryPoduct->id . "/" . $categoryPoduct->category_id) }}" class="btn btn-dark btn-sm">See {{$product->name}}</a>
-                      </div>
-                  </div>
-              </div>      
+                          @if(Auth::check() && Auth::user()->admin == "1")
+                                <a href="{{ url('/product/edit/' . $product->id) }}" class="btn btn-success btn-sm">Edit</a>
+                                <a href="{{ url('/product/delete/' . $product->id) }}" class="btn btn-danger btn-sm">Delete</a>
+                                </div>
+                                <hr>                     
+                                <form action="{{ url('product/storeStockOfProduct/' .$product->id) }}" method="post">
+                                <input type="hidden" name="id" id="id" value="{{$product->id}}"/>
+                                <form action="{{ url('cart/index/' . $product->id) }}" method="post">
+                                    {!! csrf_field() !!}
+                                    <label>Stock:</label></br>
+                                    <div class="input-group">
+                                        <input type="hidden" name="id" id="id" value="{{$product->id}}"/>
+                                        <input type="text" name="stock" id="stock" value="{{$product->stock}}" class="form-control"><br>
+                                        <input type="submit" value="Update stock" class="btn btn-success btn-sm"><br>
+                                    </div>
+                                </form>
+                            @endif  
+                           
+                            @if(Auth::check() && Auth::user()->admin == "0")
+                                <form action="{{ url('cart/index/' . $product->id) }}" method="post">
+                                    {!! csrf_field() !!}
+                                    <div class="input-group">
+                                        <input type="hidden" name="product_id" value="{{$product->id}}"/>
+                                        <input type="number" class="form-control.form-horizontal w-25" name="quantity" value="1" min="1">
+                                        <button type="submit" class="btn btn-sm btn-dark"><i class="fa-solid fa-cart-shopping"></i></button>
+                                    </div>
+                                </form>
+                                @endif
+                                @guest
+                                <form action="{{ url('cart/index/' . $product->id) }}" method="post">
+                                    {!! csrf_field() !!}
+                                    <div class="input-group">
+                                        <input type="hidden" name="product_id" value="{{$product->id}}"/>
+                                        <input type="number" class="form-control.form-horizontal w-25" name="quantity" value="1" min="1">
+                                        <button type="submit" class="btn btn-sm btn-dark"><i class="fa-solid fa-cart-shopping"></i></button>
+                                    </div>
+                                </form>
+                                @endguest
+                          <input type="hidden" name="id" id="id" value="{{$categoryProduct->id}}"/> 
+            </li>  
+            </div>
           @endforeach
       </div>
-  </div>       
-    @endsection
-
+  </div>
+</div>
+@endsection
