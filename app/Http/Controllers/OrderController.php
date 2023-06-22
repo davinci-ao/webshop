@@ -40,19 +40,24 @@ class OrderController extends Controller
             $product = Product::find($productId);
         }
 
-        // Save the order data to the database
-        $order = new Order;
-        $order->user_id = Auth::user()->id;
-        $order->username = Auth::user()->username;
-        $order->email = $email = Auth::user()->email;
-        $order->total_price = $totalPrice;
-        $order->product_id = $product->id;
-        $order->quantity = $cartItem['quantity'];
-        // Set other order details as needed
-        $order->save();
-        session()->forget('shoppingCart');
+       // Save the order data to the database
+$order = new Order;
+$order->user_id = Auth::user()->id;
+$order->username = Auth::user()->username;
+$order->email = $email = Auth::user()->email;
+$order->total_price = $totalPrice;
+$order->save();
+
+foreach ($shoppingCart as $productId => $cartItem) {
+    $quantity = $cartItem['quantity'];
+    $order->products()->attach($productId, ['quantity' => $quantity]);
+}
+
+    // Clear the shopping cart
+    session()->forget('shoppingCart');
+
     // Redirect the user to the desired URL
-        return redirect('order/success');
+    return redirect('order/success');
     }
 
     public function information(){
