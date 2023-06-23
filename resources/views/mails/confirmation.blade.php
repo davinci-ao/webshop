@@ -149,7 +149,7 @@ div[style*="margin: 16px 0;"] { margin: 0 !important; }
                                     <tr>
                                         <td align="left" valign="top" style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 24px;">
                                             <p style="font-weight: 800;">Delivery Address</p>
-                                            <p>{{ $address }}<br>{{ $postalCode }}, {{ $city }}</p>
+                                            <p>{{ session()->get('address') }}<br>{{ session()->get('postalCode') }}, {{ session()->get('city') }}</p>
 
                                         </td>
                                     </tr>
@@ -160,7 +160,7 @@ div[style*="margin: 16px 0;"] { margin: 0 !important; }
                                     <tr>
                                         <td align="left" valign="top" style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 24px;">
                                             <p style="font-weight: 800;">Estimated Delivery Date</p>
-                                            <p>January 1st, 2016</p>
+                                            <p>{{ session()->get('selectedTime') }}</p>
                                         </td>
                                     </tr>
                                 </table>

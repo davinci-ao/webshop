@@ -3,18 +3,19 @@
 @section('content')
 
 <?php
-
+$totalPrice = $_POST['totalprice'];
 $email = $_POST['email'];
 $address = $_POST['address'];
 $address2 = $_POST['address2'];
 $postalCode = $_POST['postalCode'];
 $city = $_POST['city'];
-session()->put($selectedTime);
-session()->put('email', $email);
-session()->put('address', $address);
-session()->put('address2', $address2);
-session()->put('postalCode', $postalCode);
-session()->put('city', $city);
+$selectedTime = $_POST['selectedTimeframes'];
+
+session(['selectedTime' => $selectedTime]);
+session(['email' => $email]);
+session(['address' => $address]);
+session(['postalCode' => $postalCode]);
+session(['city' => $city]);
 ?>
 
 <div class="container">

@@ -3,6 +3,8 @@
 @section('content')
 
 <?php
+session_start();
+
 $totalPrice = $_POST['totalprice'];
 $email = $_POST['email'];
 $address = $_POST['address'];
