@@ -41,12 +41,12 @@ class OrderController extends Controller
         }
 
        // Save the order data to the database
-$order = new Order;
-$order->user_id = Auth::user()->id;
-$order->username = Auth::user()->username;
-$order->email = $email = Auth::user()->email;
-$order->total_price = $totalPrice;
-$order->save();
+        $order = new Order;
+        $order->user_id = Auth::user()->id;
+        $order->username = Auth::user()->username;
+        $order->email = $email = Auth::user()->email;
+        $order->total_price = $totalPrice;
+        $order->save();
 
 foreach ($shoppingCart as $productId => $cartItem) {
     $quantity = $cartItem['quantity'];

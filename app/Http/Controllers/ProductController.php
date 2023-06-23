@@ -10,8 +10,9 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Auth;
-use App\Mail\MyMail;
 use App\Models\Order;
+use App\Mail\StockNotification;
+use App\Models\Stock;
 
 
 class ProductController extends Controller
@@ -74,18 +75,48 @@ class ProductController extends Controller
         return redirect('product');  
     }
 
-    public function storeStockOfProduct(Request $request, $id, $email){
-        $details = [
-            'title' => 'Order confirmation',
-            'body' => 'Thank you for using ProducerGrind.'
-        ];
-        Mail::to($email)->send(new \App\Mail\MyMail($details));
-
+    public function storeStockOfProduct(Request $request, $id)
+    {
         $product = Product::find($id);
         $input = $request->all();
+    
+        // Update de voorraad van het product
         $product->update($input);
-        return redirect('product');  
+    
+        // Controleren of het product op voorraad is en de voorraad groter is dan 0
+        if ($product->stock > 0) {
+            // Product is op voorraad met een voorraad groter dan 0
+            $stocks = Stock::where('product_id', $id)->get();
+    
+            foreach ($stocks as $stock) {
+                $details = [
+                    'title' => 'Product op voorraad',
+                    'name' => $product->name, // Naam van het product
+                    'file_path' => $product->file_path, // Pad naar het bestand
+                ];
+                Mail::to($stock->email)->send(new StockNotification($details));
+            }
+        }
+    
+        return redirect('product');
     }
+
+    public function storeStockNotification(Request $request)
+{
+    $data = $request->validate([
+        'product_id' => 'required|numeric',
+        'email' => 'required|email',
+    ]);
+
+    // Opslaan van de gegevens in de database
+    Stock::create([
+        'product_id' => $data['product_id'],
+        'email' => $data['email'],
+    ]);
+
+    return response()->json(['message' => 'Gegevens succesvol opgeslagen.']);
+}
+
     
     public function sortOnPriceHigh(){
         $products = Product::orderBy('price','desc')->get();

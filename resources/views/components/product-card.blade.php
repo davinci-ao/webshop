@@ -24,7 +24,7 @@
                                 <form action="{{ url('product/storeStockOfProduct/' .$product->id) }}" method="post">
                                 <input type="hidden" name="id" id="id" value="{{$product->id}}"/>
                                 <form action="{{ url('cart/index/' . $product->id) }}" method="post">
-                                    {!! csrf_field() !!}
+                                @csrf
                                     <label>Stock:</label></br>
                                     <div class="input-group">
                                         <input type="hidden" name="id" id="id" value="{{$product->id}}"/>
@@ -36,7 +36,7 @@
                            
                             @if(Auth::check() && Auth::user()->admin == "0")
                                 <form action="{{ url('cart/index/' . $product->id) }}" method="post">
-                                    {!! csrf_field() !!}
+                                @csrf
                                     <div class="input-group">
                                         <input type="hidden" name="product_id" value="{{$product->id}}"/>
                                         <input type="number" class="form-control.form-horizontal w-25" name="quantity" value="1" min="1">
@@ -47,14 +47,17 @@
                                 @guest
                                
                                 @if (empty($product->stock))
-                                <form action="{{ url('cart/index/' . $product->id) }}" method="post">
-                                    {!! csrf_field() !!}
-                                        <input type="hidden" name="product_id" value="{{$product->id}}"/>   
+                                <form id="stockNotificationForm" action="{{ url('stock/notification/store') }}" method="post">
+                                    @csrf
+                                    <div class="input-group">
+                                        <input type="hidden" name="product_id" value="{{$product->id}}"/>
+                                        <input type="text" class="form-control.form-horizontal w-50" name="email" placeholder="Vul je email in">
                                         <button type="submit" class="btn btn-sm btn-danger">Send mail</button> 
+                                    </div>
                                 </form>
                                         @else
                                         <form action="{{ url('cart/index/' . $product->id) }}" method="post">
-                                    {!! csrf_field() !!}
+                                    @csrf
                                    
                                     <div class="input-group">
                                         <input type="hidden" name="product_id" value="{{$product->id}}"/>

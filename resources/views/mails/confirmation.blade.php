@@ -149,7 +149,7 @@ div[style*="margin: 16px 0;"] { margin: 0 !important; }
                                     <tr>
                                         <td align="left" valign="top" style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 24px;">
                                             <p style="font-weight: 800;">Delivery Address</p>
-                                            <p>675 Massachusetts Avenue<br>11th Floor<br>Cambridge, MA 02139</p>
+                                            <p>{{ $address }}<br>{{ $postalCode }}, {{ $city }}</p>
 
                                         </td>
                                     </tr>

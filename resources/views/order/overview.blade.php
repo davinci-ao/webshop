@@ -3,15 +3,20 @@
 @section('content')
 
 <?php
-$totalPrice = $_POST['totalprice'];
-$selectedTime = $_POST['selectedTimeframes'];
+
 $email = $_POST['email'];
 $address = $_POST['address'];
 $address2 = $_POST['address2'];
 $postalCode = $_POST['postalCode'];
 $city = $_POST['city'];
-
+session()->put($selectedTime);
+session()->put('email', $email);
+session()->put('address', $address);
+session()->put('address2', $address2);
+session()->put('postalCode', $postalCode);
+session()->put('city', $city);
 ?>
+
 <div class="container">
 <div class="d-flex align-items-end">
    <form action="{{ url('order/delivery') }}" method="POST" id="form">

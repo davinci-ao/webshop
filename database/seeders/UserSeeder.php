@@ -41,6 +41,14 @@ class UserSeeder extends Seeder
             "password" => Hash::make('sesesese'),
             "admin" => false,
             ],
+            [
+            "username" => "chylvano",
+            "forename" => "chylvano",
+            "lastname" => "landburg",
+            "email" => "chylvanolandburg@gmail.com",
+            "password" => Hash::make('sesesese'),
+            "admin" => false,
+            ]
             ]);
     }
 }

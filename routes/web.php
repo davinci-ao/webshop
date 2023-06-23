@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Mail\OrderMail;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\MyTestEmail;
+use App\Http\Controllers\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -84,3 +85,5 @@ Route::get('order/delivery', [App\Http\Controllers\OrderController::class, 'deli
 Route::post('order/overview', [App\Http\Controllers\OrderController::class, 'overview']);
 
 Route::get('/order', [App\Http\Controllers\OrderController::class, 'orders']);
+
+Route::post('stock/notification/store', [App\Http\Controllers\ProductController::class, 'storeStockNotification']);
