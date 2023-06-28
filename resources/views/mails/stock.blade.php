@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Product Back in Stock</title>
+    <title>{{ $details['name'] }} is back in Stock</title>
     <style>
         .card {
             width: 300px;
@@ -26,7 +26,7 @@
 </head>
 <body>
     <div class="card">
-        <h1>Product {{ $details['name'] }} is back in stock</h1>
+        <h1>{{ $details['name'] }} is back in stock</h1>
         <img src="{{ $message->embed(public_path('images/' . $details['file_path'])) }}" alt="Product Image">
     </div>
 </body>

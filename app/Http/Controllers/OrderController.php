@@ -85,7 +85,7 @@ foreach ($shoppingCart as $productId => $cartItem) {
 {
     if (Auth::check()) { // Check if user is logged in
         $user = Auth::user();
-        $orders = Order::where('user_id', $user->id)->get();
+        $orders = Order::where('email', $user->email)->get();
         return view('order.index', compact('orders'));
     } else {
         return view('order.index', ['orders' => []]);
