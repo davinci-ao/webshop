@@ -3,13 +3,12 @@
 @section('content')
 
 <?php
-$totalPrice = $_POST['totalprice'];
-$email = $_POST['email'];
-$address = $_POST['address'];
-$address2 = $_POST['address2'];
-$postalCode = $_POST['postalCode'];
-$city = $_POST['city'];
-$selectedTime = $_POST['selectedTimeframes'];
+$totalPrice = isset($_POST['totalprice']) ? $_POST['totalprice'] : null;
+$email = isset($_POST['email']) ? $_POST['email'] : null;
+$address = isset($_POST['address']) ? $_POST['address'] : null;
+$address2 = isset($_POST['address2']) ? $_POST['address2'] : null;
+$postalCode = isset($_POST['postalCode']) ? $_POST['postalCode'] : null;
+$city = isset($_POST['city']) ? $_POST['city'] : null;
 
 session(['selectedTime' => $selectedTime]);
 session(['email' => $email]);

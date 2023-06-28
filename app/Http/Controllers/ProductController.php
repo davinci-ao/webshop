@@ -90,7 +90,7 @@ class ProductController extends Controller
     
             foreach ($stocks as $stock) {
                 $details = [
-                    'title' => 'Product op voorraad',
+                    'title' => 'Product back in stock',
                     'name' => $product->name, // Naam van het product
                     'file_path' => $product->file_path, // Pad naar het bestand
                 ];
