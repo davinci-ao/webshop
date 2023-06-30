@@ -34,7 +34,6 @@ $endDate = date('d-m-Y', strtotime($currentDate . ' + 6 days'));
       <div class="col">
          <form action="{{ url('order/overview') }}" method="POST" id="form">
             @csrf
-            <div id="se" class="row"></div>
             <input type="hidden" id="selected-timeframes" name="selectedTimeframes">
             <input type="hidden" name="totalprice" value="{{$totalPrice}}">
             <input type="hidden" name="email" value="{{$email}}">
@@ -42,7 +41,11 @@ $endDate = date('d-m-Y', strtotime($currentDate . ' + 6 days'));
             <input type="hidden" name="address2" value="{{$address2}}">
             <input type="hidden" name="postalCode" value="{{$postalCode}}">
             <input type="hidden" name="city" value="{{$city}}">
-            <button type="submit" onclick="handleSubmit()" class="btn btn-success">Continue to overview</button>
+            <div class="dropdown">
+               <select class="form-select" id="timeframe-dropdown" name="timeframe" onchange="handleCardChange(this)">
+               </select>
+            </div>
+            <button type="submit" onclick="handleSubmit()" class="btn btn-success mt-3">Continue to overview</button>
          </form>
       </div>
    </div>
@@ -58,6 +61,12 @@ $endDate = date('d-m-Y', strtotime($currentDate . ' + 6 days'));
       headers: myHeaders,
       redirect: 'follow'
    };
+
+   function handleCardChange(select) {
+      var selectedOption = select.options[select.selectedIndex];
+      var [date, from, to] = selectedOption.value.split('_');
+      handleCardClick(date, from, to);
+   }
 
    function handleCardClick(date, from, to) {
       var checkboxes = document.getElementsByClassName('timeframe-radio');
@@ -84,62 +93,50 @@ $endDate = date('d-m-Y', strtotime($currentDate . ' + 6 days'));
    }
 
    fetch(`https://api-sandbox.postnl.nl/shipment/v2_1/calculate/timeframes?AllowSundaySorting=true&Options=Daytime,Evening&StartDate=${encodeURIComponent('{{$currentDate}}')}&EndDate=${encodeURIComponent('{{$endDate}}')}&CountryCode=NL&PostalCode=2521CA&HouseNumber=3&HouseNrExt=a bis&Street=Waldorpstraat&City='S-Gravenhage`, requestOptions)
-   .then(response => response.json())
-   .then(data => {
-      var timeframes = data?.Timeframes?.Timeframe;
+      .then(response => response.json())
+      .then(data => {
+         var timeframes = data?.Timeframes?.Timeframe;
 
-      if (timeframes) {
-         var output = '';
-         var currentDate = new Date();
-         var currentTime = currentDate.getHours() * 100 + currentDate.getMinutes(); // Convert current time to a numeric representation
+         if (timeframes) {
+            var dropdownMenu = document.getElementById('timeframe-dropdown');
 
-         for (var i = 0; i < timeframes.length; i++) {
-            var timeframe = timeframes[i];
-            var timeframeTimeFrames = Array.isArray(timeframe.Timeframes.TimeframeTimeFrame)
-               ? timeframe.Timeframes.TimeframeTimeFrame
-               : [timeframe.Timeframes.TimeframeTimeFrame];
+            var currentDate = new Date();
+            var currentTime = currentDate.getHours() * 100 + currentDate.getMinutes(); // Convert current time to a numeric representation
 
-            for (var j = 0; j < timeframeTimeFrames.length; j++) {
-               var timeframeTimeFrame = timeframeTimeFrames[j];
-               var radioButtonId = timeframe.Date + '_' + timeframeTimeFrame.From + '_' + timeframeTimeFrame.To;
-               var checked = '';
-               var disabled = '';
+            for (var i = 0; i < timeframes.length; i++) {
+               var timeframe = timeframes[i];
+               var timeframeTimeFrames = Array.isArray(timeframe.Timeframes.TimeframeTimeFrame) ? timeframe.Timeframes.TimeframeTimeFrame : [timeframe.Timeframes.TimeframeTimeFrame];
 
-               if (timeframe.Date === currentDate.toLocaleDateString()) {
-                  checked = 'checked="checked"';
+               for (var j = 0; j < timeframeTimeFrames.length; j++) {
+                  var timeframeTimeFrame = timeframeTimeFrames[j];
+                  var radioButtonId = timeframe.Date + '_' + timeframeTimeFrame.From + '_' + timeframeTimeFrame.To;
+                  var checked = '';
+                  var disabled = '';
+
+                  if (timeframe.Date === currentDate.toLocaleDateString()) {
+                     checked = 'selected';
+                  }
+
+                  var fromTime = parseInt(timeframeTimeFrame.From.replace(':', '') + '00'); // Convert 'HH:MM' format to numeric representation
+                  var toTime = parseInt(timeframeTimeFrame.To.replace(':', '') + '00');
+
+                  if (currentDate.toLocaleDateString() === '{{$currentDate}}' && currentTime >= fromTime && currentTime <= toTime) {
+                     disabled = 'disabled';
+                  }
+
+                  var optionText = `${timeframe.Date} ${timeframeTimeFrame.From}-${timeframeTimeFrame.To}`;
+                  var optionValue = `${timeframe.Date}_${timeframeTimeFrame.From}_${timeframeTimeFrame.To}`;
+                  var option = document.createElement('option');
+                  option.value = optionValue;
+                  option.textContent = optionText;
+                  option.selected = checked;
+                  option.disabled = disabled;
+                  dropdownMenu.appendChild(option);
                }
-
-               var fromTime = parseInt(timeframeTimeFrame.From.replace(':', '') + '00'); // Convert 'HH:MM' format to numeric representation
-               var toTime = parseInt(timeframeTimeFrame.To.replace(':', '') + '00');
-
-               if (currentDate.toLocaleDateString() === '{{$currentDate}}' && currentTime >= fromTime && currentTime <= toTime) {
-                  checked = 'checked="checked"';
-               }
-
-               if (currentDate.toLocaleDateString() !== '{{$currentDate}}' || currentTime > toTime) {
-                  disabled = 'disabled="disabled"';
-               }
-
-               output += '<div class="col-md-4">';
-               output += '<div class="card mb-4">';
-               output += '<div class="card-body">';
-               output += '<input type="radio" class="timeframe-radio" name="selectedTimeframe" id="' + radioButtonId + '" value="' + radioButtonId + '" ' + checked + ' ' + disabled + '>';
-               output += '<label for="' + radioButtonId + '" onclick="handleCardClick(\'' + timeframe.Date + '\', \'' + timeframeTimeFrame.From + '\', \'' + timeframeTimeFrame.To + '\')">';
-               output += '<strong>Date:</strong> ' + timeframe.Date + '<br>';
-               output += '<strong>From:</strong> ' + timeframeTimeFrame.From + '<br>';
-               output += '<strong>To:</strong> ' + timeframeTimeFrame.To + '<br>';
-               output += '</label>';
-               output += '</div>';
-               output += '</div>';
-               output += '</div>';
             }
          }
-
-         document.getElementById("se").innerHTML = output;
-      } else {
-         document.getElementById("se").innerHTML = 'No timeframes available.';
-      }
-   })
-   .catch(error => console.log('error', error));
+      })
+      .catch(error => console.log('error', error));
 </script>
+
 @endsection
