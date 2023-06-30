@@ -10,11 +10,7 @@ $address2 = isset($_POST['address2']) ? $_POST['address2'] : null;
 $postalCode = isset($_POST['postalCode']) ? $_POST['postalCode'] : null;
 $city = isset($_POST['city']) ? $_POST['city'] : null;
 
-session(['selectedTime' => $selectedTime]);
-session(['email' => $email]);
-session(['address' => $address]);
-session(['postalCode' => $postalCode]);
-session(['city' => $city]);
+$selectedTime = session('selectedTime') ?? null;
 ?>
 
 <div class="container">
