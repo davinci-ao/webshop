@@ -20,6 +20,11 @@ $endDate = date('d-m-Y', strtotime($currentDate . ' + 6 days'));
       <form action="{{ url('order/information') }}" method="POST" id="form">
          @csrf
          <input type="hidden" name="totalprice" value="{{$totalPrice}}">
+      <input type="hidden" name="email" value="{{$email}}">
+      <input type="hidden" name="address" value="{{$address}}">
+      <input type="hidden" name="address2" value="{{$address2}}">
+      <input type="hidden" name="postalCode" value="{{$postalCode}}">
+      <input type="hidden" name="city" value="{{$city}}">
          <button type="submit" class="btn btn-success m-3"><i class="fa-solid fa-arrow-left"></i> Back to information</button>
       </form>
    </div>

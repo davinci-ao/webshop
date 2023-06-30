@@ -3,7 +3,12 @@
 @section('content')
 
 <?php
-$totalPrice = $_POST['totalprice'];
+$totalPrice = $_POST['totalprice'] ?? null;
+$email = $_POST['email'] ?? null;
+$address = $_POST['address'] ?? null;
+$address2 = $_POST['address2'] ?? null;
+$postalCode = $_POST['postalCode'] ?? null;
+$city = $_POST['city'] ?? null;
 ?>
 <div class="container">
 <a type='button' href="{{ url('/cart/index') }}" class='btn btn-success btn-block m-3'><i class="fa-solid fa-arrow-left"></i> Back to cart</a>
@@ -15,31 +20,34 @@ $totalPrice = $_POST['totalprice'];
     <div class="form-group col-md-6 m-4">
       <label for="email">Email</label>
       @auth
-      <input type="email" name="email" class="form-control" value="<?php echo $email ?>" id="email" placeholder="Email">
+      <input type="email" name="email" class="form-control" value="{{$email}}" id="email" placeholder="Email">
       @endauth
 
       @guest
-      <input type="email" name="email" class="form-control" id="email" placeholder="Email">
+      
+      <input type="email" name="email" class="form-control" 
+    value="<?php echo isset($email) ? $email : ''; ?>"
+    id="email" placeholder="Email">
       @endguest
 
     </div>
   </div>
   <div class="form-group col-md-6 m-4">
     <label for="address">Address</label>
-    <input type="text" class="form-control" name="address" placeholder="Adress" required>
+    <input type="text" class="form-control" name="address" placeholder="Adress" value="{{$address}}">
   </div>
   <div class="form-group col-md-6 m-4">
     <label for="address2">Address 2</label>
-    <input type="text" class="form-control" name="address2" placeholder="Adress">
+    <input type="text" class="form-control" name="address2" placeholder="Adress" value={{($address2)}}>
   </div>
   <div class="form-row">
     <div class="form-group col-md-3 m-4">
       <label for="postalCode">Postal code</label>
-      <input type="text" class="form-control" name="postalCode" placeholder="1234AB" required>
+      <input type="text" class="form-control" name="postalCode" placeholder="1234AB" value="{{$postalCode}}" required>
     </div>
     <div class="form-group col-md-6 m-4">
       <label for="city">City</label>
-      <input type="text" class="form-control" name="city" placeholder="City" required>
+      <input type="text" class="form-control" name="city" placeholder="City"  value="{{$city}}" required>
     </div>
   </div>
   <input type="hidden" name="totalprice" value="{{$totalPrice}}">
