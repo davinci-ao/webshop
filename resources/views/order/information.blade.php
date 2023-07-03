@@ -9,6 +9,8 @@ $address = $_POST['address'] ?? null;
 $address2 = $_POST['address2'] ?? null;
 $postalCode = $_POST['postalCode'] ?? null;
 $city = $_POST['city'] ?? null;
+
+
 ?>
 <div class="container">
 <a type='button' href="{{ url('/cart/index') }}" class='btn btn-success btn-block m-3'><i class="fa-solid fa-arrow-left"></i> Back to cart</a>

@@ -10,59 +10,60 @@ $address2 = isset($_POST['address2']) ? $_POST['address2'] : null;
 $postalCode = isset($_POST['postalCode']) ? $_POST['postalCode'] : null;
 $city = isset($_POST['city']) ? $_POST['city'] : null;
 
-$selectedTime = session('selectedTime') ?? null;
+$selectedTimeframe = json_decode($_POST['selectedTimeframes'], true);
+$date = $selectedTimeframe['date'];
+$from = $selectedTimeframe['from'];
+$to = $selectedTimeframe['to'];
+
 ?>
 
 <div class="container">
-<div class="d-flex align-items-end">
-   <form action="{{ url('order/delivery') }}" method="POST" id="form">
-      @csrf
-      <input type="hidden" name="totalprice" value="{{$totalPrice}}">
-      <input type="hidden" name="email" value="{{$email}}">
-      <input type="hidden" name="address" value="{{$address}}">
-      <input type="hidden" name="address2" value="{{$address2}}">
-      <input type="hidden" name="postalCode" value="{{$postalCode}}">
-      <input type="hidden" name="city" value="{{$city}}">
-      <button type="submit" class="btn btn-success m-3"><i class="fa-solid fa-arrow-left"></i> Back to Delivery</button>
-   </form>
-   <?php
-   $totalPrice = (int)$totalPrice;
-   ?>
-</div>
+    <div class="d-flex align-items-end">
+        <form action="{{ url('order/delivery') }}" method="POST" id="form">
+            @csrf
+            <input type="hidden" name="totalprice" value="{{$totalPrice}}">
+            <input type="hidden" name="email" value="{{$email}}">
+            <input type="hidden" name="address" value="{{$address}}">
+            <input type="hidden" name="address2" value="{{$address2}}">
+            <input type="hidden" name="postalCode" value="{{$postalCode}}">
+            <input type="hidden" name="city" value="{{$city}}">
+            <button type="submit" class="btn btn-success m-3"><i class="fa-solid fa-arrow-left"></i> Back to Delivery</button>
+        </form>
+        <?php
+        $totalPrice = (int)$totalPrice;
+        ?>
+    </div>
 
-<div class="row">
-   <div class="card col">
-      <h1 class="m-1">Order overview</h1>
-      <h5 class="m-2">Your email is {{$email}}</h5>
-      <div class="card mt-2 mb-3">
-        <div class="card-body">
-           <?php
-              $selectedTime = json_decode($selectedTime, true); // Convert string to associative array
-           ?>
-           <table>
+    <div class="row">
+        <div class="card col">
+            <h1 class="m-1">Order overview</h1>
+            <h5 class="m-2">Your email is {{$email}}</h5>
+            <div class="card mt-2 mb-3">
+                <div class="card-body">
+                    <table>
+                        <tr>
+                            <th width="70%">Address</th>
+                            <th>Delivery moment</th>
+                        </tr>
+
+                        <p class="card-text">
+                            <tr>
+                                <td>Address: {{ $address }}</td>
+                                <td>Date: {{ $date}}</td>
+                            </tr>
+                            <tr>
+                                <td>Postal code: {{ $postalCode }}</td>
+                                <td> From: {{ isset($from) ? date('h:i A', strtotime($from)) : '' }}</td>
+                            </tr>
+                            <tr>
+                                <td> City: {{ $city }}</td>
+                                <td>To: {{ isset($to) ? date('h:i A', strtotime($to)) : '' }}</td>
+                            </tr>
+                        </p>
+                    </table>
+                </div>
+            </div>
             <tr>
-               <th width="70%">Address</th>
-               <th>Delivery moment</th>
-            </tr>
-          
-           <p class="card-text">
-           <tr>
-               <td>Address: {{ $address }}</td>
-               <td>Date: {{ $selectedTime['date'] }}</td>  
-           </tr>
-           <tr>
-            <td>Postal code: {{ $postalCode }}</td>
-            <td> From: {{ date('h:i A', strtotime($selectedTime['from'])) }}</td>
-           </tr>
-           <tr>
-            <td> City: {{ $city }}</td>
-            <td>To: {{ date('h:i A', strtotime($selectedTime['to'])) }}</td>
-           </tr>
-           </p>
-           </table>
-        </div>
-     </div>
-     <tr>
                         <td align="left" style="padding-top: 20px;">
                             <table cellspacing="0" cellpadding="0" border="0" width="100%">
                                 <tr>
